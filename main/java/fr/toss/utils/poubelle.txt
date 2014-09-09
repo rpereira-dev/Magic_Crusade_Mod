@@ -1,0 +1,8 @@
+baneful_HELMET = ((ItemArmorM)new ItemArmorM(EnumMaterial.baneful, 7, 0).setUnlocalizedName("baneful_helmet")).setAgility(10.0f).setStrenght(10.0f);
+baneful_CHESTPLATE = ((ItemArmorM)new ItemArmorM(EnumMaterial.baneful, 7, 1).setUnlocalizedName("baneful_chestplate")).setAgility(24.0f).setStrenght(20.0f);
+baneful_PANTS = ((ItemArmorM)new ItemArmorM(EnumMaterial.baneful, 7, 2).setUnlocalizedName("baneful_leggings")).setAgility(14.0f).setStrenght(10.0f);
+baneful_BOOTS = ((ItemArmorM)new ItemArmorM(EnumMaterial.baneful, 7, 3).setUnlocalizedName("baneful_boots")).setAgility(8.0f).setStrenght(10.0f);
+GameRegistry.registerItem(baneful_HELMET, "baneful_helmet");
+GameRegistry.registerItem(baneful_CHESTPLATE, "baneful_chestplate");
+GameRegistry.registerItem(baneful_PANTS, "baneful_leggings");
+GameRegistry.registerItem(baneful_BOOTS, "baneful_boots");

@@ -1,0 +1,7 @@
+  {
+  "centaure_hurt": {"category": "master","sounds": [{"name": "centaure_hurt","stream": false}]},
+  "centaure_live": {"category": "master","sounds": [{"name": "centaure_live","stream": false}]},
+  "stymph_death": {"category": "master","sounds": [{"name": "stymph_death","stream": false}]},
+  "stymph_live1": {"category": "master","sounds": [{"name": "stymph_live1","stream": false}]},
+  "stymph_live2": {"category": "master","sounds": [{"name": "stymph_live2","stream": false}]}
+  }

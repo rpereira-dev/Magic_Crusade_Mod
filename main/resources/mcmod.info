@@ -1,0 +1,16 @@
+[
+{
+  "modid": "magiccrusade",
+  "name": "Magic Crusade",
+  "description": "Magic Crusade is RPG mod, made to be play online with friends.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Toss, Gelbar"],
+  "credits": "Community",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

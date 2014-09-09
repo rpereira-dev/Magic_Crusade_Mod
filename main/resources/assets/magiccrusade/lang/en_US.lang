@@ -1,0 +1,197 @@
+#   Fichier lang Magic Crusade
+#   lang: English
+#   lang: EN_US
+
+
+#   Creative tabs
+itemGroup.block_magic=MC Blocks
+itemGroup.item_util=MC Materials
+itemGroup.item_tools=MC Tools
+itemGroup.item_fight=MC Armor / Weapons
+itemGroup.item_fight_loot=MC Loot
+
+
+#   ACHIEVEMENTS
+achievement.new_dimension=New Challenges...
+achievement.new_dimension.desc=Entering the Mystic Groves
+
+achievement.new_items=Let's craft
+achievement.new_items.desc=I want new tools! Craft a blue stick
+
+achievement.ethernium_sword=Ethernium Sword
+achievement.ethernium_sword.desc=This sword is magic! Craft an Ethernium Sword
+
+achievement.titanium_stuff=Strong Armor
+achievement.titanium_stuff.desc=The most resistant craftable armor
+
+achievement.silver_pickaxe=It's shining
+achievement.silver_pickaxe.desc=A pickaxe with a new material (silver)
+
+achievement.sulfuron=Dat HAMMER
+achievement.sulfuron.desc=Find a Sulfuras Hammer
+
+achievement.magic_staff=What a weapon!
+achievement.magic_staff.desc=Find one of the three Magic staff
+
+#   KEY BINDS
+key.categories.magiccrusade=-- Magic Crusade --
+key.select_classe=Classe Selection
+key.stats=Player Screen
+key.spells_0=Spell 1
+key.spells_1=Spell 2
+key.spells_2=Spell 3
+key.spells_3=Spell 4
+key.spells_4=Spell 5
+key.spells_5=Spell 6
+key.spells_6=Spell 7
+key.spells_7=Spell 8
+
+#   BLOCKS
+tile.planks.plank_sky.name=Sky Plank
+tile.planks.plank_bleu.name=Blue Plank
+tile.flower.name=Dimensional Flower
+tile.log.frozenWood.name=Frozen wood
+tile.log.dimWood.name=Blue wood
+tile.log.skyWood.name=Sky wood
+tile.leaves_frozen.name=Frozen Leaves
+tile.berry_red.name=Red berry plant
+tile.berry_yellow.name=Yellow berry plant
+tile.tallgrass_snowed.name=Snowed tallgrass
+tile.ore_combustium.name=Combustium Ore
+tile.ore_silver.name=Silver Ore
+tile.ore_ethernium.name=Ethernium Ore
+tile.ore_titanium.name=Titanium Ore
+tile.null.name=UNDEFINED BLOCK
+
+
+
+#   ITEMS
+item.berry_yellow.name=Yoloberry
+item.berry_red.name=Redberry
+item.blue_stick.name=Blue Stick
+item.flower.name=Sky flower
+item.ingot_titanium.name=Titanium Ingot
+item.ingot_silver.name=Silver Ingot
+item.ethernium.name=Ethernium
+item.combustium.name=Combustium
+
+item.sulfuras.name=Sulfuras Hammer
+item.ashbringer.name=Ashbringer
+item.ashbringercorrupted.name=Poison Dagger
+item.ellamayne.name=Holy Dagger
+item.baton_elfique.name=Elfic Staff
+item.baton_lightning.name=Lightning Staff
+item.baton_bumping.name=Bumping Staff
+
+# ITEMS TOOLS
+item.lethal_sword.name=Lethal Hammer
+item.baneful_sword.name=Baneful Sword
+item.wrathful_sword.name=Wrathful Battleaxe
+
+item.titanium_sword.name=Titanium Sword
+item.titanium_pickaxe.name=Titanium Pickaxe
+item.titanium_shovel.name=Titanium Shovel
+item.titanium_axe.name=Titanium Axe
+item.titanium_hoe.name=Titanium Hoe
+
+item.silver_sword.name=Silver Sword
+item.silver_pickaxe.name=Silver Pickaxe
+item.silver_shovel.name=Silver Shovel
+item.silver_axe.name=Silver Axe
+item.silver_hoe.name=Silver Hoe
+
+item.ethernium_sword.name=Ethernium Sword
+item.ethernium_pickaxe.name=Ethernium Pickaxe
+item.ethernium_shovel.name=Ethernium Shovel
+item.ethernium_axe.name=Ethernium Axe
+item.ethernium_hoe.name=Ethernium Hoe
+
+# ITEMS ARMOR
+item.titanium_helmet.name=Titanium Helmet
+item.titanium_chestplate.name=Titanium Chestplate
+item.titanium_leggings.name=Titanium Pants
+item.titanium_boots.name=Titanium Boots
+
+item.silver_helmet.name=Silver Helmet
+item.silver_chestplate.name=Silver Chestplate
+item.silver_leggings.name=Silver Pants
+item.silver_boots.name=Silver Boots
+
+item.ethernium_helmet.name=Ethernium Helmet
+item.ethernium_chestplate.name=Ethernium Chestplate
+item.ethernium_leggings.name=Ethernium Pants
+item.ethernium_boots.name=Ethernium Boots
+
+item.lethal_helmet.name=Lethal Helmet
+item.lethal_chestplate.name=Lethal Chestplate
+item.lethal_leggings.name=Lethal Pants
+item.lethal_boots.name=Lethal Boots
+
+item.baneful_helmet.name=Baneful Helmet
+item.baneful_chestplate.name=Baneful Chestplate
+item.baneful_leggings.name=Baneful Pants
+item.baneful_boots.name=Baneful Boots
+
+item.wrathful_helmet.name=Wrathful Helmet
+item.wrathful_chestplate.name=Wrathful Chestplate
+item.wrathful_leggings.name=Wrathful Pants
+item.wrathful_boots.name=Wrathful Boots
+
+item.energy_helmet.name=Energy Helmet
+item.energy_chestplate.name=Energy Chestplate
+item.energy_leggings.name=Energy Pants
+item.energy_boots.name=Energy Boots
+
+item.rogue_helmet.name=Vicious Helmet
+item.rogue_chestplate.name=Vicious Chestplate
+item.rogue_leggings.name=Vicious Pants
+item.rogue_boots.name=Vicious Boots
+
+item.sly_helmet.name=Sly Helmet
+item.sly_chestplate.name=Sly Chestplate
+item.sly_leggings.name=Sly Pants
+item.sly_boots.name=Sly Boots
+
+item.rage_helmet.name=Brutal Helmet
+item.rage_chestplate.name=Brutal Chestplate
+item.rage_leggings.name=Brutal Pants
+item.rage_boots.name=Brutal Boots
+
+item.tank_helmet.name=Robust Helmet
+item.tank_chestplate.name=Robust Chestplate
+item.tank_leggings.name=Robust Pants
+item.tank_boots.name=Robust Boots
+
+item.dps_ad_helmet.name=Aggresive Helmet
+item.dps_ad_chestplate.name=Aggresive Chestplate
+item.dps_ad_leggings.name=Aggresive Pants
+item.dps_ad_boots.name=Aggresive Boots
+
+item.dps_ap_helmet.name=Conjuring Helmet
+item.dps_ap_chestplate.name=Conjuring Chestplate
+item.dps_ap_leggings.name=Conjuring Pants
+item.dps_ap_boots.name=Conjuring Boots
+
+item.heal_helmet.name=Magic Helmet
+item.heal_chestplate.name=Magic Chestplate
+item.heal_leggings.name=Magic Pants
+item.heal_boots.name=Magic Boots
+
+
+#   ENTITIES
+entity.VillagerDim.name=Sky Villager
+entity.SnowCube.name=Snow Cube
+entity.SlimeFrozen.name=Frozen Slime
+entity.GhastFrozen.name=Frozen Ghast
+entity.FrozenCube.name=Frozen Ghast
+entity.Slave.name=Wild Player
+entity.Stymph.name=Stymphalide
+entity.Centaure.name=Centaure
+entity.Orc.name=Orc
+entity.BossOrc.name=King Orc
+entity.MageOrc.name=Mage Orc
+entity.Lutin.name=Lutin
+entity.ZombieSummon.name=Necromancer Zombie
+entity.Gobelin.name=Gobelin
+entity.Arkavon.name=Arkavon
+entity.MonsterZombie.name=Arkavon Zombie
