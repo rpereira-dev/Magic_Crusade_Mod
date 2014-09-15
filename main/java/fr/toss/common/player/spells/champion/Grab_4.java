@@ -2,6 +2,7 @@ package fr.toss.common.player.spells.champion;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -46,7 +47,7 @@ public class Grab_4 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Attraction";
+		return I18n.format("spell.champion.grab");
 	}
 
 	@Override

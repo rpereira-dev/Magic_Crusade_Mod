@@ -19,8 +19,8 @@ public class Classe implements IClasse {
 	public static final ResourceLocation CHAMPION = new ResourceLocation("magiccrusade:textures/spells/champion.png");
 	public static final ResourceLocation DRAGON_SLAYER = new ResourceLocation("magiccrusade:textures/spells/dragon_slayer.png");
 	public static final ResourceLocation NECROMANCER = new ResourceLocation("magiccrusade:textures/spells/necromancer.png");
+	public static final ResourceLocation ROGUE = new ResourceLocation("magiccrusade:textures/spells/rogue.png");
 
-	
 	public Classe()
 	{
 		this.player = Main.getPlayerClient();
@@ -83,6 +83,9 @@ public class Classe implements IClasse {
 				
 			case 5 :
 				return (new ClasseMage());
+				
+			case 6 :
+				return (new ClasseRogue());
 		}
 		return (new ClasseFarmer());
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +27,7 @@ public class Healzone_3 extends Spell {
 	@Override
 	public int getLevel() 
 	{
-		return 6;
+		return 7;
 	}
 
 	@Override
@@ -38,7 +39,7 @@ public class Healzone_3 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Zone heal";
+		return I18n.format("spell.priest.healzone");
 	}
 
 	@Override

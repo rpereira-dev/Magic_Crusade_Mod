@@ -8,6 +8,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ChatComponentText;
 
@@ -45,8 +46,8 @@ public class GuiClasseInformation extends GuiScreen {
 	@Override
 	public void initGui()
 	{
-		this.buttonList.add(new GuiButton(42, this.width / 2 - 40, 34, 80, 20, "Select"));
-		this.buttonList.add(new GuiButton(43, 10, this.height - 30, 120, 20, ChatColor.RESET + "<- Back to selection"));
+		this.buttonList.add(new GuiButton(42, this.width / 2 - 40, 34, 80, 20, I18n.format("button.selection")));
+		this.buttonList.add(new GuiButton(43, 10, this.height - 30, 120, 20, ChatColor.RESET + I18n.format("button.back_selection")));
 	}
 
 

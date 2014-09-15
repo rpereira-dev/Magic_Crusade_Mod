@@ -2,9 +2,11 @@ package fr.toss.common.player.spells;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -441,9 +443,39 @@ public class ServerSpellHandler {
 			rotationPitch = e.rotationPitch;
 					
 			e.setLocationAndAngles(sender.posX, sender.posY, sender.posZ, sender.rotationYaw, sender.rotationPitch);
-			sender.moveEntity(posX, posY, posZ);
+			e.setLocationAndAngles(e.posX, e.posY, e.posZ, e.rotationYaw, e.rotationPitch);
 		}
 	}
+
+	public static void handle_field_destruction(PacketSpellToServer message, World world, EntityPlayerMP sender)
+	{
+		Entity e;
+		
+		e = world.getEntityByID(message.data);
+		if (e != null)
+		{
+			e.attackEntityFrom(DamageSource.causePlayerDamage(sender), 3 + message.data2);
+		}
+	}
+
+	public static void handle_speed_rogue(EntityPlayerMP sender)
+	{
+		sender.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 120, 1));
+		sender.addPotionEffect(new PotionEffect(Potion.jump.id, 120, 1));
+	}
 	
+	public static void handle_vision(EntityPlayerMP sender)
+	{
+		sender.addPotionEffect(new PotionEffect(Potion.nightVision.id, 200, 99));
+	}
 	
+	public static void handle_invisible(EntityPlayerMP sender)
+	{
+		sender.addPotionEffect(new PotionEffect(Potion.invisibility.id, 160, 99));
+	}
+
+	public static void handle_boots(EntityPlayerMP sender)
+	{
+		sender.inventory.armorInventory[0].addEnchantment(Enchantment.featherFalling, 5);
+	}
 }

@@ -2,6 +2,7 @@ package fr.toss.common.player.spells.necromancer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.world.World;
 import fr.toss.client.render.particles.EntityFX_Colored;
 import fr.toss.common.packet.PacketSpellToServer;
@@ -30,7 +31,7 @@ public class WitherSkull_3 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Wither shot";
+		return I18n.format("spell.necromancer.witherskull");
 	}
 
 	@Override

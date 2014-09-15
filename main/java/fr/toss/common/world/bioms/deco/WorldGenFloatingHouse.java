@@ -26,7 +26,6 @@ public class WorldGenFloatingHouse extends WorldGenerator {
 		this.world = world;
 		this.rand = rand;
 		
-		y = 80 + rand.nextInt(10);
 		world.setBlock(x+9, y+0, z+4, BlockRegister.LEAVES);
 		world.setBlockMetadataWithNotify(x+9, y+0, z+4, 1, 2);
 		world.setBlock(x+10, y+0, z+4, BlockRegister.LEAVES);

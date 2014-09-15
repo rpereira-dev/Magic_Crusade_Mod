@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 
 
 public class Cellule {
@@ -85,31 +86,85 @@ public class Cellule {
 		else
 		{
 			System.out.println("Returned previous: " + this.previous.x + " - " + this.previous.z);
+			if (this.labyrinthe.x_arrive == -1 && this.labyrinthe.z_arrive == -1)
+			{
+				this.labyrinthe.x_arrive = this.x;
+				this.labyrinthe.z_arrive = this.z;
+			}
 			return (this.previous);
 		}
 	}
 
 
-	public void generate(World world, int x, int y, int z, int cellule_size, int cellule_hauteur)
+	/** Generes la cellule */
+	public void generate(World world, int x, int y, int z)
+	{
+		Block block;
+		int X;
+		int Z;
+		int cellule_size;
+		int cellule_hauteur;
+		
+		cellule_size = this.labyrinthe.cellule_size + 2;
+		cellule_hauteur = this.labyrinthe.cellule_height;
+		X = x + this.z * cellule_size;
+		Z = z + this.x * cellule_size;
+
+		if (this.labyrinthe.gen_chest && this.labyrinthe.random.nextInt(this.labyrinthe.size * this.labyrinthe.size / 2) == 0)
+			this.generate_chest(world, X, y, Z, cellule_size, cellule_hauteur);
+		this.generate_ground(world, X, y, Z, cellule_size, cellule_hauteur);
+		this.generate_walls(world, X, y, Z, cellule_size, cellule_hauteur);
+	}
+
+	/** Generes le sol de la cellule */
+	void generate_chest(World world, int x, int y, int z, int cellule_size, int cellule_hauteur)
+	{
+		
+		
+	}
+	
+	
+	/** Generes le sol de la cellule */
+	void generate_ground(World world, int X, int y, int Z, int cellule_size, int cellule_hauteur)
+	{
+		Block block;
+		
+		block = (this.x == this.labyrinthe.x_depart && this.z == this.labyrinthe.z_depart) ? this.labyrinthe.block_spawn
+				: (this.x == this.labyrinthe.x_arrive && this.z == this.labyrinthe.z_arrive) ? this.labyrinthe.block_arrive
+					: this.labyrinthe.block_ground;
+
+		for (int i = 0; i < cellule_size; i++)
+			for (int j = 0; j < cellule_size; j++)
+				this.setBlock(X + i, y - 1, Z + j, block);
+	}
+	
+	/** Generes les murs des cellules (en fonction de si la cellule a été ouverte ou non */
+	void generate_walls(World world, int X, int y, int Z, int cellule_size, int cellule_hauteur)
 	{
 		if (this.doors[0] != 0) //gauche
 			for (int h = 0; h < cellule_hauteur; h++)
 				for (int j = 0; j < cellule_size; j++)
-					world.setBlock(x + this.z * cellule_size + j, y + h, z + this.x * cellule_size, Blocks.bedrock);
+					this.setBlock(X + j, y + h, Z, Blocks.bedrock);
 		
 		if (this.doors[1] != 0) //droite
 			for (int h = 0; h < cellule_hauteur; h++)
 				for (int j = 0; j < cellule_size; j++)
-					world.setBlock(x + this.z * cellule_size + j, y + h, z + this.x * cellule_size + cellule_size - 1, Blocks.bedrock);
+					this.setBlock(X + j, y + h, Z + cellule_size - 1, Blocks.bedrock);
 			
 		if (this.doors[2] != 0) //bas
 			for (int h = 0; h < cellule_hauteur; h++)
 				for (int j = 0; j < cellule_size; j++)
-					world.setBlock(x + this.z * cellule_size, y + h, z + this.x * cellule_size + j, Blocks.bedrock);
+					this.setBlock(X, y + h, Z + j, Blocks.bedrock);
 			
 		if (this.doors[3] != 0) //haut
 			for (int h = 0; h < cellule_hauteur; h++)
 				for (int j = 0; j < cellule_size; j++)
-					world.setBlock(x + this.z * cellule_size + cellule_size - 1, y + h, z + this.x * cellule_size + j, Blocks.bedrock);
+					this.setBlock(X + cellule_size - 1, y + h, Z + j, Blocks.bedrock);
 	}	
+	
+	
+	public void setBlock(int x, int y, int z, Block block)
+	{
+		this.labyrinthe.world.setBlock(x, y, z, block);
+	}
 }

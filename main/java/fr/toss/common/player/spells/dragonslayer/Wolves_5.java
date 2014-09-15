@@ -2,6 +2,7 @@ package fr.toss.common.player.spells.dragonslayer;
 
 import java.util.List;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.ChatComponentText;
 import fr.toss.common.command.ChatColor;
@@ -44,7 +45,7 @@ public class Wolves_5 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Wolf summon";
+		return I18n.format("spell.ranger.wolves");
 	}
 
 	@Override

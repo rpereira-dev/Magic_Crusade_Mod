@@ -1,5 +1,6 @@
 package fr.toss.common;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
@@ -7,6 +8,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S0BPacketAnimation;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -115,6 +118,18 @@ public class ServerEvent {
 			
 			damages += (strength / 20.0f);  //20 points d'attaque = 1 coeur
 
+			if (pm.classe == 6) //Rogue
+			{
+				if (pm.getPlayer().getLookVec().xCoord - 0.5f <= event.target.getLookVec().xCoord
+					&& event.target.getLookVec().xCoord <= pm.getPlayer().getLookVec().xCoord + 0.5f
+					&& pm.getPlayer().getLookVec().zCoord - 0.5f <= event.target.getLookVec().zCoord
+					&& event.target.getLookVec().zCoord <= pm.getPlayer().getLookVec().zCoord + 0.5f)
+					agility *= 2;
+				if (pm.is_poisonned && event.target instanceof EntityLivingBase)
+					((EntityLivingBase) event.target).addPotionEffect(new PotionEffect(Potion.poison.id, 100, 0));
+				pm.is_poisonned = false;
+			}
+			
 			if (agility / 2 > world.rand.nextInt(100) && !event.entityLiving.isDead) // 1 point agility = 0.5% crit
 			{
 				damages += ((float)pm.getPlayer().getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue() * 0.5f);
@@ -122,7 +137,6 @@ public class ServerEvent {
 			}
 			event.target.attackEntityFrom(DamageSource.causePlayerDamage(pm.getPlayer()), damages);
 		}
-		System.out.println(damages);
 
 	}
 	
@@ -137,7 +151,7 @@ public class ServerEvent {
 		
 		if (pm != null)
 		{
-			 if (pm.getPlayer().worldObj.rand.nextInt(10) == 0)
+			 if (pm.getPlayer().worldObj.rand.nextInt(2) == 0)
 				 pm.travelToDimension(pm.getPlayer());
 		}			 
     }

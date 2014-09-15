@@ -2,6 +2,7 @@ package fr.toss.common.player.spells.priest;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -21,7 +22,7 @@ public class Holyshield_6 extends Spell {
 	@Override
 	public int getLevel() 
 	{
-		return 10;
+		return 12;
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class Holyshield_6 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Holy Shield";
+		return I18n.format("spell.priest.holyshield");
 	}
 
 	

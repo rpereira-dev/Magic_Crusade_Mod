@@ -10,13 +10,16 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fr.toss.client.gui.GuiCreateGroup;
+import fr.toss.client.gui.GuiGroup;
 import fr.toss.client.gui.GuiSelectClass;
 import fr.toss.client.gui.GuiStats;
 import fr.toss.common.Main;
 import fr.toss.common.command.ChatColor;
 import fr.toss.common.player.ClientPlayerBaseMagic;
 import fr.toss.common.player.spells.Spell;
-import fr.toss.common.world.labyrinthe.WorldGenLabyrinthe;
+import fr.toss.common.world.bioms.dungeon_arkavon.ThreadGenerator;
+import fr.toss.common.world.bioms.dungeon_arkavon.WorldGenArkavon;
 
 public class KeyInputHandler {
 
@@ -27,20 +30,25 @@ public class KeyInputHandler {
     	ClientPlayerBaseMagic player = Main.getPlayerClient();
     	
         if(KeyBindings.KEY_GENERATE.isPressed())
-        {
+        {        	
         	World w = MinecraftServer.getServer().worldServerForDimension(player.getPlayer().dimension);
         	Random rand = Minecraft.getMinecraft().theWorld.rand;
         	
 	        int x = (int) Minecraft.getMinecraft().thePlayer.posX;
 	        int y = (int) Minecraft.getMinecraft().thePlayer.posY;
 	        int z = (int) Minecraft.getMinecraft().thePlayer.posZ;
-	        WorldGenLabyrinthe dj = new WorldGenLabyrinthe ();
-	        dj.generate(w, rand, x, y, z);
+	        ThreadGenerator thread = new ThreadGenerator(w, rand, x, y, z);
+	        thread.start();
         }
         else if(KeyBindings.KEY_SELECT_CLASSE.isPressed())
         	Minecraft.getMinecraft().displayGuiScreen(new GuiSelectClass());
         else if(KeyBindings.KEY_STATS.isPressed())
         	Minecraft.getMinecraft().displayGuiScreen(new GuiStats());
+        else if(KeyBindings.KEY_GROUP.isPressed())
+        	if (player.getPlayer().getTeam() != null)
+            	Minecraft.getMinecraft().displayGuiScreen(new GuiGroup());
+        	else
+            	Minecraft.getMinecraft().displayGuiScreen(new GuiCreateGroup());
         else
         {
         	if (player != null && player.getClasse() != null)

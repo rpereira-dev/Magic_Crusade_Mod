@@ -25,6 +25,8 @@ public class ServerPlayerBaseMagic extends ServerPlayerBase
 	
 	public Item armor[]; // armor[4] = item equipped
 	
+	public boolean is_poisonned; //voleur
+
 	public int classe;
 	public int level;
 	public int experience;
@@ -78,8 +80,8 @@ public class ServerPlayerBaseMagic extends ServerPlayerBase
 		this.level = 1;
 		this.experience = 0;
 		this.exp_to_next_level = this.level * 20 * (this.level + 1);
-	    this.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0d);
-	    this.player.setHealth(20.0f);
+		this.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(0.5d * (this.level - 1) + 20.0d + this.endurance / 10);
+	    this.player.setHealth(this.getPlayer().getMaxHealth());
 	}
 	
 	 @Override

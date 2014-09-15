@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.ChatComponentText;
@@ -38,7 +39,7 @@ public class Necromancy_6 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Necromancy";
+		return I18n.format("spell.necromancer.necromancy");
 	}
 
 	@Override

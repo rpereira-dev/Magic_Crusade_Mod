@@ -2,6 +2,7 @@ package fr.toss.common.player.spells.necromancer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
@@ -45,7 +46,7 @@ public class Corruption_5 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Corruption";
+		return I18n.format("spell.necromancer.corruption");
 	}
 
 	@Override

@@ -12,6 +12,8 @@ public class KeyBindings {
 
     public static KeyBinding KEY_STATS;
     
+    public static KeyBinding KEY_GROUP;
+
     public static KeyBinding KEY_SELECT_CLASSE;
 
     public static KeyBinding KEY_SPELLS[];
@@ -24,6 +26,9 @@ public class KeyBindings {
         
         KEY_STATS = new KeyBinding("key.stats", Keyboard.KEY_P, "key.categories.magiccrusade");
         ClientRegistry.registerKeyBinding(KEY_STATS);
+      
+    	KEY_GROUP = new KeyBinding("key.group", Keyboard.KEY_G, "key.categories.magiccrusade");
+        ClientRegistry.registerKeyBinding(KEY_GROUP);
         
         KEY_SELECT_CLASSE = new KeyBinding("key.select_classe", Keyboard.KEY_P, "key.categories.magiccrusade");
         ClientRegistry.registerKeyBinding(KEY_SELECT_CLASSE);

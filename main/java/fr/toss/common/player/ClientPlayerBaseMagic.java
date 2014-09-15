@@ -18,6 +18,7 @@ import fr.toss.common.player.classes.ClasseMage;
 import fr.toss.common.player.classes.ClasseNecromancer;
 import fr.toss.common.player.classes.ClassePriest;
 import fr.toss.common.player.classes.ClasseRanger;
+import fr.toss.common.player.classes.ClasseRogue;
 import fr.toss.common.player.spells.Spell;
 
 public class ClientPlayerBaseMagic extends ClientPlayerBase
@@ -43,7 +44,6 @@ public class ClientPlayerBaseMagic extends ClientPlayerBase
 	public double hp;
 	
 	public long last_hit;
-
 	
 	public ClientPlayerBaseMagic(ClientPlayerAPI playerapi)
 	{
@@ -78,6 +78,11 @@ public class ClientPlayerBaseMagic extends ClientPlayerBase
 			this.level = 1;
 			this.experience = 0;
 			this.exp_to_next_level = this.level * 20 * (this.level + 1);
+			this.armor = new Item[5];
+			this.clarity = 0;
+			this.strength = 0;
+			this.agility = 0;
+			this.endurance = 0;
 		}
 	}
 	
@@ -87,6 +92,8 @@ public class ClientPlayerBaseMagic extends ClientPlayerBase
 	{
 		super.onUpdate();
 		
+		if (this.getPlayer().isEntityInvulnerable())
+			this.energy = this.max_energy;
 		if (this.classe instanceof ClasseChampion)
 		{
 			long time = System.currentTimeMillis();
@@ -99,7 +106,7 @@ public class ClientPlayerBaseMagic extends ClientPlayerBase
 			if (this.energy < this.max_energy)
 				this.increase_energy(this.energy_regen);
 		}
-		else if (this.classe instanceof ClasseRanger)
+		else if (this.classe instanceof ClasseRanger || this.classe instanceof ClasseRogue)
 		{
 			if (this.energy < this.getClasse().getMaxEnergy())
 				this.energy++;
@@ -108,8 +115,10 @@ public class ClientPlayerBaseMagic extends ClientPlayerBase
 		if (this.experience_to_get > 0)
 		{
 			this.experience += 8;
-			if (this.experience >= this.exp_to_next_level)
+			if (this.experience >= this.exp_to_next_level && this != null)
+			{
 				this.onLevelUp();
+			}
 			this.experience_to_get -= 8;
 		}
 		this.updateArmor();

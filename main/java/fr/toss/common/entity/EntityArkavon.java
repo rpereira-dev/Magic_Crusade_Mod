@@ -3,18 +3,21 @@ package fr.toss.common.entity;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import fr.toss.common.register.ItemRegister;
 
@@ -68,6 +71,37 @@ public class EntityArkavon extends EntityMob implements IBossDisplayData {
 			}
 		}
 		
+    	
+    	if (this.getHealth() < this.getMaxHealth() / 10 && System.currentTimeMillis() % 2000 < 30)
+    	{
+    		int r;
+    		double x;
+    		double y;
+    		double z;
+    		
+    		r = 20;
+    		for (int beta = -180; beta < 180; beta += 4)
+    		{
+        		for (int teta = -90; teta < 90; teta += 4)
+        		{
+        			x = r * MathHelper.cos(teta) * MathHelper.cos(beta);
+        			y = r * MathHelper.sin(teta);
+        			z = r * MathHelper.cos(teta) * MathHelper.sin(beta);
+        			this.worldObj.spawnParticle("smoke", this.posX, this.posY + 2, this.posZ, x / 12.0f, y / 8.0f, z / 12.0f);
+        		}
+    		}
+    		
+    		for (int i = 0; i < list.size(); i++)
+    		{
+    			if (list.get(i) instanceof EntityPlayer)
+    			{
+    				if (list.get(i) instanceof EntityLivingBase)
+    				{
+    					((EntityLivingBase)list.get(i)).attackEntityFrom(DamageSource.causeMobDamage(this), 2);
+    				}
+    			}
+    		}
+    	}		
 		
 		if (p != null)
 			BossStatus.setBossStatus(this, true);
@@ -94,21 +128,63 @@ public class EntityArkavon extends EntityMob implements IBossDisplayData {
     		this.worldObj.spawnEntityInWorld(zombie);
     		p.addChatComponentMessage(new ChatComponentText("Say hello to my friends..."));	
     	}
-    	else if (timer > 12000 && timer < 16000)
+    	else if (timer > 12000 && timer < 18000)
     	{
     		if (p.posY - this.posY < 6)
     			p.motionY += 0.1f;
     		p.attackEntityFrom(DamageSource.magic, 0.05f);
     	}
-    	else if (timer > 24000 && timer < 26000 && timer % 1000 < 100)
+    	else if (timer > 24000 && timer < 26400 && timer % 1000 < 100)
 			this.worldObj.createExplosion(this, p.posX, p.posY - 1, p.posZ, 1, true);
-
     }
+    
     
     protected Item getDropItem()
     {
         for (int k = 0; k < 4; ++k)
         	this.dropItem(ItemRegister.getRandomArmor(), 1);
+        
+        if (this.worldObj.rand.nextInt(10) == 0)
+        	this.dropItem(ItemRegister.ASHBRINGER, 1);
+        if (this.worldObj.rand.nextInt(10) == 0)
+        	this.dropItem(ItemRegister.ASHBRINGER_POISON, 1);
+        if (this.worldObj.rand.nextInt(10) == 0)
+        	this.dropItem(ItemRegister.ELLAMAYNE, 1);
+        if (this.worldObj.rand.nextInt(10) == 0)
+        	this.dropItem(ItemRegister.LAME_RUNIQUE, 1);
+        if (this.worldObj.rand.nextInt(10) == 0)
+        	this.dropItem(ItemRegister.wrathful_SWORD, 1);
+        if (this.worldObj.rand.nextInt(10) == 0)
+        	this.dropItem(ItemRegister.baneful_SWORD, 1);
+        if (this.worldObj.rand.nextInt(10) == 0)
+        	this.dropItem(ItemRegister.lethal_SWORD, 1);
+        
+        if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.wrathful_BOOTS, 1);
+        else if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.wrathful_PANTS, 1);
+        else if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.wrathful_CHESTPLATE, 1);
+        else if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.wrathful_HELMET, 1);
+        
+        if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.lethal_BOOTS, 1);
+        else if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.lethal_PANTS, 1);
+        else if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.lethal_CHESTPLATE, 1);
+        else if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.lethal_HELMET, 1);
+        
+        if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.baneful_BOOTS, 1);
+        else if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.baneful_PANTS, 1);
+        else if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.baneful_CHESTPLATE, 1);
+        else if (this.worldObj.rand.nextInt(16) == 0)
+        	this.dropItem(ItemRegister.baneful_HELMET, 1);
         
         return ItemRegister.SULFURAS;
     }

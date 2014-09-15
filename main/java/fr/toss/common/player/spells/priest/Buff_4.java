@@ -2,6 +2,7 @@ package fr.toss.common.player.spells.priest;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -21,7 +22,7 @@ public class Buff_4 extends Spell {
 	@Override
 	public int getLevel() 
 	{
-		return 1;
+		return 4;
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class Buff_4 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Growth";
+		return I18n.format("spell.priest.buff");
 	}
 
 	@Override

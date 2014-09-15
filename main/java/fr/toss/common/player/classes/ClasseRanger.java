@@ -24,7 +24,7 @@ public class ClasseRanger extends Classe {
 	@Override
 	public ChatColor getColor() 
 	{
-		return ChatColor.YELLOW;
+		return ChatColor.GOLD;
 	}
 
 	@Override

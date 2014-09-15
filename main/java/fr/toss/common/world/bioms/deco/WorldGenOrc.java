@@ -20,7 +20,6 @@ public class WorldGenOrc implements IWorldGenerator {
 				!(world.getBiomeGenForCoords(chunkX, chunkZ).biomeName.contains("Ocean")) &&
 				!(world.getBiomeGenForCoords(chunkX, chunkZ).biomeName.contains("Beach")))
 		{
-			System.out.println("GEEEN");
 			int x = chunkX * 16 + random.nextInt(16);
 			int z = chunkZ * 16 + random.nextInt(16);
 			int y = world.getTopSolidOrLiquidBlock(x, z) - 2;

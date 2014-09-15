@@ -2,6 +2,7 @@ package fr.toss.common.player.spells.mage;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
@@ -35,7 +36,7 @@ public class Transfert_3 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Transfert";
+		return I18n.format("spell.mage.transfert");
 	}
 
 	@Override
@@ -50,6 +51,9 @@ public class Transfert_3 extends Spell {
 			this.sendEffectToServer(e);
 			packet = new PacketSpellToServer(getUniqueID(), e.getEntityId());
 			Packets.network.sendToServer(packet);
+			
+			player.getPlayer().setLocationAndAngles(e.posX, e.posY, e.posZ, e.rotationYaw, e.rotationPitch);
+
 			return (true);
 		}
 		else
@@ -86,19 +90,5 @@ public class Transfert_3 extends Spell {
 		World world;
 
 		world = player.getPlayer().worldObj;
-		for (float i = 0; i < 8; i += 0.25f)
-		{
-			for (float j = 0; j < 8; j += 0.25f)
-			{
-				world.spawnParticle("snowballpoof", x + i - 4, y, z + j - 4, 0, 0, 0);
-	    		world.spawnParticle("snowballpoof", x + i - 4, y + 8, z + j - 4, 0, 0, 0);
-	    		
-				world.spawnParticle("snowballpoof", x + i - 4, y + j, z - 4, 0, 0, 0);
-	    		world.spawnParticle("snowballpoof", x + i - 4, y + j, z + 4, 0, 0, 0);
-	    		
-				world.spawnParticle("snowballpoof", x - 4, y + j, z - 4 + i, 0, 0, 0);
-	    		world.spawnParticle("snowballpoof", x + 4, y + j, z - 4 + i, 0, 0, 0);
-			}
-		}
 	}
 }

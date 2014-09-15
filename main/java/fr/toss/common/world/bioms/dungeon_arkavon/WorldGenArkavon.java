@@ -2,6 +2,7 @@ package fr.toss.common.world.bioms.dungeon_arkavon;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import fr.toss.common.register.BlockRegister;
@@ -13,25 +14,57 @@ public class WorldGenArkavon extends WorldGeneratorM {
 	@Override
 	public boolean generate(World w, Random r, int x, int y, int z)
 	{
-		Plateforme plateforme;
+		int a;
+		int b;
 		
-		plateforme = new Plateforme(x, y, z, 10, 4, 10);
-		this.genPlateforme(w, r, plateforme);		
+//		this.genTore(w, BlockRegister.STONE, 20, 10, x, y, z, 1);
+//		this.genBloc(w, Blocks.air, new Cube(new Point(x + 29, y - 2, z - 4), new Vec(1, 4, 9)));
+//		this.genBloc(w, Blocks.air, new Cube(new Point(x - 29, y - 2, z - 4), new Vec(1, 4, 9)));
+//		this.genBloc(w, Blocks.air, new Cube(new Point(x - 4, y - 2, z + 29), new Vec(9, 4, 1)));
+//		this.genBloc(w, Blocks.air, new Cube(new Point(x - 4, y - 2, z - 29), new Vec(9, 4, 1)));
 		
+		for (int i = 0; i < 8; i++)
+		{
+			a = x + 5 + r.nextInt(15);
+			b = z + 5 + r.nextInt(15);
+			w.setBlock(a, this.getTopBlock(w, a, b, y - 10), b, BlockRegister.ORE_ETHERNIUM);
+			this.spawn_random_skeleton(w, r, a, this.getTopBlock(w, a, b, y - 10), b);
+			
+			a = x - 5 - r.nextInt(15);
+			b = z + 5 + r.nextInt(15);
+			w.setBlock(a, this.getTopBlock(w, a, b, y - 10), b, BlockRegister.ORE_ETHERNIUM);
+			this.spawn_random_skeleton(w, r, a, this.getTopBlock(w, a, b, y - 10), b);
+			
+			a = x - 5 - r.nextInt(15);
+			b = z - 5 - r.nextInt(15);
+			w.setBlock(a, this.getTopBlock(w, a, b, y - 10), b, BlockRegister.ORE_ETHERNIUM);
+			this.spawn_random_skeleton(w, r, a, this.getTopBlock(w, a, b, y - 10), b);
+			
+			a = x + 5 + r.nextInt(15);
+			b = z - 5 - r.nextInt(15);
+			w.setBlock(a, this.getTopBlock(w, a, b, y - 10), b, BlockRegister.ORE_ETHERNIUM);
+			this.spawn_random_skeleton(w, r, a, this.getTopBlock(w, a, b, y - 10), b);
+		}
 		
+		this.genBloc(w, BlockRegister.STONE, new Cube(new Point(x + 29, y - 3, z - 4), new Vec(20, 1, 9)));
+//		this.genSphere(w, BlockRegister.STONE, 36, x + 83, y, z, 0.5f);
+		this.genBloc(w, Blocks.air, new Cube(new Point(x + 48, y - 2, z - 4), new Vec(1, 4, 9)));
+		this.genTore(w, Blocks.stone, 20, 20, x + 83, y, z, 1);
+		this.genBloc(w, Blocks.glowstone, new Cube(new Point(x + 83, y + 18, z), new Vec(8, 1, 8)));
+
 		return false;
 	}
-	
-	
-	public void genMainPlateforme(World w, Random r, Plateforme plateforme)
-	{
-		
-		
-	}
-	
-	
+
+
 	public void genPlateforme(World w, Random r, Plateforme plateforme)
 	{
+		
+//		Plateforme plateforme;
+//		
+//		plateforme = new Plateforme(x, y, z, 10, 4, 10);
+//		this.genPlateforme(w, r, plateforme);		
+		
+		
 		Cube cube;
 		
 		for (int etage = 0; etage < plateforme.ySize; etage++)

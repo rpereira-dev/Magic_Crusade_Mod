@@ -2,6 +2,7 @@ package fr.toss.common.player.spells.champion;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import fr.toss.client.render.particles.EntityFX_Colored;
@@ -32,7 +33,7 @@ public class Shockwave_2 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Shockwave";
+		return I18n.format("spell.champion.shockwave");
 	}
 	
 	@Override

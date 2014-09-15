@@ -11,18 +11,18 @@ public class WorldGenLabyrinthe extends WorldGenerator {
 	public boolean generate(World w, Random r, int x, int y, int z)
 	{
 		Labyrinthe lab;
-		int seed;
+		long seed;
 		int taille;
 		int largeur_case;
 		int hauteur_case;
 		
 		seed = 1000;
 		taille = 40;
-		largeur_case = 4;
+		largeur_case = 8;
 		hauteur_case = 4;
-		lab = new Labyrinthe(seed, taille, largeur_case, hauteur_case);
+		lab = new Labyrinthe(w, x, y, z, seed, taille, largeur_case, hauteur_case);
 		lab.solve();
-		lab.generate(w, x, y, z);
+		lab.generate();
 		return false;
 	}
 }

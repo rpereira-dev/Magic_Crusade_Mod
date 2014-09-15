@@ -1,5 +1,6 @@
 package fr.toss.common.player.spells.dragonslayer;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBow;
 import net.minecraft.util.ChatComponentText;
@@ -18,7 +19,7 @@ public class ExplodeShot_3 extends Spell {
 	@Override
 	public int getLevel() 
 	{
-		return 4;
+		return 8;
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class ExplodeShot_3 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Exploding shot";
+		return I18n.format("spell.ranger.explode_shot");
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package fr.toss.common.player.spells.priest;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
@@ -35,7 +36,7 @@ public class HolyExplosion_7 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Holy Explosion";
+		return I18n.format("spell.priest.holy_explosion");
 	}
 
 	

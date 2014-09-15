@@ -1,5 +1,6 @@
 package fr.toss.common.player.spells.dragonslayer;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBow;
 import net.minecraft.util.ChatComponentText;
@@ -43,7 +44,7 @@ public class PoisonShot_1 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Viper shot";
+		return I18n.format("spell.ranger.poison_shot");
 	}
 
 	@Override

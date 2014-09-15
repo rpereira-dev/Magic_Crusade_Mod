@@ -5,6 +5,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -22,6 +23,7 @@ import fr.toss.common.player.classes.ClasseMage;
 import fr.toss.common.player.classes.ClasseNecromancer;
 import fr.toss.common.player.classes.ClassePriest;
 import fr.toss.common.player.classes.ClasseRanger;
+import fr.toss.common.player.classes.ClasseRogue;
 
 public class GuiIngameOverlay {
 	
@@ -48,7 +50,7 @@ public class GuiIngameOverlay {
 	@SideOnly(Side.CLIENT)
 	public void onGuiIngameRender(RenderGameOverlayEvent.Post event)
 	{
-		if (this.mc.inGameHasFocus)
+		if (this.mc.inGameHasFocus && !this.mc.gameSettings.showDebugInfo)
 		{
 			ClientPlayerBaseMagic pm;
 			EntityPlayer p;
@@ -105,7 +107,7 @@ public class GuiIngameOverlay {
 	    	    	GuiUtils.drawTexturedModalRect(x, y + 15, 0, 98, (int) (65.0f / pm.max_energy * pm.energy), 13, 0);
 	    	        font.drawStringWithShadow(health, 35 + x - font.getStringWidth(health) / 2, y + 17, Integer.MAX_VALUE);
 	        	}
-	        	else if (pm.getClasse() instanceof ClasseRanger)
+	        	else if (pm.getClasse() instanceof ClasseRanger || pm.getClasse() instanceof ClasseRogue)
 	        	{
 	            	GuiUtils.drawTexturedModalRect(x, y + 15, 0, 28, 65, 13, 0);
 	    	    	GuiUtils.drawTexturedModalRect(x, y + 15, 130, 84, (int) (65.0f / pm.max_energy * pm.energy), 13, 0);
@@ -119,9 +121,44 @@ public class GuiIngameOverlay {
 	        	}
 	        	
 	        this.mc.mcProfiler.endSection();
+
 	        
-	        this.mc.getTextureManager().bindTexture(Gui.icons);
+	        if (p.getTeam() != null)
+	        {
+		        this.mc.mcProfiler.startSection("group");
+		        
+		        ScorePlayerTeam team;
+		        EntityPlayer tmp;
+		        String str;
+		        int i;
+		        
+		        team = this.mc.thePlayer.getWorldScoreboard().getPlayersTeam(this.mc.thePlayer.getCommandSenderName());
+		        i = 0;
+		        if (team.getColorPrefix().length() > 2)
+		        	font.drawStringWithShadow(team.getColorPrefix(), 30 + x - font.getStringWidth(team.getColorPrefix()) / 2, y + 50, Integer.MAX_VALUE);
+		        
+				for (Object obj : team.getMembershipCollection())
+				{
+			        font.drawStringWithShadow(obj.toString(), 30 + x - font.getStringWidth(obj.toString()) / 2, y + 64 + i, Integer.MAX_VALUE);
+
+					tmp = this.mc.theWorld.getPlayerEntityByName(obj.toString());
+					if (tmp != null)
+					{				        
+				        str = "X: " + (int) tmp.posX
+				        		+ " Y:" + (int) tmp.posY
+				        		+ " Z:" +(int) tmp.posZ;
+				        font.drawStringWithShadow(str, 30 + x - font.getStringWidth(str) / 2, y + 74 + i, Integer.MAX_VALUE);
+		        		
+				        GuiClasseInformation.drawEntity(x - 4 , y + 74, 8, 0, 0, tmp);
+				        i += 30;
+		        	
+					}
+				}
+		        
+		        this.mc.mcProfiler.endSection();
+	        }
 		}
+	        this.mc.getTextureManager().bindTexture(Gui.icons);
 	}
 
 }

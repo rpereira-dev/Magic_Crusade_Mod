@@ -20,6 +20,7 @@ import fr.toss.common.entity.EntityLutin;
 import fr.toss.common.entity.EntityStymph;
 import fr.toss.common.register.BlockRegister;
 import fr.toss.common.world.bioms.deco.BiomeDecoratorMagic;
+import fr.toss.common.world.bioms.deco.ThreadGenerator;
 import fr.toss.common.world.bioms.deco.WorldGenBigTreesDim;
 import fr.toss.common.world.bioms.deco.WorldGenFloatingHouse;
 import fr.toss.common.world.bioms.deco.WorldGenFloatingHouse2;
@@ -137,24 +138,31 @@ public class BiomMagicForest extends BiomGenMagic
         {
 	        int k = x + rand.nextInt(16) + 8;
 	        l = z + rand.nextInt(16) + 8;
-	        WorldGenFloatingHouse2 dj = new WorldGenFloatingHouse2();
-	        dj.generate(w, rand, k, w.getHeightValue(k, l) + 1, l);
+	        ThreadGenerator thread;
+	        
+	        thread = new ThreadGenerator(new WorldGenFloatingHouse2(), w, rand, k, w.getHeightValue(k, l) + 1, l);
+	        thread.start();
         }
         
         else if (rand.nextInt(200) == 0)
         {
 	        int k = x + rand.nextInt(16) + 8;
 	        l = z + rand.nextInt(16) + 8;
-	        WorldGenVillage dj = new WorldGenVillage();
-	        dj.generate(w, rand, k, w.getHeightValue(k, l) + 1, l);
+	        
+	        ThreadGenerator thread;
+	        
+	        thread = new ThreadGenerator(new WorldGenVillage(), w, rand, k, w.getHeightValue(k, l) + 1, l);
+	        thread.start();
         }
         
         else if (rand.nextInt(500) == 0)
         {
 	        int k = x + rand.nextInt(16) + 8;
 	        l = z + rand.nextInt(16) + 8;
-	        WorldGenFloatingHouse dj = new WorldGenFloatingHouse();
-	        dj.generate(w, rand, k, w.getHeightValue(k, l) + 1, l);
+	        ThreadGenerator thread;
+	        
+	        thread = new ThreadGenerator(new WorldGenFloatingHouse(), w, rand, k, 80 + rand.nextInt(10), l);
+	        thread.start();
         }
     }
     

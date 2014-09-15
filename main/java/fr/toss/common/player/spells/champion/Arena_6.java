@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -39,7 +40,7 @@ public class Arena_6 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Arena";
+		return I18n.format("spell.champion.arena");
 	}
 
 	

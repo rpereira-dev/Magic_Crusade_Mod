@@ -2,6 +2,7 @@ package fr.toss.common.player.spells.priest;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.world.World;
@@ -32,7 +33,7 @@ public class GodTouch_5 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "God Touch";
+		return I18n.format("spell.priest.god_touch");
 	}
 
 	

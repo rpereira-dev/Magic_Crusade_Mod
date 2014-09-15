@@ -3,6 +3,7 @@ package fr.toss.common.packet;
 import fr.toss.common.Main;
 import fr.toss.common.player.ServerPlayerBaseMagic;
 import fr.toss.common.player.spells.ServerSpellHandler;
+import fr.toss.common.player.spells.rogue.Speed_2;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
@@ -125,6 +126,21 @@ public class PacketSpellToServer implements IMessage {
 				ServerSpellHandler.handle_frozencube(message, world, sender);
 			else if (message.spell_id == 42)
 				ServerSpellHandler.handle_teleport(message, world, sender);
+			else if (message.spell_id == 43)
+				ServerSpellHandler.handle_field_destruction(message, world, sender);
+			
+			else if(message.spell_id == 50)
+				ServerSpellHandler.handle_speed_rogue(sender);
+			else if(message.spell_id == 51)
+				ServerSpellHandler.handle_invisible(sender);
+			else if(message.spell_id == 52)
+				pm.is_poisonned = true;
+			else if(message.spell_id == 53)
+				ServerSpellHandler.handle_vision(sender);
+			else if(message.spell_id == 54)
+				ServerSpellHandler.handle_vision(sender);
+			else if(message.spell_id == 55)
+				ServerSpellHandler.handle_boots(sender);
 			
 			return (null);
 		}

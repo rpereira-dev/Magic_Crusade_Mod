@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import fr.toss.client.render.particles.EntityFX_Colored;
@@ -49,7 +50,7 @@ public class Zombie_4 extends Spell {
 	@Override
 	public String getName()
 	{
-		return "Death summoning";
+		return I18n.format("spell.necromancer.zombie");
 	}
 
 	@Override

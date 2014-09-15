@@ -19,6 +19,8 @@ public class Packets {
     	network.registerMessage(PacketSpellToServer.Handler.class, PacketSpellToServer.class, 4, Side.SERVER);
     	network.registerMessage(PacketSetClasse.Handler.class, PacketSetClasse.class, 5, Side.SERVER);
     	network.registerMessage(PacketExpToClient.Handler.class, PacketExpToClient.class, 6, Side.CLIENT);
+    	network.registerMessage(PacketTeamToClient.Handler.class, PacketTeamToClient.class, 7, Side.CLIENT);
+    	network.registerMessage(PacketTeamToServer.Handler.class, PacketTeamToServer.class, 8, Side.SERVER);
 	}
 
 }

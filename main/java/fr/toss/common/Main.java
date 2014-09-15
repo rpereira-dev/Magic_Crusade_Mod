@@ -16,7 +16,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import fr.toss.common.command.CommandTeleport;
+import fr.toss.common.command.CommandLevel;
 import fr.toss.common.packet.Packets;
 import fr.toss.common.player.ClientPlayerBaseMagic;
 import fr.toss.common.player.ServerPlayerBaseMagic;
@@ -45,7 +45,7 @@ public class Main
     @EventHandler
     public void serverLoad(FMLServerStartingEvent event)
     {
-    	event.registerServerCommand(new CommandTeleport());
+    	event.registerServerCommand(new CommandLevel());
     }
     
     /** Retournes le joueur coté Client */

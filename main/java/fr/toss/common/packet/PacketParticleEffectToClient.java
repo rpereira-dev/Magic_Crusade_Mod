@@ -8,6 +8,7 @@ import fr.toss.common.player.spells.champion.Grab_4;
 import fr.toss.common.player.spells.champion.Ironskin_3;
 import fr.toss.common.player.spells.champion.Shockwave_2;
 import fr.toss.common.player.spells.mage.ConeFeu_1;
+import fr.toss.common.player.spells.mage.FieldDestruction_4;
 import fr.toss.common.player.spells.mage.FreezeCube_2;
 import fr.toss.common.player.spells.mage.Transfert_3;
 import fr.toss.common.player.spells.necromancer.Corruption_5;
@@ -22,6 +23,8 @@ import fr.toss.common.player.spells.priest.Healzone_3;
 import fr.toss.common.player.spells.priest.HolyExplosion_7;
 import fr.toss.common.player.spells.priest.Holyshield_6;
 import fr.toss.common.player.spells.priest.Purification_1;
+import fr.toss.common.player.spells.rogue.Poison_4;
+import fr.toss.common.player.spells.rogue.Speed_2;
 import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -124,6 +127,13 @@ public class PacketParticleEffectToClient implements IMessage {
 				FreezeCube_2.playEffect(message.x, message.y, message.z);
 			else if(message.effectID == Transfert_3.getUniqueID())
 				Transfert_3.playEffect(message.x, message.y, message.z);
+			else if(message.effectID == FieldDestruction_4.getUniqueID())
+				FieldDestruction_4.playEffect(message.x, message.y, message.z);
+			
+			else if(message.effectID == Speed_2.getUniqueID())
+				Speed_2.playEffect(message.x, message.y, message.z);
+			else if(message.effectID == Poison_4.getUniqueID())
+				Poison_4.playEffect(message.x, message.y, message.z);
 			
 			else if(message.effectID == 100)
 				ItemSwordEthernium.playEffect(message.x, message.y, message.z);

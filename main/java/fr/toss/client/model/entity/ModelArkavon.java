@@ -3,7 +3,9 @@ package fr.toss.client.model.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
+import fr.toss.common.entity.EntityArkavon;
 
 
 public class ModelArkavon extends ModelBase
@@ -344,5 +346,45 @@ public class ModelArkavon extends ModelBase
     this.BrasGCH3.rotateAngleX = (MathHelper.cos(par1 * 0.6662F) * 2.0F * par2 * 0.5F - 1.0F);
     this.BrasGCH4.rotateAngleX = (MathHelper.cos(par1 * 0.6662F) * 2.0F * par2 * 0.5F);
     this.BrasGCH5.rotateAngleX = (MathHelper.cos(par1 * 0.6662F) * 2.0F * par2 * 0.5F);
+  }
+  
+  
+  /**
+   * Used for easily adding entity-dependent animations. The second and third float params here are the same second
+   * and third as in the setRotationAngles method.
+   */
+  public void setLivingAnimations(EntityLivingBase e, float x, float y, float z)
+  {
+      EntityArkavon arkavon;
+      long time;
+      
+      arkavon = (EntityArkavon)e;
+      time = System.currentTimeMillis() % 1000;
+      
+      if (time < 1000)
+      {
+    	    this.BrasDR1.rotateAngleX = (MathHelper.cos(x * 0.6662F + 3.141593F) * 2.0F * y * 0.5F);
+    	    this.BrasDR2.rotateAngleX = (MathHelper.cos(x * 0.6662F + 3.141593F) * 2.0F * y * 0.5F);
+
+    	    this.BrasDR3.rotateAngleX = (MathHelper.cos(x * 0.6662F + 3.141593F) * 2.0F * y * 0.5F - 0.8F);
+
+    	    this.BrasDR4.rotateAngleX = (MathHelper.cos(x * 0.6662F + 3.141593F) * 2.0F * y * 0.5F - 0.1F);
+    	    this.BrasDR5.rotateAngleX = this.BrasDR4.rotateAngleX;
+    	    this.BrasDR6.rotateAngleX = this.BrasDR4.rotateAngleX;
+    	    this.BrasDR7.rotateAngleX = this.BrasDR4.rotateAngleX;  
+      }
+      else
+      {
+  	    this.BrasDR1.rotateAngleX = -(MathHelper.cos(x * 0.6662F + 3.141593F) * 2.0F * y * 0.5F);
+  	    this.BrasDR2.rotateAngleX = -(MathHelper.cos(x * 0.6662F + 3.141593F) * 2.0F * y * 0.5F);
+
+  	    this.BrasDR3.rotateAngleX = -(MathHelper.cos(x * 0.6662F + 3.141593F) * 2.0F * y * 0.5F - 0.8F);
+
+  	    this.BrasDR4.rotateAngleX = -(MathHelper.cos(x * 0.6662F + 3.141593F) * 2.0F * y * 0.5F - 0.1F);
+  	    this.BrasDR5.rotateAngleX = this.BrasDR4.rotateAngleX;
+  	    this.BrasDR6.rotateAngleX = this.BrasDR4.rotateAngleX;
+  	    this.BrasDR7.rotateAngleX = this.BrasDR4.rotateAngleX;  
+      }
+
   }
 }
