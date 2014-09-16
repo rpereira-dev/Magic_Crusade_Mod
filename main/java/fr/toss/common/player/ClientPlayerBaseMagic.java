@@ -92,7 +92,7 @@ public class ClientPlayerBaseMagic extends ClientPlayerBase
 	{
 		super.onUpdate();
 		
-		if (this.getPlayer().isEntityInvulnerable())
+		if (this.getPlayer().capabilities.isCreativeMode)
 			this.energy = this.max_energy;
 		if (this.classe instanceof ClasseChampion)
 		{

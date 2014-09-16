@@ -4,6 +4,8 @@ import net.minecraft.client.model.ModelSlime;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import fr.toss.client.model.entity.ModelArkavon;
 import fr.toss.client.model.entity.ModelCentaure;
+import fr.toss.client.model.entity.ModelChevalier;
+import fr.toss.client.model.entity.ModelCrocotta;
 import fr.toss.client.model.entity.ModelGobelin;
 import fr.toss.client.model.entity.ModelLutin;
 import fr.toss.client.model.entity.ModelMageOrc;
@@ -14,6 +16,8 @@ import fr.toss.client.model.entity.ModelZombieMonster;
 import fr.toss.client.render.entity.RenderArkavon;
 import fr.toss.client.render.entity.RenderBossOrc;
 import fr.toss.client.render.entity.RenderCentaure;
+import fr.toss.client.render.entity.RenderChevalier;
+import fr.toss.client.render.entity.RenderCrocotta;
 import fr.toss.client.render.entity.RenderFrozenCube;
 import fr.toss.client.render.entity.RenderGhastFrozen;
 import fr.toss.client.render.entity.RenderGobelin;
@@ -30,6 +34,8 @@ import fr.toss.client.render.entity.RenderZombieMonster;
 import fr.toss.common.entity.EntityArkavon;
 import fr.toss.common.entity.EntityBossOrc;
 import fr.toss.common.entity.EntityCentaure;
+import fr.toss.common.entity.EntityChevalier;
+import fr.toss.common.entity.EntityCrocotta;
 import fr.toss.common.entity.EntityFrozenCube;
 import fr.toss.common.entity.EntityGhastFrozen;
 import fr.toss.common.entity.EntityGobelin;
@@ -83,6 +89,8 @@ public class RenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(EntityGobelin.class, new RenderGobelin(new ModelGobelin(), 0.7F));
         RenderingRegistry.registerEntityRenderingHandler(EntityArkavon.class, new RenderArkavon(new ModelArkavon(), 0.7F));
         RenderingRegistry.registerEntityRenderingHandler(EntityMonsterZombie.class, new RenderZombieMonster(new ModelZombieMonster(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityCrocotta.class, new RenderCrocotta(new ModelCrocotta(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityChevalier.class, new RenderChevalier(new ModelChevalier(), 0.7F));
 
 
 	}

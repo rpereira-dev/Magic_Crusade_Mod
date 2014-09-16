@@ -14,29 +14,29 @@ import fr.toss.common.packet.PacketSpellToServer;
 import fr.toss.common.packet.Packets;
 import fr.toss.common.player.spells.Spell;
 
-public class ConeFeu_1 extends Spell {
+public class ArcanaPillow_5 extends Spell {
 
 	public static int getUniqueID()
 	{
-		return 40;
+		return 44;
 	}
 	
 	@Override
 	public int getLevel() 
 	{
-		return 1;
+		return 10;
 	}
 
 	@Override
 	public int getCost()
 	{
-		return 360;
+		return 420;
 	}
 	
 	@Override
 	public String getName()
 	{
-		return I18n.format("spell.mage.cone");
+		return I18n.format("spell.mage.arcane_pillow");
 	}
 
 	@Override
@@ -65,9 +65,9 @@ public class ConeFeu_1 extends Spell {
 		String str[];
 		
 		str = new String[3];
-		str[0] = "Inflict 4 (+ " + ChatColor.AQUA + (this.player.clarity / 20.0f) + ChatColor.RESET + ") magic";
-		str[1] = "damages and can leave";
-		str[2] = "your target on fire.";
+		str[0] = "Inflict 6 (+ " + ChatColor.AQUA + (this.player.clarity / 20.0f) + ChatColor.RESET + ") magic";
+		str[1] = "damages and increase your";
+		str[2] = "movement speed.";
 
 		return (str);
 	}
@@ -90,20 +90,22 @@ public class ConeFeu_1 extends Spell {
 		float a;
 		float b;
 		float c;
-		float rayon;
 		
-		b = 0;
 		world = Minecraft.getMinecraft().theWorld;
-		for (int pi = 0; pi < 360; pi++)
+		for (int pi = 0; pi < 360; pi += 4)
         {
-			for (int longueur = 0; longueur < 10; longueur++)
-			{
-				rayon = 1 + longueur / 5.0f;
-				a = rayon * MathHelper.cos(pi);
-				c = rayon * MathHelper.sin(pi);
-	
-	    		world.spawnParticle("flame", x, y, z, a / 16.0f, (b + 10 - longueur) / 16.0f, c / 16.0f);
-			}
+			a = world.rand.nextFloat();
+			b = (float) Math.tan(pi) * 4;
+			c = world.rand.nextFloat();
+
+			if (world.rand.nextInt(2) == 0)
+				a = -a;
+			if (world.rand.nextInt(2) == 0)
+				c = -c;
+			
+    		world.spawnParticle("fireworksSpark", x, y, z, a, b, c);
+    		particles = new EntityFX_Colored(world, x, y, z, -a, b, -c, 2.0f, 5.0f, 0.0f, 1.5f);
+    		Minecraft.getMinecraft().effectRenderer.addEffect(particles);
         }
 	}
 }

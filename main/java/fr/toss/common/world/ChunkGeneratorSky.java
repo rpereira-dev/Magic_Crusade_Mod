@@ -1,7 +1,6 @@
 package fr.toss.common.world;
 
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAKE;
 
 import java.util.List;
 import java.util.Random;
@@ -9,7 +8,9 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.SpawnerAnimals;
@@ -22,6 +23,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import fr.toss.common.register.BlockRegister;
+import fr.toss.common.world.bioms.dungeon_arkavon.ThreadGenerator;
 
 public class ChunkGeneratorSky implements IChunkProvider
 {
@@ -232,7 +234,7 @@ public class ChunkGeneratorSky implements IChunkProvider
         return chunk;
     }
 
-    private double[] func_4061_a(double ad[], int i, int j, int k, int l, int i1, int j1)
+	private double[] func_4061_a(double ad[], int i, int j, int k, int l, int i1, int j1)
     {
         if(ad == null)
         {
@@ -360,7 +362,7 @@ public class ChunkGeneratorSky implements IChunkProvider
         int l1;
         int i2;
 
-        if (this.rand.nextInt(4) == 0 && TerrainGen.populate(p_73153_1_, worldObj, rand, p_73153_2_, p_73153_3_, false, LAKE))
+        if (this.rand.nextInt(4) == 0)
         {
             k1 = k + this.rand.nextInt(16) + 8;
             l1 = this.rand.nextInt(256);
@@ -368,7 +370,9 @@ public class ChunkGeneratorSky implements IChunkProvider
             (new WorldGenLakes(Blocks.water)).generate(this.worldObj, this.rand, k1, l1, i2);
         }
         
-        biomegenbase.decorate(this.worldObj, this.rand, k, l);
+        if (biomegenbase.theBiomeDecorator.currentWorld == null)
+        	biomegenbase.decorate(this.worldObj, this.rand, k, l);
+        
         if (TerrainGen.populate(p_73153_1_, worldObj, rand, p_73153_2_, p_73153_3_, false, ANIMALS))
         {
         	SpawnerAnimals.performWorldGenSpawning(this.worldObj, biomegenbase, k + 8, l + 8, 16, 16, this.rand);
@@ -426,8 +430,5 @@ public class ChunkGeneratorSky implements IChunkProvider
 
     public void recreateStructures(int par1, int par2)
     {
-        if (mapFeaturesEnabled)
-        {
-		}
 	}
 }

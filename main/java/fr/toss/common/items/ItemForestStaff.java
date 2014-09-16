@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -44,18 +45,22 @@ public class ItemForestStaff extends ItemSwordM {
     	e = this.getLookingEntity(player, 20.0d);
     	if (e != null)
     	{
-    		for (int i = 0; i < 6; i++)
-    		{
-        		for (int j = 0; j < 6; j++)
-        		{
-            		for (int k = 0; k < 6; k++)
-            		{
-            			if (i == 0 || i == 5 || j == 0 || j == 5 || k == 0 || k == 5)
-            				world.setBlock((int) e.posX - 3 + i, (int) e.posY - 2 + j, (int)  e.posZ + k - 3, Blocks.leaves);
-            		}
-        		}
-    		}
+    		int x1;
+    		int y1;
+    		int z1;
+    		int rayon = 8;
     		
+    		for (float phi = -180; phi < 180; phi += 1)
+    		{
+    			for (float teta = -90; teta < 90; teta += 0.5f)
+    			{
+    				x1 = (int) (rayon * MathHelper.cos(teta) * MathHelper.cos(phi));
+    				y1 = (int) (rayon * MathHelper.cos(teta) * MathHelper.sin(phi));
+    				z1 = (int) (rayon * MathHelper.sin(teta));
+    	    		world.setBlock((int) e.posX + x1, (int) e.posY - y1, (int)  e.posZ + z1, Blocks.leaves);
+    			}
+    		}	
+    		    		
         	is.damageItem(10, player);
     	}
     	return super.onItemRightClick(is, world, player);

@@ -7,6 +7,7 @@ import fr.toss.common.player.spells.champion.EarthShield_5;
 import fr.toss.common.player.spells.champion.Grab_4;
 import fr.toss.common.player.spells.champion.Ironskin_3;
 import fr.toss.common.player.spells.champion.Shockwave_2;
+import fr.toss.common.player.spells.mage.ArcanaPillow_5;
 import fr.toss.common.player.spells.mage.ConeFeu_1;
 import fr.toss.common.player.spells.mage.FieldDestruction_4;
 import fr.toss.common.player.spells.mage.FreezeCube_2;
@@ -129,6 +130,8 @@ public class PacketParticleEffectToClient implements IMessage {
 				Transfert_3.playEffect(message.x, message.y, message.z);
 			else if(message.effectID == FieldDestruction_4.getUniqueID())
 				FieldDestruction_4.playEffect(message.x, message.y, message.z);
+			else if(message.effectID == ArcanaPillow_5.getUniqueID())
+				ArcanaPillow_5.playEffect(message.x, message.y, message.z);
 			
 			else if(message.effectID == Speed_2.getUniqueID())
 				Speed_2.playEffect(message.x, message.y, message.z);

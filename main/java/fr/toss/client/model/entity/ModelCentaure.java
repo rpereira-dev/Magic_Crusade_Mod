@@ -22,7 +22,6 @@ public class ModelCentaure extends ModelBase
 
   public ModelCentaure()
   {
-
     this.textureWidth = 256;
     this.textureHeight = 128;
     

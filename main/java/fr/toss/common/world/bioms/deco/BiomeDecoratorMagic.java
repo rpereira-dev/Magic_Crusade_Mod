@@ -29,10 +29,13 @@ public class BiomeDecoratorMagic extends BiomeDecorator {
         this.grassPerChunk = 10;
         this.gen_red_berry = new WorldGenFlowers(BlockRegister.BERRY_RED);
         this.gen_yellow_berry = new WorldGenFlowers(BlockRegister.BERRY_YELLOW);
-        this.combustiumGen = new WorldGenMinable(BlockRegister.ORE_COMBUSTIUM, 24);
-        this.etherniumGen = new WorldGenMinable(BlockRegister.ORE_ETHERNIUM, 10);
-        this.silverGen = new WorldGenMinable(BlockRegister.ORE_SILVER, 14);
-        this.titaniumGen = new WorldGenMinable(BlockRegister.ORE_TITANIUM, 10);
+        this.combustiumGen = new WorldGenMinable(BlockRegister.ORE_COMBUSTIUM, 24, BlockRegister.STONE);
+        this.etherniumGen = new WorldGenMinable(BlockRegister.ORE_ETHERNIUM, 10, BlockRegister.STONE);
+        this.silverGen = new WorldGenMinable(BlockRegister.ORE_SILVER, 14, BlockRegister.STONE);
+        this.titaniumGen = new WorldGenMinable(BlockRegister.ORE_TITANIUM, 10, BlockRegister.STONE);
+        this.goldGen = new WorldGenMinable(Blocks.gold_ore, 8, BlockRegister.STONE);
+        this.redstoneGen = new WorldGenMinable(Blocks.redstone_ore, 7, BlockRegister.STONE);
+        this.diamondGen = new WorldGenMinable(Blocks.diamond_ore, 7, BlockRegister.STONE);
 	}
 
 	@Override
@@ -122,6 +125,7 @@ public class BiomeDecoratorMagic extends BiomeDecorator {
     protected void generateOres()
     {
         this.genStandardOre1(12, this.diamondGen, 0, 32);
+        this.genStandardOre1(6, this.redstoneGen, 0, 32);
         this.genStandardOre1(12, this.goldGen, 0, 32);
         this.genStandardOre1(16, this.etherniumGen, 0, 48);
         this.genStandardOre1(20, this.silverGen, 0, 128);

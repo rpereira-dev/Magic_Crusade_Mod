@@ -10,6 +10,7 @@ import net.minecraft.item.ItemSpade;
 import org.apache.logging.log4j.LogManager;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import fr.toss.common.items.ItemArkavonLoader;
 import fr.toss.common.items.ItemArmorM;
 import fr.toss.common.items.ItemAshbringer;
 import fr.toss.common.items.ItemAshbringerPoison;
@@ -29,6 +30,7 @@ public class ItemRegister {
 	public static Item 		BERRY_YELLOW;
 	public static Item 		BERRY_RED;
 	public static Item 		BLUE_STICK;
+	public static Item 		ARKAVON_GENERATOR;
 	
 	public static Item 		ETHERNIUM;
 	public static Item 		INGOT_TITANIUM;
@@ -151,6 +153,9 @@ public class ItemRegister {
         BLUE_STICK = new Item().setUnlocalizedName("blue_stick").setTextureName("magiccrusade:blue_stick");
         GameRegistry.registerItem(BLUE_STICK, "blue_stick");
 	
+        ARKAVON_GENERATOR = new ItemArkavonLoader().setUnlocalizedName("arkavon_generator").setTextureName("magiccrusade:blue_stick");
+        GameRegistry.registerItem(ARKAVON_GENERATOR, "arkavon_generator");
+        
         INGOT_TITANIUM = new Item().setUnlocalizedName("ingot_titanium").setTextureName("magiccrusade:ingot_titanium");
         GameRegistry.registerItem(INGOT_TITANIUM, "ingot_titanium");
 

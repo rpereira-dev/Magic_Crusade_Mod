@@ -23,7 +23,7 @@ public class FieldDestruction_4 extends Spell {
 	@Override
 	public int getLevel() 
 	{
-		return 1;
+		return 4;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class FieldDestruction_4 extends Spell {
 		PacketSpellToServer packet;
 		Entity e;
 		
-		e = this.getLookingEntity(26.0d);
+		e = this.getLookingEntity(24.0d);
 
 		if (e != null)
 		{
@@ -83,6 +83,7 @@ public class FieldDestruction_4 extends Spell {
 	
 	public static void playEffect(double x, double y, double z)
 	{
+		System.out.println("Land");
 		EntityPlayer sender;
 		World world;
 		int X;

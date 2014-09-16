@@ -7,30 +7,20 @@ import net.minecraft.client.Minecraft;
 
 public class FileUtils {
 	
-	public static int[] read_data(String path)
+	public static boolean file_exists(String path)
 	{
 		File file;
-		int retour[];
 		
-		retour = new int[4];
-		file = new File(Minecraft.getMinecraft().mcDataDir.getAbsoluteFile() + "/mods/" + path);
+		file = new File(Minecraft.getMinecraft().mcDataDir.getAbsoluteFile() + "/mods/magic_crusade/" + path);
 		
 		try 
 		{
-			if (file.createNewFile()) //First log
-				return (null);
-			else
-			{
-				
-			}
+			return (!file.createNewFile());
 		}
 		catch (IOException e)
 		{
-			return (null);
+			return (true);
 		}
-		
-		
-		return (retour);
 	}
 
 }

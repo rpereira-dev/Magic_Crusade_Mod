@@ -31,6 +31,7 @@ spell.mage.cone=Fire cone
 spell.mage.field_destruction=Field destruction
 spell.mage.freeze_cube=Frozen cube
 spell.mage.transfert=Transfert
+spell.mage.arcana_pillow=Arcane pillow
 
 spell.ranger.explode_shot=Exploding Shot
 spell.ranger.magic_shot=Magical shot
@@ -251,6 +252,7 @@ item.ingot_titanium.name=Titanium Ingot
 item.ingot_silver.name=Silver Ingot
 item.ethernium.name=Ethernium
 item.combustium.name=Combustium
+item.arkavon_generator.name=Arkavon Dungeon Generator
 
 item.sulfuras.name=Sulfuras Hammer
 item.ashbringer.name=Ashbringer
@@ -373,3 +375,5 @@ entity.ZombieSummon.name=Necromancer Zombie
 entity.Gobelin.name=Gobelin
 entity.Arkavon.name=Arkavon
 entity.MonsterZombie.name=Arkavon Zombie
+entity.Chevalier.name=Chevalier
+entity.Crocotta.name=Crocotta

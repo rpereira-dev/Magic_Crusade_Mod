@@ -36,7 +36,7 @@ public class KeyBindings {
         KEY_SPELLS = new KeyBinding[8];
         for (int i = 0; i < 8; i++)
         {
-        	KEY_SPELLS[i] = new KeyBinding("key.spells_" + i, Keyboard.KEY_W + i, "key.categories.magiccrusade");
+        	KEY_SPELLS[i] = new KeyBinding("key.spells_" + i, Keyboard.KEY_1 + i, "key.categories.magiccrusade");
             ClientRegistry.registerKeyBinding(KEY_SPELLS[i]);
         }
     }

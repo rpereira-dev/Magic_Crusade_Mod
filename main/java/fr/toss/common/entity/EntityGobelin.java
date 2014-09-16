@@ -4,14 +4,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.init.Blocks;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
 public class EntityGobelin extends EntityMob {
 	
-	int tnt_x;
-	int tnt_y;
-	int tnt_z;
 
 	public EntityGobelin(World w)
 	{
@@ -23,8 +21,10 @@ public class EntityGobelin extends EntityMob {
     {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(14.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.6500000238418579D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.68D);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0d);
+
     }
     
     public boolean canDespawn()
@@ -43,14 +43,12 @@ public class EntityGobelin extends EntityMob {
     {
     	super.onUpdate();
     	
-    	long timer = System.currentTimeMillis() % 10000;
+    	long timer = System.currentTimeMillis() % 2000;
     	
-    	if (timer < 20)
+    	if (timer < 40 && this.rand.nextInt(4) == 0)
     	{
-    		this.tnt_x = (int) this.posX;
-    		this.tnt_y = (int) this.posY;
-    		this.tnt_z = (int) this.posZ;
-    		this.worldObj.setBlock(this.tnt_x, this.tnt_y, this.tnt_z, Blocks.tnt);
+    		this.addPotionEffect(new PotionEffect(Potion.jump.id, 40, 4));
+            this.jump();
     	}
     }
     

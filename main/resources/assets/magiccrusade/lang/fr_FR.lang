@@ -33,6 +33,7 @@ spell.mage.cone=Cone de feu
 spell.mage.field_destruction=Destruction massive
 spell.mage.freeze_cube=Gele
 spell.mage.transfert=Transfert
+spell.mage.arcana_pillow=Pillier des arcanes
 
 spell.ranger.explode_shot=Tir explosif
 spell.ranger.magic_shot=Tir magique
@@ -179,6 +180,7 @@ tile.null.name=UNDEFINED BLOCK
 
 
 #   ITEMS
+item.arkavon_generator.name=Arkavon Dungeon Generator
 item.berry_yellow.name=Yoloberry
 item.berry_red.name=Redberry
 item.blue_stick.name=Blue Stick
@@ -309,3 +311,5 @@ entity.ZombieSummon.name=Necromancer Zombie
 entity.Gobelin.name=Gobelin
 entity.Arkavon.name=Arkavon
 entity.MonsterZombie.name=Arkavon Zombie
+entity.Chevalier.name=Chevalier
+entity.Crocotta.name=Crocotta

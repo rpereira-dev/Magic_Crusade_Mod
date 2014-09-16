@@ -128,6 +128,8 @@ public class PacketSpellToServer implements IMessage {
 				ServerSpellHandler.handle_teleport(message, world, sender);
 			else if (message.spell_id == 43)
 				ServerSpellHandler.handle_field_destruction(message, world, sender);
+			else if (message.spell_id == 44)
+				ServerSpellHandler.handle_arcane_pillow(message, world, sender);
 			
 			else if(message.spell_id == 50)
 				ServerSpellHandler.handle_speed_rogue(sender);

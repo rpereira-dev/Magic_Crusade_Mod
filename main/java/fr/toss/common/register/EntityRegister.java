@@ -5,6 +5,8 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import fr.toss.common.entity.EntityArkavon;
 import fr.toss.common.entity.EntityBossOrc;
 import fr.toss.common.entity.EntityCentaure;
+import fr.toss.common.entity.EntityChevalier;
+import fr.toss.common.entity.EntityCrocotta;
 import fr.toss.common.entity.EntityFrozenCube;
 import fr.toss.common.entity.EntityGhastFrozen;
 import fr.toss.common.entity.EntityGobelin;
@@ -39,6 +41,8 @@ public class EntityRegister {
 		registerEntity(EntityGobelin.class, "Gobelin");
 		registerEntity(EntityArkavon.class, "Arkavon");
 		registerEntity(EntityMonsterZombie.class, "MonsterZombie");
+		registerEntity(EntityCrocotta.class, "Crocotta");
+		registerEntity(EntityChevalier.class, "Chevalier");
 	}
 	
 	public static void registerEntity(Class <? extends Entity > entityClass, String string)

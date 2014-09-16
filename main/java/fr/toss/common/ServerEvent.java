@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S0BPacketAnimation;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -29,6 +30,8 @@ import fr.toss.common.player.ServerPlayerBaseMagic;
 import fr.toss.common.player.classes.ClasseChampion;
 import fr.toss.common.register.AchievementList;
 import fr.toss.common.register.ItemRegister;
+import fr.toss.common.world.bioms.dungeon_arkavon.ThreadGenerator;
+import fr.toss.utils.FileUtils;
 
 public class ServerEvent {
 	 
@@ -195,6 +198,7 @@ public class ServerEvent {
 	
 	
 	@SubscribeEvent
+	@SideOnly(Side.SERVER)
     public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event)
     {
 		ServerPlayerBaseMagic player;

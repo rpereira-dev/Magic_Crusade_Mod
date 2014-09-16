@@ -45,7 +45,7 @@ public class FreezeCube_2 extends Spell {
 		PacketSpellToServer packet;
 		Entity e;
 		
-		e = this.getLookingEntity(16.0d);
+		e = this.getLookingEntity(24.0d);
 		if (e != null)
 		{
 			this.sendEffectToServer(e);

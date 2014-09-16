@@ -6,10 +6,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
@@ -27,6 +27,7 @@ public class EntityArkavon extends EntityMob implements IBossDisplayData {
 	{
 		super(w);
 		this.setSize(2.0f, 4.0f);
+		this.isImmuneToFire = true;
 	}
 	
     protected void applyEntityAttributes()
@@ -35,7 +36,7 @@ public class EntityArkavon extends EntityMob implements IBossDisplayData {
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(600.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.64D);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(30.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0D);
     }
     
     @Override
@@ -72,48 +73,76 @@ public class EntityArkavon extends EntityMob implements IBossDisplayData {
 		}
 		
     	
-    	if (this.getHealth() < this.getMaxHealth() / 10 && System.currentTimeMillis() % 2000 < 30)
+    	if (this.getHealth() < this.getMaxHealth() / 8 && System.currentTimeMillis() % 2000 < 30)
+    		this.aura_death(list);
+    	
+    	if (this.getHealth() < this.getMaxHealth() / 16)
     	{
-    		int r;
-    		double x;
-    		double y;
-    		double z;
-    		
-    		r = 20;
-    		for (int beta = -180; beta < 180; beta += 4)
-    		{
-        		for (int teta = -90; teta < 90; teta += 4)
-        		{
-        			x = r * MathHelper.cos(teta) * MathHelper.cos(beta);
-        			y = r * MathHelper.sin(teta);
-        			z = r * MathHelper.cos(teta) * MathHelper.sin(beta);
-        			this.worldObj.spawnParticle("smoke", this.posX, this.posY + 2, this.posZ, x / 12.0f, y / 8.0f, z / 12.0f);
-        		}
-    		}
-    		
-    		for (int i = 0; i < list.size(); i++)
-    		{
-    			if (list.get(i) instanceof EntityPlayer)
-    			{
-    				if (list.get(i) instanceof EntityLivingBase)
-    				{
-    					((EntityLivingBase)list.get(i)).attackEntityFrom(DamageSource.causeMobDamage(this), 2);
-    				}
-    			}
-    		}
-    	}		
-		
-		if (p != null)
-			BossStatus.setBossStatus(this, true);
+    		this.setInvisible(true);
+    		this.sendWitherSkull();
+    		this.setInvisible(false);
+    	}
     }
     
-    public void update_battle(EntityPlayer p, int id)
+    private void sendWitherSkull()
+    {
+    	EntityWitherSkull skull;
+    	double a;
+    	double b;
+    	double c;
+    	
+    	a = this.rand.nextFloat();
+    	b = this.rand.nextFloat();
+    	c = this.rand.nextFloat();
+    	if (rand.nextInt(2) == 0)
+    		a = -a;
+    	if (rand.nextInt(2) == 0)
+    		b = -b;
+    	if (rand.nextInt(2) == 0)
+    		c = -c;
+    	
+    	skull = new EntityWitherSkull(this.worldObj, this, a, b, c);
+    	this.worldObj.spawnEntityInWorld(skull);
+    }
+
+	private void aura_death(List list)
+    {
+		int r;
+		double x;
+		double y;
+		double z;
+		
+		r = 20;
+		for (int beta = -180; beta < 180; beta += 4)
+		{
+    		for (int teta = -90; teta < 90; teta += 4)
+    		{
+    			x = r * MathHelper.cos(teta) * MathHelper.cos(beta);
+    			y = r * MathHelper.sin(teta);
+    			z = r * MathHelper.cos(teta) * MathHelper.sin(beta);
+    			this.worldObj.spawnParticle("smoke", this.posX, this.posY + 2, this.posZ, x / 12.0f, y / 8.0f, z / 12.0f);
+    		}
+		}
+		
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i) instanceof EntityPlayer)
+			{
+				if (list.get(i) instanceof EntityLivingBase)
+				{
+					((EntityLivingBase)list.get(i)).attackEntityFrom(DamageSource.causeMobDamage(this), 2);
+				}
+			}
+		}		
+	}
+
+	public void update_battle(EntityPlayer p, int id)
     {
     	long timer;
     	
-		timer = System.currentTimeMillis() % 30000;
+		timer = System.currentTimeMillis() % 34000;
 
-    	if (timer < 40 && id % 2 == 1)
+    	if (timer < 40)
     	{
 			p.addPotionEffect(new PotionEffect(Potion.poison.id, 400, 10));
 			p.addPotionEffect(new PotionEffect(Potion.confusion.id, 400, 10));
@@ -135,7 +164,20 @@ public class EntityArkavon extends EntityMob implements IBossDisplayData {
     		p.attackEntityFrom(DamageSource.magic, 0.05f);
     	}
     	else if (timer > 24000 && timer < 26400 && timer % 1000 < 100)
+    	{
 			this.worldObj.createExplosion(this, p.posX, p.posY - 1, p.posZ, 1, true);
+    	}
+    	else if (timer > 30000 && timer < 30100)
+    	{
+
+            this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+            for (int i = 0; i < 4; ++i)
+            {
+                EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.worldObj, this, this.getLookVec().xCoord, this.getLookVec().yCoord, this.getLookVec().zCoord);
+                entitysmallfireball.posY = this.posY + (double)(this.height / 2.0F) + 0.5D;
+                this.worldObj.spawnEntityInWorld(entitysmallfireball);
+            }
+    	}
     }
     
     
@@ -191,7 +233,7 @@ public class EntityArkavon extends EntityMob implements IBossDisplayData {
 
     protected Entity findPlayerToAttack()
     {
-        double d0 = 16.0D;
+        double d0 = 30.0D;
         return this.worldObj.getClosestVulnerablePlayerToEntity(this, d0);
     }
     

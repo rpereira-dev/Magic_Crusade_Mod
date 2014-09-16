@@ -31,14 +31,6 @@ public class KeyInputHandler {
     	
         if(KeyBindings.KEY_GENERATE.isPressed())
         {        	
-        	World w = MinecraftServer.getServer().worldServerForDimension(player.getPlayer().dimension);
-        	Random rand = Minecraft.getMinecraft().theWorld.rand;
-        	
-	        int x = (int) Minecraft.getMinecraft().thePlayer.posX;
-	        int y = (int) Minecraft.getMinecraft().thePlayer.posY;
-	        int z = (int) Minecraft.getMinecraft().thePlayer.posZ;
-	        ThreadGenerator thread = new ThreadGenerator(w, rand, x, y, z);
-	        thread.start();
         }
         else if(KeyBindings.KEY_SELECT_CLASSE.isPressed())
         	Minecraft.getMinecraft().displayGuiScreen(new GuiSelectClass());

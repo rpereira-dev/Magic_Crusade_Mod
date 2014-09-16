@@ -2,6 +2,9 @@ package fr.toss.common.world.bioms.dungeon_arkavon;
 
 import java.util.Random;
 
+import fr.toss.common.Main;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -26,14 +29,24 @@ public class ThreadGenerator extends Thread implements Runnable {
 	
 	@Override
 	public void		run()
-	{
-		System.out.println("Generation starting");
-		long time;
-		
+	{		
+    	for (Object p : this.world.playerEntities)
+    		((EntityPlayer)p).addChatMessage(new ChatComponentText("Arkavon entrance is loading, you should pause your game and wait a minute or two (lag expected)"));
+    	
+    	long time;
+    	
 		time = System.currentTimeMillis();
-		this.world_gen.generate(world, rand, x, y, z);
+		try {
+			this.world_gen.generate(world, rand, x, y, z);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+	    	for (Object p : this.world.playerEntities)
+	    		((EntityPlayer)p).addChatMessage(new ChatComponentText("Arkavon entrance couldn't be created. Tell the administrator to remove world/DIM-" + Main.DIM_ID + " folder"));
+		}
 		
-		System.out.println("Endded, Taken: " + ((System.currentTimeMillis() - time) / 1000.0f) + " seconds");
+    	for (Object p : this.world.playerEntities)
+    		((EntityPlayer)p).addChatMessage(new ChatComponentText("Arkavon entrance is created. Taken: " + ((System.currentTimeMillis() - time) / 1000.0f) + " seconds"));
 	}
 
 }

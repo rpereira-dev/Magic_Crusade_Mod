@@ -221,6 +221,22 @@ public class WorldGeneratorM extends WorldGenerator {
 	}
 	
 	
+	public void		genDisque(World world, Block block, int rayon, int x, int y, int z, float path)
+	{
+		int x1;
+		int z1;
+		
+		for (float phi = -180; phi < 180; phi += path * 2)
+		{
+			for (float teta = -90; teta < 90; teta += path)
+			{
+				x1 = (int) (rayon * MathHelper.cos(teta) * MathHelper.cos(phi));
+				z1 = (int) (rayon * MathHelper.sin(teta));
+				world.setBlock(x + x1, y, z + z1, block);
+			}
+		}		
+	}
+	
 	public void		genEmptySphere(World world, Block block, int rayon, int x, int y, int z, float path, int min, int max)
 	{
 		int x1;
@@ -375,6 +391,11 @@ class Cube
 	{
 		this.origine = point;
 		this.vec = vec;
+	}
+
+	public Cube extend(int i, int j, int k)
+	{
+		return new Cube(new Point(this.origine.x - i / 2, this.origine.y - i / 2, this.origine.z - i / 2), new Vec(this.vec.x + i, this.vec.y + j, this.vec.z + k));
 	}
 }
 

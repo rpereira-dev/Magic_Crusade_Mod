@@ -478,4 +478,19 @@ public class ServerSpellHandler {
 	{
 		sender.inventory.armorInventory[0].addEnchantment(Enchantment.featherFalling, 5);
 	}
+
+	public static void handle_arcane_pillow(PacketSpellToServer message, World world, EntityPlayerMP sender)
+	{
+		Entity e;
+		
+		e = world.getEntityByID(message.data);
+		if (e != null)
+		{
+			if (e instanceof EntityLivingBase)
+			{
+				e.attackEntityFrom(DamageSource.causePlayerDamage(sender), 6 + message.data2);
+				sender.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 60, 1));
+			}
+		}		
+	}
 }

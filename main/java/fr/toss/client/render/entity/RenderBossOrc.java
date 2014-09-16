@@ -3,6 +3,8 @@ package fr.toss.client.render.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.util.ResourceLocation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,4 +34,12 @@ public class RenderBossOrc extends RenderLiving
     {
     	return texture1;
     }
+
+    @Override
+    public void doRender(EntityLiving e, double x, double y, double z, float rotationYaw, float rotationPitch)
+    {
+        BossStatus.setBossStatus((EntityBossOrc) e, true);
+    	super.doRender(e, x, y, z, rotationYaw, rotationPitch);
+    }
+        
 }

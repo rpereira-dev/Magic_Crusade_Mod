@@ -91,6 +91,7 @@ public class CreativesTabsRegister {
 		ItemRegister.BERRY_RED.setCreativeTab(tabItemUtil);
 		ItemRegister.BERRY_YELLOW.setCreativeTab(tabItemUtil);
 		ItemRegister.BLUE_STICK.setCreativeTab(tabItemUtil);
+		ItemRegister.ARKAVON_GENERATOR.setCreativeTab(tabItemUtil);
 		ItemRegister.INGOT_SILVER.setCreativeTab(tabItemUtil);
 		ItemRegister.INGOT_TITANIUM.setCreativeTab(tabItemUtil);
 		ItemRegister.ETHERNIUM.setCreativeTab(tabItemUtil);
