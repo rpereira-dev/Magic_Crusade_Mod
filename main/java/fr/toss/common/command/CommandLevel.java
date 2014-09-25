@@ -3,18 +3,22 @@ package fr.toss.common.command;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.toss.common.Main;
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.world.WorldServer;
+import fr.toss.common.Main;
+import fr.toss.common.packet.PacketLevel;
+import fr.toss.common.packet.Packets;
 
-public class CommandLevel implements ICommand
+public class CommandLevel extends CommandBase implements ICommand
 {
 	private List aliases;
-	
+    
 	public CommandLevel()
 	{
 		this.aliases = new ArrayList();
@@ -25,7 +29,7 @@ public class CommandLevel implements ICommand
 	@Override
 	public String getCommandName()
 	{
-		return "lvl";
+		return "level";
 	}
 
 	@Override
@@ -40,31 +44,43 @@ public class CommandLevel implements ICommand
 		return this.aliases;
 	}
 
+    
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] args)
 	{
-		if (icommandsender instanceof EntityPlayer)
+		try
 		{
-			if (args.length == 1)
+			PacketLevel		packet;
+			EntityPlayerMP	player;
+			
+			packet = new PacketLevel(Integer.valueOf(args[1]));
+			player = (EntityPlayerMP) icommandsender.getEntityWorld().getPlayerEntityByName(args[0]);
+			if (player != null)
 			{
+				Main.getPlayerServer(player).level = packet.level;
+				player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(0.5d * (packet.level - 1) + 20.0d + Main.getPlayerServer(player).endurance / 10);
 
+				Packets.network.sendTo(packet, player);
 			}
 			else
-				((EntityPlayer)icommandsender).addChatComponentMessage(new ChatComponentText(ChatColor.RED + "Error usage: /level X"));
+				icommandsender.addChatMessage(new ChatComponentText(ChatColor.RED + "Error usage: /level [USERNAME] [LEVEL]"));
+				
+		} catch (Exception e) {
+			((EntityPlayer)icommandsender).addChatComponentMessage(new ChatComponentText(ChatColor.RED + "Error usage: /level [USERNAME] [LEVEL]"));
 		}
 	}
 
+    
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
 	{
-		return true;
+		return (icommandsender.canCommandSenderUseCommand(2, this.getCommandName()));
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender icommandsender,
-			String[] astring)
+	public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
 	{
-		return null;
+        return getListOfStringsMatchingLastWord(astring, MinecraftServer.getServer().getAllUsernames());
 	}
 
 	@Override

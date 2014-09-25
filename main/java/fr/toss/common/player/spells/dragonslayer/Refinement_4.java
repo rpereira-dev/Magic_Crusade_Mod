@@ -19,13 +19,13 @@ public class Refinement_4 extends Spell {
 	@Override
 	public int getLevel() 
 	{
-		return 12;
+		return 18;
 	}
 
 	@Override
 	public int getCost()
 	{
-		return 200;
+		return 100;
 	}
 	
 	@Override

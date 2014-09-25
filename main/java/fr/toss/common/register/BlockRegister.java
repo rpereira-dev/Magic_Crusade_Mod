@@ -6,6 +6,7 @@ import net.minecraft.block.BlockStone;
 import org.apache.logging.log4j.LogManager;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import fr.toss.common.Main;
 import fr.toss.common.blocks.BlockDirtDim;
 import fr.toss.common.blocks.BlockFlowers;
 import fr.toss.common.blocks.BlockGrassDim;
@@ -16,18 +17,22 @@ import fr.toss.common.blocks.BlockLogDim.LogCategory;
 import fr.toss.common.blocks.BlockOreEthernium;
 import fr.toss.common.blocks.BlockOreMagic;
 import fr.toss.common.blocks.BlockPlankDim;
+import fr.toss.common.blocks.BlockPortalDungeon;
+import fr.toss.common.blocks.BlockPortalMagic;
 import fr.toss.common.blocks.BlockStoneFalling;
 import fr.toss.common.blocks.ItemBlockLog;
 import fr.toss.common.blocks.ItemBlockPlank;
-import fr.toss.common.blocks.m_BlockPortal;
+import fr.toss.common.world.dungeon.Dungeon;
 
 public class BlockRegister {
 	
+	public static Block[] 				PORTAL_DUNGEON;
 	public static BlockStoneFalling 	STONE_FALLING;
 	public static Block 				STONE;
 	public static BlockGrassDim 		GRASS;
 	public static Block 				DIRT;
-	public static m_BlockPortal 		PORTAL;
+	public static BlockPortalMagic 		PORTAL_MY_GROV;
+
 	public static BlockOreEthernium 	ORE_ETHERNIUM;
 	public static BlockOreMagic 		ORE_SILVER;
 	public static BlockOreMagic 		ORE_TITANIUM;
@@ -54,9 +59,20 @@ public class BlockRegister {
 		STONE_FALLING 	= new BlockStoneFalling();
 		GameRegistry.registerBlock(STONE_FALLING, "stone_falling");
 		
-        PORTAL 			= new m_BlockPortal();
-		GameRegistry.registerBlock(PORTAL, "portal_magic");
+        PORTAL_MY_GROV	= new BlockPortalMagic(Main.DIM_ID);
+		GameRegistry.registerBlock(PORTAL_MY_GROV, "portal_dim");
 		
+		int i;
+		
+		i = 0;
+		PORTAL_DUNGEON = new BlockPortalDungeon[2];
+		for (Dungeon d : Main.DUNGEONS)
+		{
+	        PORTAL_DUNGEON[i] = new BlockPortalDungeon(d.DIM_ID);
+			GameRegistry.registerBlock(PORTAL_DUNGEON[i], "portal_dungeon_" + d.file_name);
+			i++;
+		}
+
 		LOGS1 			= new BlockLogDim(LogCategory.CAT1);
 		GameRegistry.registerBlock(LOGS1, ItemBlockLog.class, "log_1");
 		

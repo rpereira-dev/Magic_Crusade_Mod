@@ -6,6 +6,8 @@
 #   LANG
 button.selection=Selectionner
 button.back_selection=<- Retour a la selection
+message.outdated=Une nouvelle version du mod est disponible
+
 
 stats.conseil=Conseils
 stats.hp=PV
@@ -33,13 +35,15 @@ spell.mage.cone=Cone de feu
 spell.mage.field_destruction=Destruction massive
 spell.mage.freeze_cube=Gele
 spell.mage.transfert=Transfert
-spell.mage.arcana_pillow=Pillier des arcanes
+spell.mage.arcane_pillow=Pillier des arcanes
+spell.mage.fireball=Fireball
 
 spell.ranger.explode_shot=Tir explosif
 spell.ranger.magic_shot=Tir magique
 spell.ranger.poison_shot=Tir du taipan
 spell.ranger.wolves=Invocation: Loup
 spell.ranger.refinement=Refonte
+spell.ranger.frozen_shot=Tir gelé
 
 spell.champion.arena=Arene
 spell.champion.charge=Charge
@@ -67,14 +71,14 @@ spell.priest.holy_explosion=Explosion sacré
 
 
 #   LANG CLASSE
-classe.choose=Choose a classe to get more informations about it
+classe.choose=Choisis une classe pour avoir plus d'informations
 
 classe.champion=Champion
 classe.champion.slogan=Le Champion, force brute
 classe.champion.line1=Cette classe te rendra resistant au combat de melee.
 classe.champion.line2=Tu devras proteger tes allies des monstres, en
 classe.champion.line3=restant en premiere ligne pour appater les monstres.
-classe.champion.line4=Il peut par exemple charger, ameliorer son armure...
+classe.champion.line4=Il peut par exemple charger, ameliMinerair son armure...
 
 classe.rogue=Voleur
 classe.rogue.slogan=L'ombre vivante: le Voleur
@@ -125,26 +129,40 @@ itemGroup.item_fight_loot=MC Loot
 
 
 #   ACHIEVEMENTS
-achievement.new_dimension=New Challenges...
-achievement.new_dimension.desc=Entering the Mystic Groves
+achievement.orc_king=Regicide
+achievement.orc_king.desc=Tue le Roi Orc
 
-achievement.new_items=Let's craft
-achievement.new_items.desc=I want new tools! Craft a blue stick
+achievement.dungeon=Donjon
+achievement.dungeon.desc=Entrez dans un Donjon
 
-achievement.ethernium_sword=Ethernium Sword
-achievement.ethernium_sword.desc=This sword is magic! Craft an Ethernium Sword
+achievement.orc_slayer=Chasseur d'Orc
+achievement.orc_slayer.desc=Tue un Orc
 
-achievement.titanium_stuff=Strong Armor
-achievement.titanium_stuff.desc=The most resistant craftable armor
+achievement.loging=Bienvenu sur Magic Crusade
+achievement.loging.desc=Lancer une partie avec Magic Crusade
 
-achievement.silver_pickaxe=It's shining
-achievement.silver_pickaxe.desc=A pickaxe with a new material (silver)
+achievement.new_dimension=De nouveaux défis...
+achievement.new_dimension.desc=Rentrer dans les Bosquets mystiques
+
+achievement.new_items=C'est reparti
+achievement.new_items.desc=Je veux de nouveaux outils! (Baton bleuté)
+
+achievement.ethernium_sword=Epée d'Ethernium
+achievement.ethernium_sword.desc=Cette épée est magique
+
+achievement.titanium_stuff=Solide armure
+achievement.titanium_stuff.desc=La plus resistance armure fabriquable
+
+achievement.silver_pickaxe=Ca brille!
+achievement.silver_pickaxe.desc=Fabriquer une pioche en argent
 
 achievement.sulfuron=Dat HAMMER
 achievement.sulfuron.desc=Find a Sulfuras Hammer
 
 achievement.magic_staff=What a weapon!
 achievement.magic_staff.desc=Find one of the three Magic staff
+
+
 
 #   KEY BINDS
 key.categories.magiccrusade=-- Magic Crusade --
@@ -161,21 +179,22 @@ key.spells_6=Spell 7
 key.spells_7=Spell 8
 
 #   BLOCKS
-tile.planks.plank_sky.name=Sky Plank
-tile.planks.plank_bleu.name=Blue Plank
-tile.flower.name=Dimensional Flower
-tile.log.frozenWood.name=Frozen wood
-tile.log.dimWood.name=Blue wood
-tile.log.skyWood.name=Sky wood
-tile.leaves_frozen.name=Frozen Leaves
+tile.planks.plank_sky.name=Planche du ciel
+tile.planks.plank_bleu.name=Planche bleutée
+tile.flower.name=Fleur du ciel
+tile.log.frozenWood.name=Tronc gelé
+tile.log.dimWood.name=Bois bleuté
+tile.log.skyWood.name=Bois du ciel
+tile.leaves_frozen.name=Feuille gelée
 tile.berry_red.name=Red berry plant
 tile.berry_yellow.name=Yellow berry plant
 tile.tallgrass_snowed.name=Snowed tallgrass
-tile.ore_combustium.name=Combustium Ore
-tile.ore_silver.name=Silver Ore
-tile.ore_ethernium.name=Ethernium Ore
-tile.ore_titanium.name=Titanium Ore
+tile.Minerai_combustium.name=Minerais de Combustium
+tile.Minerai_silver.name=Minerais d'Argent
+tile.Minerai_ethernium.name=Minerais de Ethernium
+tile.Minerai_titanium.name=Minerais de Titanium
 tile.null.name=UNDEFINED BLOCK
+tile.portal_dim.name=Portal Block
 
 
 
@@ -183,10 +202,10 @@ tile.null.name=UNDEFINED BLOCK
 item.arkavon_generator.name=Arkavon Dungeon Generator
 item.berry_yellow.name=Yoloberry
 item.berry_red.name=Redberry
-item.blue_stick.name=Blue Stick
-item.flower.name=Sky flower
-item.ingot_titanium.name=Titanium Ingot
-item.ingot_silver.name=Silver Ingot
+item.blue_stick.name=Baton bleuté
+item.flower.name=Fleur du ciel
+item.ingot_titanium.name=Lingot de Titanium
+item.ingot_silver.name=Lingot d'Argent
 item.ethernium.name=Ethernium
 item.combustium.name=Combustium
 
@@ -295,6 +314,7 @@ item.heal_boots.name=Magic Boots
 
 
 #   ENTITIES
+entity.Haunter.name=Haunter
 entity.VillagerDim.name=Sky Villager
 entity.SnowCube.name=Snow Cube
 entity.SlimeFrozen.name=Frozen Slime
@@ -304,7 +324,7 @@ entity.Slave.name=Wild Player
 entity.Stymph.name=Stymphalide
 entity.Centaure.name=Centaure
 entity.Orc.name=Orc
-entity.BossOrc.name=King Orc
+entity.BossOrc.name=Roi Orc
 entity.MageOrc.name=Mage Orc
 entity.Lutin.name=Lutin
 entity.ZombieSummon.name=Necromancer Zombie
@@ -313,3 +333,5 @@ entity.Arkavon.name=Arkavon
 entity.MonsterZombie.name=Arkavon Zombie
 entity.Chevalier.name=Chevalier
 entity.Crocotta.name=Crocotta
+entity.Libellule.name=Libellule
+entity.Belier.name=Belier

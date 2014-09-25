@@ -6,6 +6,7 @@
 #   LANG
 button.selection=Select
 button.back_selection=<- Back to selection
+message.outdated=A new version of the mod is available.
 
 stats.conseil=Advices
 stats.hp=HP
@@ -31,11 +32,13 @@ spell.mage.cone=Fire cone
 spell.mage.field_destruction=Field destruction
 spell.mage.freeze_cube=Frozen cube
 spell.mage.transfert=Transfert
-spell.mage.arcana_pillow=Arcane pillow
+spell.mage.arcane_pillow=Arcane pillow
+spell.mage.fireball=Fireball
 
 spell.ranger.explode_shot=Exploding Shot
 spell.ranger.magic_shot=Magical shot
 spell.ranger.poison_shot=Viper Shot
+spell.ranger.frozen_shot=Frozen Shot
 spell.ranger.wolves=Wolf summoning
 spell.ranger.refinement=Refinement
 
@@ -159,7 +162,7 @@ classe.priest=Priest
 classe.priest.slogan=The Priest, tranquil mind
 classe.priest.line1=A spriritual classe, which consist in healing
 classe.priest.line2=and buffing players. In group, you have to stay
-classe.priest.line3=behind and keep you're allies alive and buffed.
+classe.priest.line3=behind and keep your allies alive and buffed.
             
 classe.mage=Mage
 classe.mage.slogan=The Mage
@@ -189,6 +192,18 @@ itemGroup.item_fight_loot=MC Loot
 
 
 #   ACHIEVEMENTS
+achievement.loging=Welcome to Magic Crusade
+achievement.loging.desc=Starting a new game with Magic Crusade mod
+
+achievement.dungeon=Dungeon
+achievement.dungeon.desc=Entering a Dungeon
+
+achievement.orc_slayer=Orc Slayer
+achievement.orc_slayer.desc=Kill an orc
+
+achievement.orc_king=Orc King
+achievement.orc_king.desc=Kill the Orc King
+
 achievement.new_dimension=New Challenges...
 achievement.new_dimension.desc=Entering the Mystic Groves
 
@@ -240,6 +255,7 @@ tile.ore_silver.name=Silver Ore
 tile.ore_ethernium.name=Ethernium Ore
 tile.ore_titanium.name=Titanium Ore
 tile.null.name=UNDEFINED BLOCK
+tile.portal_dim.name=Portal Block
 
 
 
@@ -359,6 +375,7 @@ item.heal_boots.name=Magic Boots
 
 
 #   ENTITIES
+entity.Haunter.name=Haunter
 entity.VillagerDim.name=Sky Villager
 entity.SnowCube.name=Snow Cube
 entity.SlimeFrozen.name=Frozen Slime
@@ -377,3 +394,5 @@ entity.Arkavon.name=Arkavon
 entity.MonsterZombie.name=Arkavon Zombie
 entity.Chevalier.name=Chevalier
 entity.Crocotta.name=Crocotta
+entity.Libellule.name=Libellule
+entity.Belier.name=Aries

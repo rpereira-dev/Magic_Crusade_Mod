@@ -22,9 +22,15 @@ public class EntityFallingBlockM extends EntityFallingBlock {
 	public void	onUpdate()
 	{
 		super.onUpdate();
-		if (this.life_time > 2000 || this.onGround)
+		
+		if (this.onGround)
+		{
+			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 1.0f, false);
 			this.setDead();
+			this.worldObj.removeEntity(this);
+		}
 		else
 			life_time += 20;
+		this.setAngles(0.5f, 0.5f);
 	}
 }

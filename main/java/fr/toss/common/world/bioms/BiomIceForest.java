@@ -27,7 +27,7 @@ public class BiomIceForest extends BiomGenMagic
     {
         super(p_i45383_1_);
         
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySnowCube.class, 12, 2, 6));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySnowCube.class, 50, 2, 6));
         this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityStymph.class, 10, 4, 6));
         this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySlimeFrozen.class, 50, 4, 6));
 
@@ -53,27 +53,7 @@ public class BiomIceForest extends BiomGenMagic
     {
         return new WorldGenTallGrass(BlockRegister.SNOW_TALLGRASS, 1);
     }
-    
-    public void decorate(World w, Random rand, int x, int z)
-    {
-        super.decorate(w, rand, x, z);
-        
-        if (rand.nextInt(500) == 0)
-        {
-	        int k = x + rand.nextInt(16) + 8;
-	        int l = z + rand.nextInt(16) + 8;
-	        WorldGenFloatingDungeon dj = new WorldGenFloatingDungeon();
-	        dj.generate(w, rand, k, w.getHeightValue(k, l) + 1, l);
-        }
-        
-        if (rand.nextInt(500) == 0)
-        {
-	        int k = x + rand.nextInt(16) + 8;
-	        int l = z + rand.nextInt(16) + 8;
-	        WorldGenFloatingHouse dj = new WorldGenFloatingHouse();
-	        dj.generate(w, rand, k, w.getHeightValue(k, l) + 1, l);
-        }
-    }
+
     
     /**
      * Creates a mutated version of the biome and places it into the biomeList with an index equal to the original plus

@@ -38,7 +38,7 @@ public class PacketSpellToServer implements IMessage {
 
 	public PacketSpellToServer(int a)
 	{
-		this(a, 0);
+		this(a, 0, 0);
 	}
 
 	@Override
@@ -98,14 +98,16 @@ public class PacketSpellToServer implements IMessage {
 			
 			else if (message.spell_id == 30)
 				ServerSpellHandler.handle_shotpoison(world, sender);
-			else if (message.spell_id == 34)
-				ServerSpellHandler.handle_wolfsummon(world, sender);
 			else if (message.spell_id == 31)
 				ServerSpellHandler.handle_magicshot(world, sender);
 			else if (message.spell_id == 32)
 				ServerSpellHandler.handle_explodeshot(world, sender);
 			else if (message.spell_id == 33)
 				ServerSpellHandler.handle_refinement(world, sender);
+			else if (message.spell_id == 34)
+				ServerSpellHandler.handle_wolfsummon(world, sender);
+			else if (message.spell_id == 35)
+				ServerSpellHandler.handle_frozenshot(world, sender);
 			
 			else if (message.spell_id == 20)
 				ServerSpellHandler.handle_drain(message, world, sender);
@@ -130,15 +132,15 @@ public class PacketSpellToServer implements IMessage {
 				ServerSpellHandler.handle_field_destruction(message, world, sender);
 			else if (message.spell_id == 44)
 				ServerSpellHandler.handle_arcane_pillow(message, world, sender);
+			else if (message.spell_id == 45)
+				ServerSpellHandler.handle_fireball(world, sender);
 			
-			else if(message.spell_id == 50)
-				ServerSpellHandler.handle_speed_rogue(sender);
 			else if(message.spell_id == 51)
-				ServerSpellHandler.handle_invisible(sender);
+				ServerSpellHandler.handle_speed_rogue(sender);
 			else if(message.spell_id == 52)
-				pm.is_poisonned = true;
+				ServerSpellHandler.handle_invisible(sender);
 			else if(message.spell_id == 53)
-				ServerSpellHandler.handle_vision(sender);
+				pm.is_poisonned = true;
 			else if(message.spell_id == 54)
 				ServerSpellHandler.handle_vision(sender);
 			else if(message.spell_id == 55)

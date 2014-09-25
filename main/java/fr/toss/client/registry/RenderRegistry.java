@@ -3,10 +3,13 @@ package fr.toss.client.registry;
 import net.minecraft.client.model.ModelSlime;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import fr.toss.client.model.entity.ModelArkavon;
+import fr.toss.client.model.entity.ModelBelier;
 import fr.toss.client.model.entity.ModelCentaure;
 import fr.toss.client.model.entity.ModelChevalier;
 import fr.toss.client.model.entity.ModelCrocotta;
 import fr.toss.client.model.entity.ModelGobelin;
+import fr.toss.client.model.entity.ModelHaunter;
+import fr.toss.client.model.entity.ModelLibellule;
 import fr.toss.client.model.entity.ModelLutin;
 import fr.toss.client.model.entity.ModelMageOrc;
 import fr.toss.client.model.entity.ModelOrc;
@@ -14,6 +17,7 @@ import fr.toss.client.model.entity.ModelRoiOrc;
 import fr.toss.client.model.entity.ModelStymph;
 import fr.toss.client.model.entity.ModelZombieMonster;
 import fr.toss.client.render.entity.RenderArkavon;
+import fr.toss.client.render.entity.RenderBelier;
 import fr.toss.client.render.entity.RenderBossOrc;
 import fr.toss.client.render.entity.RenderCentaure;
 import fr.toss.client.render.entity.RenderChevalier;
@@ -21,6 +25,8 @@ import fr.toss.client.render.entity.RenderCrocotta;
 import fr.toss.client.render.entity.RenderFrozenCube;
 import fr.toss.client.render.entity.RenderGhastFrozen;
 import fr.toss.client.render.entity.RenderGobelin;
+import fr.toss.client.render.entity.RenderHaunter;
+import fr.toss.client.render.entity.RenderLibellule;
 import fr.toss.client.render.entity.RenderLutin;
 import fr.toss.client.render.entity.RenderMageOrc;
 import fr.toss.client.render.entity.RenderOrc;
@@ -32,6 +38,7 @@ import fr.toss.client.render.entity.RenderSummonZombie;
 import fr.toss.client.render.entity.RenderVillagerDim;
 import fr.toss.client.render.entity.RenderZombieMonster;
 import fr.toss.common.entity.EntityArkavon;
+import fr.toss.common.entity.EntityBelier;
 import fr.toss.common.entity.EntityBossOrc;
 import fr.toss.common.entity.EntityCentaure;
 import fr.toss.common.entity.EntityChevalier;
@@ -39,6 +46,8 @@ import fr.toss.common.entity.EntityCrocotta;
 import fr.toss.common.entity.EntityFrozenCube;
 import fr.toss.common.entity.EntityGhastFrozen;
 import fr.toss.common.entity.EntityGobelin;
+import fr.toss.common.entity.EntityHaunter;
+import fr.toss.common.entity.EntityLibellule;
 import fr.toss.common.entity.EntityLutin;
 import fr.toss.common.entity.EntityMageOrc;
 import fr.toss.common.entity.EntityMonsterZombie;
@@ -91,8 +100,9 @@ public class RenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(EntityMonsterZombie.class, new RenderZombieMonster(new ModelZombieMonster(), 0.7F));
         RenderingRegistry.registerEntityRenderingHandler(EntityCrocotta.class, new RenderCrocotta(new ModelCrocotta(), 0.7F));
         RenderingRegistry.registerEntityRenderingHandler(EntityChevalier.class, new RenderChevalier(new ModelChevalier(), 0.7F));
-
-
+        RenderingRegistry.registerEntityRenderingHandler(EntityLibellule.class, new RenderLibellule(new ModelLibellule(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBelier.class, new RenderBelier(new ModelBelier(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityHaunter.class, new RenderHaunter(new ModelHaunter(), 0.7F));
 	}
 
 }

@@ -2,15 +2,15 @@ package fr.toss.common.player.spells;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBow;
@@ -199,6 +199,31 @@ public class ServerSpellHandler {
             	{
             		if (list.get(i) instanceof EntityLivingBase)
             			((EntityLivingBase)list.get(i)).addPotionEffect(new PotionEffect(Potion.poison.id, 100, 2));
+            	}
+            }
+        };
+        world.spawnEntityInWorld(entityarrow);
+	}
+	
+	/** Poison shot du Dragon slayer */
+	public static void handle_frozenshot(World world, EntityPlayerMP sender)
+	{
+        EntityArrow entityarrow;
+        
+        entityarrow = new EntityArrow(world, sender, 2.0F)
+        {
+        	@Override
+            public void onUpdate()
+            {
+            	super.onUpdate();
+            	
+            	List list;
+            	
+            	list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.2f, 0.2f, 0.2f));
+            	for (int i = 0; i < list.size(); i++)
+            	{
+            		if (list.get(i) instanceof EntityLivingBase)
+            			((EntityLivingBase)list.get(i)).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 2));
             	}
             }
         };
@@ -449,13 +474,17 @@ public class ServerSpellHandler {
 
 	public static void handle_field_destruction(PacketSpellToServer message, World world, EntityPlayerMP sender)
 	{
+		List entities;
 		Entity e;
 		
 		e = world.getEntityByID(message.data);
+		entities = e.worldObj.getEntitiesWithinAABBExcludingEntity(e, e.boundingBox.expand(5, 3, 5));
+		for (Object obj : entities)
+			((Entity)obj).attackEntityFrom(DamageSource.causePlayerDamage(sender), 3 + message.data2);
+			
+			
 		if (e != null)
-		{
 			e.attackEntityFrom(DamageSource.causePlayerDamage(sender), 3 + message.data2);
-		}
 	}
 
 	public static void handle_speed_rogue(EntityPlayerMP sender)
@@ -492,5 +521,20 @@ public class ServerSpellHandler {
 				sender.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 60, 1));
 			}
 		}		
+	}
+
+	public static void handle_fireball(World world, EntityPlayerMP sender)
+	{
+		float a;
+		float b;
+		float c;
+		
+		a = (float) sender.getLookVec().xCoord;
+		b = (float) sender.getLookVec().yCoord;
+		c = (float) sender.getLookVec().zCoord;
+    	EntityLargeFireball fireball = new EntityLargeFireball(world, sender.posX + a, sender.posY + b, sender.posZ + c, a, b, c);
+        fireball.posY = sender.posY + (double)(sender.height / 2.0F) + 0.5D;
+        world.spawnEntityInWorld(fireball);
+        fireball.setVelocity(fireball.motionX * 1.5f, fireball.motionY, fireball.motionZ * 1.5f);
 	}
 }

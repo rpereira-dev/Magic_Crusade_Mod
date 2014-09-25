@@ -60,11 +60,11 @@ public class EntityChevalier extends EntityMob implements IBossDisplayData {
 		EntityPlayer p = null;
 		long time;
 		
-		time = System.currentTimeMillis() % 10000;
+		time = System.currentTimeMillis() % 20000;
 
 		if (time < 30)
 		{
-			list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0d, 16.0d, 16.0d));
+			list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(8.0d, 2.0d, 8.0d));
 			for (int i = 0; i < list.size(); i++)
 			{
 				if (list.get(i) instanceof EntityPlayer)
@@ -75,15 +75,16 @@ public class EntityChevalier extends EntityMob implements IBossDisplayData {
 				}
 			}
 		}
-		else if (time >= 5000 && time <= 5030)
+		else if (time >= 10000 && time <= 10030)
 		{
-			list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0d, 16.0d, 16.0d));
+			list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(8.0d, 2.0d, 8.0d));
 			for (int i = 0; i < list.size(); i++)
 			{
 				if (list.get(i) instanceof EntityPlayer)
 				{
 					p = (EntityPlayer) list.get(i);
-					p.heal(p.getMaxHealth() / 2);
+					p.heal(p.getMaxHealth());
+					p.addPotionEffect(new PotionEffect(Potion.wither.id, 200, 3));
 					p.setAbsorptionAmount(0);
 				}
 			}

@@ -1,5 +1,6 @@
 package fr.toss.common.register;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.Side;
@@ -78,7 +79,7 @@ public class CreativesTabsRegister {
 		BlockRegister.ORE_TITANIUM.setCreativeTab(tabBlock);
 		BlockRegister.ORE_COMBUSTIUM.setCreativeTab(tabBlock);
 		BlockRegister.STONE_FALLING.setCreativeTab(tabBlock);
-		BlockRegister.PORTAL.setCreativeTab(tabBlock);
+		BlockRegister.PORTAL_MY_GROV.setCreativeTab(tabBlock);
 		BlockRegister.LOGS1.setCreativeTab(tabBlock);
 		BlockRegister.PLANKS.setCreativeTab(tabBlock);
 		BlockRegister.LEAVES.setCreativeTab(tabBlock);
@@ -86,6 +87,8 @@ public class CreativesTabsRegister {
 		BlockRegister.BERRY_YELLOW.setCreativeTab(tabBlock);
 		BlockRegister.SNOW_TALLGRASS.setCreativeTab(tabBlock);
 		BlockRegister.TALLGRASS.setCreativeTab(tabBlock);
+		for (Block block : BlockRegister.PORTAL_DUNGEON)
+			block.setCreativeTab(tabBlock);
 
 		ItemRegister.COMBUSTIUM.setCreativeTab(tabItemUtil);
 		ItemRegister.BERRY_RED.setCreativeTab(tabItemUtil);

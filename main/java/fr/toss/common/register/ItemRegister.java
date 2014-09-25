@@ -421,7 +421,7 @@ public class ItemRegister {
 		
 		rand = new Random();
 		
-		switch (rand.nextInt(24))
+		switch (rand.nextInt(32))
 		{
 		
 /**--------------------------------------------------------------------------------------*/

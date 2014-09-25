@@ -6,6 +6,7 @@ import fr.toss.common.player.spells.dragonslayer.ExplodeShot_3;
 import fr.toss.common.player.spells.dragonslayer.MagicShot_2;
 import fr.toss.common.player.spells.dragonslayer.PoisonShot_1;
 import fr.toss.common.player.spells.dragonslayer.Refinement_4;
+import fr.toss.common.player.spells.dragonslayer.SlowShot_6;
 import fr.toss.common.player.spells.dragonslayer.Wolves_5;
 
 public class ClasseRanger extends Classe {
@@ -36,6 +37,7 @@ public class ClasseRanger extends Classe {
 		this.CLASSE_SPELL.add(new Wolves_5());
 		this.CLASSE_SPELL.add(new MagicShot_2());
 		this.CLASSE_SPELL.add(new ExplodeShot_3());
+		this.CLASSE_SPELL.add(new SlowShot_6());
 		this.CLASSE_SPELL.add(new Refinement_4());
 	}
 	

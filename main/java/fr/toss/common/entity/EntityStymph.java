@@ -138,7 +138,10 @@ public class EntityStymph extends EntityTameable
      */
     protected String getLivingSound()
     {
-        return this.isTamed() ? (this.isInLove() ? "mob.cat.purr" : (this.rand.nextInt(4) == 0 ? "mob.cat.purreow" : "mob.cat.meow")) : "";
+    	int i;
+    	
+    	i = this.rand.nextInt(3);
+        return i == 0 ? "magiccrusade:stymph_live1" : i == 1 ? "magiccrusade:stymph_live2" : "";
     }
 
     /**

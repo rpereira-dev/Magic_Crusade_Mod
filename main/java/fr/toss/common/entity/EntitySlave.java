@@ -52,7 +52,7 @@ public class EntitySlave extends EntityTameable
         this.tasks.addTask(7, new EntityAIOcelotAttack(this));
         this.tasks.addTask(8, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(9, new EntityAIWander(this, 0.8D));
-        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.targetTasks.addTask(1, new EntityAITargetNonTamed(this, EntityMob.class, 750, false));
         this.setType(this.rand.nextInt(4));
         this.setRandomStuff();
@@ -174,33 +174,16 @@ public class EntitySlave extends EntityTameable
     		}
     	}
     	
-        if (this.getMoveHelper().isUpdating())
-        {
-            double d0 = this.getMoveHelper().getSpeed();
-
-            if (d0 == 0.6D)
-            {
-                this.setSneaking(true);
-                this.setSprinting(false);
-            }
-            else if (d0 == 1.33D)
-            {
-                this.setSneaking(false);
-                this.setSprinting(true);
-            }
-            else
-            {
-                this.setSneaking(false);
-                this.setSprinting(false);
-            }
-        }
-        else
-        {
-            this.setSneaking(false);
-            this.setSprinting(false);
-        }
+    	EntityPlayer p;
+    	
+    	p = this.worldObj.getClosestPlayerToEntity(this, 6.0d);
+    	if (p != null)
+    		this.setSneaking(true);
+    	else
+    		this.setSneaking(false);
     }
-
+    
+    
     /**
      * Determines if an entity can be despawned, used on idle far away entities
      */
@@ -223,11 +206,6 @@ public class EntitySlave extends EntityTameable
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.30000001192092896D);
     }
-
-    /**
-     * Called when the mob is falling. Calculates and applies fall damage.
-     */
-    protected void fall(float p_70069_1_) {}
 
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
@@ -393,7 +371,7 @@ public class EntitySlave extends EntityTameable
         else
         {
             EntitySlave slave = (EntitySlave)entity;
-            return !slave.isTamed() ? false : this.isInLove() && slave.isInLove();
+            return (slave.getType() == 2) || (this.getType() == 2);
         }
     }
 

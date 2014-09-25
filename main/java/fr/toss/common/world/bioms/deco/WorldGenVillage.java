@@ -2,110 +2,124 @@ package fr.toss.common.world.bioms.deco;
 
 import java.util.Random;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.chunk.IChunkProvider;
+import cpw.mods.fml.common.IWorldGenerator;
+import fr.toss.common.Main;
 import fr.toss.common.command.ChatColor;
 import fr.toss.common.entity.EntityVillagerDim;
+import fr.toss.common.register.BiomsList;
 import fr.toss.common.register.BlockRegister;
 
-public class WorldGenVillage extends WorldGenerator
+public class WorldGenVillage implements IWorldGenerator
 {
-  public boolean generate(World w, Random r, int x, int y, int z)
-  {
-	    int X = x;
-	    int Z = z;
+	@Override
+	public void generate(Random r, int chunkX, int chunkZ, World w, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) 
+	{
+		if (r.nextInt(200) == 0 && w.provider.dimensionId == Main.DIM_ID)
+		{
+			int x = chunkX * 16 + r.nextInt(16);
+			int z = chunkZ * 16 + r.nextInt(16);
+			int y = 90 + r.nextInt(20);	
+		    int X = x;
+		    int Z = z;
 	
-	    y = w.getTopSolidOrLiquidBlock(x, z);
-	
-	    if (y < 24)
-	    	return false;
-	    
-	    APIGen.genCubePleinTrouPorte(w, x, y - 2, z, 6, 10, 6, BlockRegister.LOGS1, Blocks.glowstone, r, 8);
-	
-	    APIGen.genCubeVidePorte(w, x - 1, y, z - 1, 8, 1, 8, BlockRegister.LOGS1, Blocks.air);
-	
-	    APIGen.genCubePleinTrou(w, x - 1, y + 6, z - 1, 8, 1, 8, BlockRegister.LOGS1, Blocks.glowstone, r, 3);
-	
-	    APIGen.genChest(w, x + 3, y + 2, z + 3, r);
-	    APIGen.genCubePlein(w, x + 2, y + 1, z + 2, 2, 1, 2, Blocks.stained_glass);
-	
-	    APIGen.replaceBlocks(w, x + 9, z, 2, 20, Blocks.gravel);
-	
-	    for (int i = 0; i < 10 + r.nextInt(14); i++)
-	    {
-	      EntityVillagerDim villager = new EntityVillagerDim(w);
-	      villager.setProfession(r.nextInt(8));
-	      villager.setCustomNameTag(getRandomName(r));
-	      villager.setLocationAndAngles(x + 10, y + 1, z + 2 + i, 0.0F, 0.0F);
-	
-	      if (r.nextInt(5) == 0)
-	    	  villager.setGrowingAge(-2000);
-	      w.spawnEntityInWorld(villager);
-	    }
-	
-	    x += 13;
-	    y = w.getTopSolidOrLiquidBlock(x, z);
-	    APIGen.genCubeVidePorte(w, x, y, z, 4, 6, 4, BlockRegister.LOGS1, Blocks.iron_bars);
-	    APIGen.genCubeVide(w, x - 1, y + 4, z - 1, 6, 1, 6, BlockRegister.LEAVES);
-	
-	    x += 3;
-	    z += 11;
-	    APIGen.replaceBlocks(w, x, z, 6, 10, Blocks.water);
-	    APIGen.replaceBlocks(w, x - 1, z - 1, 8, 12, Blocks.packed_ice);
-	
-	    x = X;
-	    z = Z;
-	    x += 2;
-	    z += 6;
-	    APIGen.replaceBlocks(w, x + 9, z, 16, 2, Blocks.gravel);
-	
-	    x = X;
-	    z = Z;
-	
-	    APIGen.replaceBlocks(w, x - 5, z + 9, 16, 2, Blocks.gravel);
-	
-	    z += 11;
-	    y = w.getTopSolidOrLiquidBlock(x, z);
-	
-	    APIGen.genCubePleinTrouPorteTorch(w, x, y - 2, z, 6, 8, 6, Blocks.stained_hardened_clay, BlockRegister.ORE_ETHERNIUM, r, 10);
-	    APIGen.genCubePleinTrou(w, x - 1, y + 4, z - 1, 8, 1, 8, Blocks.stained_hardened_clay, BlockRegister.ORE_ETHERNIUM, r, 10);
-	    APIGen.genCubePlein(w, x + 2, y - 2, z + 2, 2, 1, 2, Blocks.stained_glass);
-	    w.setBlock(x + 1, y - 1, z + 1, Blocks.bookshelf);
-	    w.setBlock(x + 1, y - 1, z + 2, Blocks.bookshelf);
-	    w.setBlock(x + 1, y - 1, z + 3, Blocks.bookshelf);
-	    w.setBlock(x + 1, y - 1, z + 4, Blocks.bookshelf);
-	
-	    x = X;
-	    z = Z;
-	    x += 7;
-	    z += 28;
-	    y = w.getTopSolidOrLiquidBlock(x, z);
-	    APIGen.genCubeVide(w, x - 1, y + 12, z - 1, 8, 1, 8, BlockRegister.LEAVES);
-	    APIGen.genCubeVide(w, x - 2, y + 13, z - 2, 10, 1, 12, BlockRegister.LEAVES);
-	    APIGen.genCubeVide(w, x - 3, y + 14, z - 3, 12, 1, 10, BlockRegister.LEAVES);
-	    APIGen.genCubeVide(w, x - 2, y + 15, z - 2, 10, 1, 12, BlockRegister.LEAVES);
-	    APIGen.genCubeVide(w, x - 1, y + 16, z - 1, 8, 1, 8, BlockRegister.LEAVES);
-	
-	    APIGen.genCubeVide(w, x - 1, y + 1, z - 1, 8, 1, 8, BlockRegister.LEAVES);
-	    APIGen.genCubeVide(w, x - 2, y, z - 2, 10, 1, 12, BlockRegister.LEAVES);
-	
-	    APIGen.genCubePleinTrouPorte(w, x, y, z, 6, 18, 6, BlockRegister.LOGS1, Blocks.glowstone, r, 10);
-	    
-	    APIGen.genChest(w, x + 2, y + 1, z + 2, r);
-	    APIGen.genChest(w, x + 2, y + 1, z + 3, r);
-	    
-	    
-		TileEntityChest chest = (TileEntityChest) w.getTileEntity(x + 2, y + 1, z + 3);
-		if (chest != null)
-			chest.setInventorySlotContents(0, this.getBook());
+		    y = w.getTopSolidOrLiquidBlock(x, z);
 		
-	    return true;
+		    
+		    if (y < 36)
+		    	return ;
+		    
+			for (Object obj : w.playerEntities)
+				((EntityPlayer)obj).addChatComponentMessage(new ChatComponentText(ChatColor.AQUA + "Graveyard portal has been generated: X:" + x + " Y:" + y + " Z:" + z + ChatColor.RESET));
+			
+		    APIGen.genCubePleinTrouPorte(w, x, y - 2, z, 6, 10, 6, BlockRegister.LOGS1, Blocks.glowstone, r, 8);
+		
+		    APIGen.genCubeVidePorte(w, x - 1, y, z - 1, 8, 1, 8, BlockRegister.LOGS1, Blocks.air);
+		
+		    APIGen.genCubePleinTrou(w, x - 1, y + 6, z - 1, 8, 1, 8, BlockRegister.LOGS1, Blocks.glowstone, r, 3);
+		
+		    APIGen.genChest(w, x + 3, y + 2, z + 3, r);
+		    APIGen.genCubePlein(w, x + 2, y + 1, z + 2, 2, 1, 2, Blocks.stained_glass);
+		
+		    APIGen.replaceBlocks(w, x + 9, z, 2, 20, Blocks.gravel);
+		
+		    for (int i = 0; i < 10 + r.nextInt(14); i++)
+		    {
+		      EntityVillagerDim villager = new EntityVillagerDim(w);
+		      villager.setProfession(r.nextInt(8));
+		      villager.setCustomNameTag(getRandomName(r));
+		      villager.setLocationAndAngles(x + 10, y + 1, z + 2 + i, 0.0F, 0.0F);
+		
+		      if (r.nextInt(5) == 0)
+		    	  villager.setGrowingAge(-2000);
+		      w.spawnEntityInWorld(villager);
+		    }
+		
+		    x += 13;
+		    y = w.getTopSolidOrLiquidBlock(x, z);
+		    APIGen.genCubeVidePorte(w, x, y, z, 4, 6, 4, BlockRegister.LOGS1, BlockRegister.PORTAL_DUNGEON[1]);
+		    APIGen.genCubeVide(w, x - 1, y + 4, z - 1, 6, 1, 6, BlockRegister.LEAVES);
+		
+		    x += 3;
+		    z += 11;
+		    APIGen.replaceBlocks(w, x, z, 6, 10, Blocks.water);
+		    APIGen.replaceBlocks(w, x - 1, z - 1, 8, 12, Blocks.packed_ice);
+		
+		    x = X;
+		    z = Z;
+		    x += 2;
+		    z += 6;
+		    APIGen.replaceBlocks(w, x + 9, z, 16, 2, Blocks.gravel);
+		
+		    x = X;
+		    z = Z;
+		
+		    APIGen.replaceBlocks(w, x - 5, z + 9, 16, 2, Blocks.gravel);
+		
+		    z += 11;
+		    y = w.getTopSolidOrLiquidBlock(x, z);
+		
+		    APIGen.genCubePleinTrouPorteTorch(w, x, y - 2, z, 6, 8, 6, Blocks.stained_hardened_clay, BlockRegister.ORE_ETHERNIUM, r, 10);
+		    APIGen.genCubePleinTrou(w, x - 1, y + 4, z - 1, 8, 1, 8, Blocks.stained_hardened_clay, BlockRegister.ORE_ETHERNIUM, r, 10);
+		    APIGen.genCubePlein(w, x + 2, y - 2, z + 2, 2, 1, 2, Blocks.stained_glass);
+		    w.setBlock(x + 1, y - 1, z + 1, Blocks.bookshelf);
+		    w.setBlock(x + 1, y - 1, z + 2, Blocks.bookshelf);
+		    w.setBlock(x + 1, y - 1, z + 3, Blocks.bookshelf);
+		    w.setBlock(x + 1, y - 1, z + 4, Blocks.bookshelf);
+		
+		    x = X;
+		    z = Z;
+		    x += 7;
+		    z += 28;
+		    y = w.getTopSolidOrLiquidBlock(x, z);
+		    APIGen.genCubeVide(w, x - 1, y + 12, z - 1, 8, 1, 8, BlockRegister.LEAVES);
+		    APIGen.genCubeVide(w, x - 2, y + 13, z - 2, 10, 1, 12, BlockRegister.LEAVES);
+		    APIGen.genCubeVide(w, x - 3, y + 14, z - 3, 12, 1, 10, BlockRegister.LEAVES);
+		    APIGen.genCubeVide(w, x - 2, y + 15, z - 2, 10, 1, 12, BlockRegister.LEAVES);
+		    APIGen.genCubeVide(w, x - 1, y + 16, z - 1, 8, 1, 8, BlockRegister.LEAVES);
+		
+		    APIGen.genCubeVide(w, x - 1, y + 1, z - 1, 8, 1, 8, BlockRegister.LEAVES);
+		    APIGen.genCubeVide(w, x - 2, y, z - 2, 10, 1, 12, BlockRegister.LEAVES);
+		
+		    APIGen.genCubePleinTrouPorte(w, x, y, z, 6, 18, 6, BlockRegister.LOGS1, Blocks.glowstone, r, 10);
+		    
+		    APIGen.genChest(w, x + 2, y + 1, z + 2, r);
+		    APIGen.genChest(w, x + 2, y + 1, z + 3, r);
+		    
+		    
+			TileEntityChest chest = (TileEntityChest) w.getTileEntity(x + 2, y + 1, z + 3);
+			if (chest != null)
+				chest.setInventorySlotContents(0, this.getBook());
+		}	
   }
 
 	  private ItemStack getBook()

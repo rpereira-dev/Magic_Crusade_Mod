@@ -4,40 +4,53 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemWritableBook;
+import net.minecraft.world.Teleporter;
 import api.player.server.ServerPlayerAPI;
 import api.player.server.ServerPlayerBase;
 import fr.toss.common.Main;
+import fr.toss.common.entity.EntityBossOrc;
+import fr.toss.common.entity.EntityMageOrc;
+import fr.toss.common.entity.EntityOrc;
 import fr.toss.common.items.ItemArmorM;
 import fr.toss.common.packet.PacketExpToClient;
 import fr.toss.common.packet.PacketLogIn;
 import fr.toss.common.packet.Packets;
+import fr.toss.common.register.AchievementList;
 import fr.toss.common.world.TeleporterDim;
+import fr.toss.common.world.dungeon.TeleportDungeon;
 
 public class ServerPlayerBaseMagic extends ServerPlayerBase
 {
 	public static Map<String, PlayerData> PLAYER_DATA = new HashMap<String, PlayerData>(); //PlayerData is added when the player dies and remove after it respawn
 	
-	public Item armor[]; // armor[4] = item equipped
+	public Item 	armor[]; // armor[4] = item equipped
 	
-	public boolean is_poisonned; //voleur
+	public boolean 	is_poisonned; //voleur
+	
+	public double	dungeon_location[]; //coordonnée du dernier portial pris
 
-	public int classe;
-	public int level;
-	public int experience;
-	public int experience_to_get;
-	public int exp_to_next_level;
-	public int endurance;
+	public int 		classe;
+	public int 		level;
+	public int 		experience;
+	public int 		experience_to_get;
+	public int 		exp_to_next_level;
+	public int 		endurance;
+
+	public int		portal_cd;
 	
 	public ServerPlayerBaseMagic(ServerPlayerAPI playerapi)
 	{
 		super(playerapi);
 		this.armor = new Item[5];
+		this.dungeon_location = new double[3];
+		this.dungeon_location[0] = 0;
+		this.dungeon_location[1] = 64;
+		this.dungeon_location[2] = 0;
+		this.portal_cd = 0;
 	}
 
 	
@@ -46,16 +59,18 @@ public class ServerPlayerBaseMagic extends ServerPlayerBase
 	public void onDeath(net.minecraft.util.DamageSource paramDamageSource)
 	{
 		super.onDeath(paramDamageSource);
-		System.out.println("onDeath: " + this.classe);
 
 		PlayerData data = new PlayerData(this);
 		PLAYER_DATA.put(this.player.getCommandSenderName(), data);
+		
+		if (Main.server != null)
+			Main.server.onPlayerDie(this.getPlayer());
 	}
 	
 	/** Appelez lrosque le joueur a respawn */
 	public void onRespawn()
 	{
-		System.out.println("onRespawn: " + this.classe);
+		System.out.println("Respawn");
 		if (PLAYER_DATA.containsKey(this.player.getCommandSenderName()))
 		{
 			PacketLogIn packet;
@@ -66,7 +81,7 @@ public class ServerPlayerBaseMagic extends ServerPlayerBase
 			this.experience = data.experience;
 			this.classe = data.classe;
 			this.exp_to_next_level = this.level * 20 * (this.level + 1);
-		    this.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0d);
+		    this.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(0.5d * (this.level - 1) + 20.0d);
 			packet = new PacketLogIn(this);
 			Packets.network.sendTo(packet, this.getPlayer());
 			PLAYER_DATA.remove(this.player.getCommandSenderName());
@@ -89,11 +104,14 @@ public class ServerPlayerBaseMagic extends ServerPlayerBase
 	 {
 		 super.onUpdate();
 
+		 if (this.portal_cd > 0)
+			 this.portal_cd--;
+		 
 		 if (this.player.dimension == Main.DIM_ID)
 		 {
 			 if (this.player.posY < 0)
 			 {
-				 this.travelToDimension(this.player);
+				 this.travelToDimension(0, player.dimension);
 				 this.player.setPosition(this.player.posX, this.player.worldObj.getTopSolidOrLiquidBlock((int) this.player.posX, (int) this.player.posZ), this.player.posZ);
 			 }
 		 }
@@ -151,6 +169,9 @@ public class ServerPlayerBaseMagic extends ServerPlayerBase
 		 this.classe = nbt.getInteger("classe");
 		 this.level = nbt.getInteger("level"); 
 		 this.experience = nbt.getInteger("experience"); 
+		 this.dungeon_location[0] = nbt.getInteger("dungeon_x");
+		 this.dungeon_location[1] = nbt.getInteger("dungeon_y");
+		 this.dungeon_location[2] = nbt.getInteger("dungeon_z");
 	}
 		
 	 @Override
@@ -160,42 +181,61 @@ public class ServerPlayerBaseMagic extends ServerPlayerBase
 		 nbt.setInteger("classe", this.classe); 
 		 nbt.setInteger("level", this.level); 
 		 nbt.setInteger("experience", this.experience); 
+		 nbt.setDouble("dungeon_x", this.dungeon_location[0]);
+		 nbt.setDouble("dungeon_y", this.dungeon_location[1]);
+		 nbt.setDouble("dungeon_z", this.dungeon_location[2]);
 	 }
 		
 	 @Override
 	 public void onKillEntity(net.minecraft.entity.EntityLivingBase entity)
 	 {
 		 super.onKillEntity(entity);
-		 PacketExpToClient packet;
 		 
-		 this.experience_to_get += entity.getMaxHealth() * 6;
-
-		 packet = new PacketExpToClient(this.experience_to_get);
-		 Packets.network.sendTo(packet, this.player);
+		 if (!(entity instanceof EntityTameable))
+		 {
+			 PacketExpToClient packet;
+			 
+			 this.experience_to_get += entity.getMaxHealth() * 6;
+			 packet = new PacketExpToClient(this.experience_to_get);
+			 Packets.network.sendTo(packet, this.player);
+			 
+			 
+			if (entity instanceof EntityOrc || entity instanceof EntityMageOrc)
+				this.getPlayer().triggerAchievement(AchievementList.ORC_SLAYER);
+			else if (entity instanceof EntityBossOrc)
+				this.getPlayer().triggerAchievement(AchievementList.ORC_BOSS);
+		 }
 	 }
 	
 	 /**
-	 * Teleports the entity to another dimension. Params: Dimension number to teleport to
+	 * Teleports the entity to another dimension. Params: Dimension number to teleport to, Dungeon true or false if the player was or not in a dungeon
 	 */
-	    public void travelToDimension(EntityPlayer player)
-	    {	
+	    public void travelToDimension(int to_dim, int from_dim)
+	    {
+    		EntityPlayerMP 	thePlayer;
+	    	Teleporter		teleporter;
+			PlayerData 		data;
+			
+			thePlayer = (EntityPlayerMP)player;
+			if ((from_dim == Main.DIM_ID && to_dim == 0) || (from_dim == 0 && to_dim == Main.DIM_ID))
+				teleporter = new TeleporterDim(thePlayer.mcServer.worldServerForDimension(to_dim));
+			else
+				teleporter = new TeleportDungeon(to_dim, from_dim, this);
+			
+				
+			data = new PlayerData(this);
+			ServerPlayerBaseMagic.PLAYER_DATA.put(this.getPlayer().getCommandSenderName(), data);
+			
 	    	if ((player.ridingEntity == null) && (player.riddenByEntity == null) && ((player instanceof EntityPlayerMP)))
-	    	{	    	
-	    		EntityPlayerMP thePlayer = (EntityPlayerMP)player;
+	    	{
 		    	if (thePlayer.timeUntilPortal > 0)
-		    	{
-			    	thePlayer.timeUntilPortal = 10;
-		    	}
-		    	else if (thePlayer.dimension != Main.DIM_ID)
-		    	{
-			    	thePlayer.timeUntilPortal = 10;
-			    	thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, Main.DIM_ID, new TeleporterDim(thePlayer.mcServer.worldServerForDimension(Main.DIM_ID)));
-		    	}
+		    		thePlayer.timeUntilPortal = 10;
 		    	else 
 		    	{
 			    	thePlayer.timeUntilPortal = 10;
-			    	thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0, new TeleporterDim(thePlayer.mcServer.worldServerForDimension(0)));
+			    	thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, to_dim, teleporter);
 		    	}
+		    	this.onRespawn();
 	    	}
 	    }
 	

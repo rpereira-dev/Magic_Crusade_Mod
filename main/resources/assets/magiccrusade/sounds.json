@@ -1,7 +1,28 @@
-  {
-  "centaure_hurt": {"category": "master","sounds": [{"name": "centaure_hurt","stream": false}]},
-  "centaure_live": {"category": "master","sounds": [{"name": "centaure_live","stream": false}]},
+{
+  "luan_hong":{"category": "master","sounds": [{"name": "luan_hong","stream": true}]},
+  "flute":{"category": "master","sounds": [{"name": "flute","stream": true}]},
+  "bruitage_nuit":{"category": "master","sounds": [{"name": "bruitage_nuit","stream": true}]},
+  "bruitage_day":{"category": "master","sounds": [{"name": "bruitage_day","stream": true}]},
+ 
+  "centaure_hurt":{"category": "master","sounds": [{"name": "centaure_hurt","stream": false}]},
+  "centaure_die": {"category": "master","sounds": [{"name": "centaure_die","stream": false}]},
+  "centaure_live1": {"category": "master","sounds": [{"name": "centaure_live1","stream": false}]},
+  "centaure_live2": {"category": "master","sounds": [{"name": "centaure_live2","stream": false}]},
+  
   "stymph_death": {"category": "master","sounds": [{"name": "stymph_death","stream": false}]},
   "stymph_live1": {"category": "master","sounds": [{"name": "stymph_live1","stream": false}]},
-  "stymph_live2": {"category": "master","sounds": [{"name": "stymph_live2","stream": false}]}
-  }
+  "stymph_live2": {"category": "master","sounds": [{"name": "stymph_live2","stream": false}]},
+  
+  "belier_live1": {"category": "master","sounds": [{"name": "belier_live1","stream": false}]},
+  "belier_live2": {"category": "master","sounds": [{"name": "belier_live2","stream": false}]},
+  "belier_hurt": {"category": "master","sounds": [{"name": "belier_hurt","stream": false}]},
+  "belier_death": {"category": "master","sounds": [{"name": "belier_death","stream": false}]},
+  
+  "king_orc_live1": {"category": "master","sounds": [{"name": "king_orc_live1","stream": false}]},
+  "king_orc_live2": {"category": "master","sounds": [{"name": "king_orc_live2","stream": false}]},
+  "king_orc_die": {"category": "master","sounds": [{"name": "king_orc_die","stream": false}]},
+  "king_orc_hurt1": {"category": "master","sounds": [{"name": "king_orc_hurt1","stream": false}]},
+  "king_orc_hurt2": {"category": "master","sounds": [{"name": "king_orc_hurt2","stream": false}]},
+  
+  "libellule": {"category": "master","sounds": [{"name": "libellule","stream": false}]}
+}

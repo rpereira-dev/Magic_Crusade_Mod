@@ -5,88 +5,125 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.chunk.IChunkProvider;
+import cpw.mods.fml.common.IWorldGenerator;
+import fr.toss.common.Main;
+import fr.toss.common.command.ChatColor;
 import fr.toss.common.entity.EntityGhastFrozen;
+import fr.toss.common.register.BiomsList;
+import fr.toss.common.register.BlockRegister;
 import fr.toss.common.register.ItemRegister;
 
-public class WorldGenFloatingDungeon extends WorldGenerator
+public class WorldGenFloatingDungeon implements IWorldGenerator
 {
-	public World world;
+	public World w;
 	public Random rand;
 	
 	@Override
-	public boolean generate(World w, Random r, int x, int y, int z)
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
-		this.world = w;
-		this.rand = r;
 		
-		y = 90 + r.nextInt(20);
-		
-		rectangle(x, y, z, 24, 24, Blocks.snow);
-		rectangleVide(x, y + 1, z, 24, 24, Blocks.snow);
-		rectangle(x + 1, y - 1, z + 1, 20, 20, Blocks.snow);
-		rectangle(x + 3, y - 2, z + 3, 16, 16, Blocks.snow);
-		rectangle(x + 4, y - 3, z + 4, 14, 14, Blocks.snow);
-		rectangle(x + 6, y - 4, z + 6, 10, 10, Blocks.snow);
-
-		
-		this.setMobSpawner(x + 9, y + 1, z + 15, "FrozenCube");
-		this.setMobSpawner(x + 9, y + 1, z + 9, "FrozenCube");
-		this.setMobSpawner(x + 12, y + 1, z + 12, "Zombie");
-		this.setMobSpawner(x + 15, y + 1, z + 9, "FrozenCube");
-		this.setMobSpawner(x + 15, y + 1, z + 15, "FrozenCube");
-		
-		this.setChest(x + 17, y + 1, z + 17);
-
-		spawn(w, x + 1, y - 2, z + 3);
-
-		x += 24;
-		for (int i = 0; i < 4; i++)
+		if (random.nextInt(260) == 0 && world.provider.dimensionId == Main.DIM_ID)
 		{
-			for (int j = 0; j < 9; j++)
+			this.w = world;
+			this.rand = random;
+			
+			int x = chunkX * 16 + random.nextInt(16);
+			int z = chunkZ * 16 + random.nextInt(16);
+			int y = 90 + random.nextInt(20);
+			
+			int X = x;
+			int Z = z;
+			
+			for (Object obj : world.playerEntities)
+				((EntityPlayer)obj).addChatComponentMessage(new ChatComponentText(ChatColor.AQUA + "Arkavon entrance has been generated at: X:" + x + " Y:" + y + " Z:" + z + ChatColor.RESET));
+			
+			rectangle(x, y, z, 24, 24, Blocks.snow);
+			rectangleVide(x, y + 1, z, 24, 24, Blocks.snow);
+			rectangle(x + 1, y - 1, z + 1, 20, 20, Blocks.snow);
+			rectangle(x + 3, y - 2, z + 3, 16, 16, Blocks.snow);
+			rectangle(x + 4, y - 3, z + 4, 14, 14, Blocks.snow);
+			rectangle(x + 6, y - 4, z + 6, 10, 10, Blocks.snow);
+	
+			
+			this.setMobSpawner(x + 9, y + 1, z + 15, "FrozenCube");
+			this.setMobSpawner(x + 9, y + 1, z + 9, "FrozenCube");
+			this.setMobSpawner(x + 12, y + 1, z + 12, "Zombie");
+			this.setMobSpawner(x + 15, y + 1, z + 9, "FrozenCube");
+			this.setMobSpawner(x + 15, y + 1, z + 15, "FrozenCube");
+			
+			this.setChest(x + 17, y + 1, z + 17);
+	
+			spawn(w, x + 1, y - 2, z + 3);
+	
+			x += 24;
+			for (int i = 0; i < 4; i++)
 			{
-				this.world.setBlock(x + j, y + j, z + i + 11, Blocks.snow);
+				for (int j = 0; j < 9; j++)
+				{
+					this.w.setBlock(x + j, y + j, z + i + 11, Blocks.snow);
+				}
 			}
-		}
+	
+			
+			x += 9;
+			y += 8;
+			rectangle(x, y, z, 24, 24, Blocks.snow);
+			rectangleVide(x, y + 1, z, 24, 24, Blocks.snow);
+			rectangle(x + 1, y - 1, z + 1, 20, 20, Blocks.snow);
+			rectangle(x + 3, y - 2, z + 3, 16, 16, Blocks.snow);
+			rectangle(x + 4, y - 3, z + 4, 14, 14, Blocks.snow);
+			rectangle(x + 6, y - 4, z + 6, 10, 10, Blocks.snow);
+	
+			this.setMobSpawner(x + 9, y + 1, z + 15, "Silverfish");
+			this.setMobSpawner(x + 9, y + 1, z + 9, "CaveSpider");
+			this.setMobSpawner(x + 12, y + 1, z + 12, "Zombie");
+			this.setMobSpawner(x + 15, y + 1, z + 9, "CaveSpider");
+			this.setMobSpawner(x + 15, y + 1, z + 15, "Silverfish");
+			
+			EntityGhastFrozen ghasts[] = new EntityGhastFrozen[4];
+			
+			for (int i = 0; i < 4; i++)
+			{
+				ghasts[i] = new EntityGhastFrozen(w);
+				ghasts[i].setPosition(x + rand.nextInt(20), y + 4 + rand.nextInt(8), z + rand.nextInt(20));
+				w.spawnEntityInWorld(ghasts[i]);
+			}
+			
+			for (int i = 0; i < 14; i++)
+			{
+				for (int h = 0; h < 8; h++)
+				{
+					w.setBlock(X + 54, y + h, z + 18 - i, BlockRegister.PORTAL_DUNGEON[1]);
+				}
+			}
+			
+			for (int i = 0; i < 14; i++)
+			{
+				w.setBlock(X + 54, y + 8, z + 18 - i, Blocks.packed_ice);
+			}
+			
+			for (int h = 0; h < 9; h++)
+			{
+				w.setBlock(X + 54, y + h, z + 17, Blocks.packed_ice);
+				w.setBlock(X + 54, y + h, z + 3, Blocks.packed_ice);
+			}
 
-		
-		x += 9;
-		y += 8;
-		rectangle(x, y, z, 24, 24, Blocks.snow);
-		rectangleVide(x, y + 1, z, 24, 24, Blocks.snow);
-		rectangle(x + 1, y - 1, z + 1, 20, 20, Blocks.snow);
-		rectangle(x + 3, y - 2, z + 3, 16, 16, Blocks.snow);
-		rectangle(x + 4, y - 3, z + 4, 14, 14, Blocks.snow);
-		rectangle(x + 6, y - 4, z + 6, 10, 10, Blocks.snow);
-
-		this.setMobSpawner(x + 9, y + 1, z + 15, "Silverfish");
-		this.setMobSpawner(x + 9, y + 1, z + 9, "CaveSpider");
-		this.setMobSpawner(x + 12, y + 1, z + 12, "Zombie");
-		this.setMobSpawner(x + 15, y + 1, z + 9, "CaveSpider");
-		this.setMobSpawner(x + 15, y + 1, z + 15, "Silverfish");
-		
-		EntityGhastFrozen ghasts[] = new EntityGhastFrozen[4];
-		
-		for (int i = 0; i < 4; i++)
-		{
-			ghasts[i] = new EntityGhastFrozen(w);
-			ghasts[i].setPosition(x + rand.nextInt(20), y + 4 + rand.nextInt(8), z + rand.nextInt(20));
-			w.spawnEntityInWorld(ghasts[i]);
 		}
-		
-		return false;
 	}
 	
 	public void setMobSpawner(int x, int y, int z, String name)
 	{
-		this.world.setBlock(x, y, z, Blocks.mob_spawner);
-		TileEntityMobSpawner spawner = (TileEntityMobSpawner) this.world.getTileEntity(x, y, z);
+		this.w.setBlock(x, y, z, Blocks.mob_spawner);
+		TileEntityMobSpawner spawner = (TileEntityMobSpawner) this.w.getTileEntity(x, y, z);
 		spawner.func_145881_a().setEntityName(name);
 	}
 	
@@ -97,7 +134,7 @@ public class WorldGenFloatingDungeon extends WorldGenerator
 			for (int j = 0; j < largeur ; j++)
 			{
 				if (j == 0 || j == largeur - 1 || i == 0 || i == longueur - 1)
-					this.world.setBlock(x + i, y, z + j, Blocks.snow);
+					this.w.setBlock(x + i, y, z + j, Blocks.snow);
 			}
 		}
 	}
@@ -108,15 +145,15 @@ public class WorldGenFloatingDungeon extends WorldGenerator
 		{
 			for (int j = 0; j < largeur ; j++)
 			{
-				this.world.setBlock(x + i, y, z + j, block);
+				this.w.setBlock(x + i, y, z + j, block);
 			}
 		}
 	}
 	
 	public void setChest(int x, int y, int z)
 	{
-		this.world.setBlock(x, y, z, Blocks.chest);
-		TileEntityChest chest = (TileEntityChest) this.world.getTileEntity(x, y, z);
+		this.w.setBlock(x, y, z, Blocks.chest);
+		TileEntityChest chest = (TileEntityChest) this.w.getTileEntity(x, y, z);
 		ItemStack itemstack = null;
 		EnchantmentData en = null;
 		

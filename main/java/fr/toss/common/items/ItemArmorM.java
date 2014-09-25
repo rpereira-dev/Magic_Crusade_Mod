@@ -61,13 +61,6 @@ public class ItemArmorM extends ItemArmor {
     	if (this.mana_regeneration != 0)
     		list.add(ChatColor.GREEN + "+ " + this.mana_regeneration + " Mana Regen.");
     }
-    
-    
-	@Override
-	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
-	{
-		
-	}
 	
 	public ItemArmorM setAgility(float i)
 	{

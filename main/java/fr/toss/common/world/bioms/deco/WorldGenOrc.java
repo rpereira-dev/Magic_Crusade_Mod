@@ -3,33 +3,38 @@ package fr.toss.common.world.bioms.deco;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
-import fr.toss.common.entity.EntityBossOrc;
-import fr.toss.common.entity.EntityMageOrc;
+import fr.toss.common.Main;
+import fr.toss.common.command.ChatColor;
 import fr.toss.common.entity.EntityOrc;
+import fr.toss.common.register.BlockRegister;
 
 public class WorldGenOrc implements IWorldGenerator {
 	
-
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
-		if (random.nextInt(600) == 0 && world.provider.dimensionId == 0 &&
-				!(world.getBiomeGenForCoords(chunkX, chunkZ).biomeName.contains("Ocean")) &&
-				!(world.getBiomeGenForCoords(chunkX, chunkZ).biomeName.contains("Beach")))
+		int x = chunkX * 16 + random.nextInt(16);
+		int z = chunkZ * 16 + random.nextInt(16);
+		
+		
+		if (random.nextInt(200) == 0 && world.provider.dimensionId == 0 && this.biomIsValid(world.getBiomeGenForCoords(x, z)))
 		{
-			int x = chunkX * 16 + random.nextInt(16);
-			int z = chunkZ * 16 + random.nextInt(16);
-			int y = world.getTopSolidOrLiquidBlock(x, z) - 2;
-			spawn(world, x, y, z);
+			int y = world.getTopSolidOrLiquidBlock(x, z) - 4;
+						
+			for (Object obj : world.playerEntities)
+				((EntityPlayer)obj).addChatComponentMessage(new ChatComponentText(ChatColor.AQUA + "A dungeon portal has been generated at: X:" + x + " Y:" + y + " Z:" + z + ChatColor.RESET));
 			
 			EntityOrc orc[];
 			
-			orc = new EntityOrc[16];
+			orc = new EntityOrc[8];
 				
-			for (int i = 0; i < 16; i++)
+			for (int i = 0; i < 8; i++)
 			{	
 				orc[i] = new EntityOrc(world);
 				x = x - 8 + random.nextInt(16);
@@ -38,24 +43,33 @@ public class WorldGenOrc implements IWorldGenerator {
 				world.spawnEntityInWorld(orc[i]);
 			}
 			
-			EntityMageOrc mage[];
+			spawn(world, x, y, z);
 			
-			mage = new EntityMageOrc[6];
-			for (int i = 0; i < 6; i++)
-			{
-				mage[i] = new EntityMageOrc(world);
-				x = x - 8 + random.nextInt(16);
-				z = z - 8 + random.nextInt(16);
-				mage[i].setLocationAndAngles(x, world.getTopSolidOrLiquidBlock(x, z) + 2, z, 0, 0);
-				world.spawnEntityInWorld(mage[i]);
-			}
-			
-			EntityBossOrc roi;
-			
-			roi = new EntityBossOrc(world);
-			roi.setPosition(x - 2, world.getTopSolidOrLiquidBlock(x - 2, z - 2) + 2, z - 2);
-			world.spawnEntityInWorld(roi);
+			for (int i = 0; i < 12; i++)
+				for (int j = 0; j < 8; j++)
+					world.setBlock(x+19+j, y-2 + i, z+7, BlockRegister.PORTAL_DUNGEON[0]);
 		}
+	}
+
+	boolean biomIsValid(BiomeGenBase b)
+	{
+		return (b.biomeID == BiomeGenBase.birchForest.biomeID) || 
+				(b.biomeID == BiomeGenBase.coldTaiga.biomeID) ||
+				(b.biomeID == BiomeGenBase.forest.biomeID) ||
+				(b.biomeID == BiomeGenBase.icePlains.biomeID) ||
+				(b.biomeID == BiomeGenBase.megaTaiga.biomeID) ||
+				(b.biomeID == BiomeGenBase.mesa.biomeID) ||
+				(b.biomeID == BiomeGenBase.mesaPlateau.biomeID) ||
+				(b.biomeID == BiomeGenBase.mesaPlateau_F.biomeID) ||
+				(b.biomeID == BiomeGenBase.desert.biomeID) ||
+				(b.biomeID == BiomeGenBase.forestHills.biomeID) ||
+				(b.biomeID == BiomeGenBase.swampland.biomeID) ||
+				(b.biomeID == BiomeGenBase.plains.biomeID) ||
+				(b.biomeID == BiomeGenBase.taiga.biomeID) ||
+				(b.biomeID == BiomeGenBase.plains.biomeID) ||
+				(b.biomeID == BiomeGenBase.roofedForest.biomeID) ||
+				(b.biomeID == BiomeGenBase.savannaPlateau.biomeID) ||
+				(b.biomeID == BiomeGenBase.savanna.biomeID);
 	}
 
 	public static void spawn(World world, int x, int y, int z)
@@ -2155,11 +2169,7 @@ public class WorldGenOrc implements IWorldGenerator {
 		world.setBlock(x+17, y+5, z+6, Block.getBlockById(98));
 		world.setBlock(x+18, y+5, z+6, Block.getBlockById(98));
 		world.setBlock(x+19, y+5, z+6, Block.getBlockById(98));
-		world.setBlock(x+20, y+5, z+6, Block.getBlockById(101));
-		world.setBlock(x+21, y+5, z+6, Block.getBlockById(101));
-		world.setBlock(x+22, y+5, z+6, Block.getBlockById(101));
-		world.setBlock(x+23, y+5, z+6, Block.getBlockById(101));
-		world.setBlock(x+24, y+5, z+6, Block.getBlockById(101));
+
 		world.setBlock(x+25, y+5, z+6, Block.getBlockById(98));
 		world.setBlock(x+26, y+5, z+6, Block.getBlockById(98));
 		world.setBlock(x+27, y+5, z+6, Block.getBlockById(98));
@@ -2301,11 +2311,7 @@ public class WorldGenOrc implements IWorldGenerator {
 		world.setBlock(x+17, y+6, z+6, Block.getBlockById(98));
 		world.setBlock(x+18, y+6, z+6, Block.getBlockById(98));
 		world.setBlock(x+19, y+6, z+6, Block.getBlockById(98));
-		world.setBlock(x+20, y+6, z+6, Block.getBlockById(101));
-		world.setBlock(x+21, y+6, z+6, Block.getBlockById(101));
-		world.setBlock(x+22, y+6, z+6, Block.getBlockById(101));
-		world.setBlock(x+23, y+6, z+6, Block.getBlockById(101));
-		world.setBlock(x+24, y+6, z+6, Block.getBlockById(101));
+
 		world.setBlock(x+25, y+6, z+6, Block.getBlockById(98));
 		world.setBlock(x+26, y+6, z+6, Block.getBlockById(98));
 		world.setBlock(x+27, y+6, z+6, Block.getBlockById(98));
@@ -2417,9 +2423,7 @@ public class WorldGenOrc implements IWorldGenerator {
 		world.setBlock(x+18, y+7, z+6, Block.getBlockById(98));
 		world.setBlock(x+19, y+7, z+6, Block.getBlockById(98));
 		world.setBlock(x+20, y+7, z+6, Block.getBlockById(98));
-		world.setBlock(x+21, y+7, z+6, Block.getBlockById(101));
-		world.setBlock(x+22, y+7, z+6, Block.getBlockById(101));
-		world.setBlock(x+23, y+7, z+6, Block.getBlockById(101));
+
 		world.setBlock(x+24, y+7, z+6, Block.getBlockById(98));
 		world.setBlock(x+25, y+7, z+6, Block.getBlockById(98));
 		world.setBlock(x+26, y+7, z+6, Block.getBlockById(98));
@@ -6052,6 +6056,4 @@ public class WorldGenOrc implements IWorldGenerator {
 		world.setBlock(x+36, y+42, z+8, Block.getBlockById(50));
 		world.setBlockMetadataWithNotify(x+36, y+42, z+8, 5, 5);
 	}
-
-
 }

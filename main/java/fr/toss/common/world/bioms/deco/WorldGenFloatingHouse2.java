@@ -10,12 +10,14 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.chunk.IChunkProvider;
+import cpw.mods.fml.common.IWorldGenerator;
+import fr.toss.common.Main;
 import fr.toss.common.entity.EntityVillagerDim;
 import fr.toss.common.register.BlockRegister;
 import fr.toss.common.register.ItemRegister;
 
-public class WorldGenFloatingHouse2 extends WorldGenerator {
+public class WorldGenFloatingHouse2 implements IWorldGenerator {
 
 	public void spawn(World world, int x, int y, int z) {
 
@@ -1753,22 +1755,29 @@ public class WorldGenFloatingHouse2 extends WorldGenerator {
 	private Random rand;
 
 	@Override
-	public boolean generate(World w, Random rand, int x, int y, int z) {
-		
-		this.world = w;
-		this.rand = rand;
-		y = 80 + rand.nextInt(20);
-		spawn(w, x, y, z);
-		
-		EntityVillagerDim[] villager = new EntityVillagerDim[2];
-		villager[0] = new EntityVillagerDim(w);
-		villager[1] = new EntityVillagerDim(w);
-		villager[0].setPosition(x+10, y+22, z+9);
-		villager[1].setPosition(x+10, y+22, z+10);
-		w.spawnEntityInWorld(villager[0]);
-		w.spawnEntityInWorld(villager[1]);
-
-		return true;
+	public void generate(Random r, int chunkX, int chunkZ, World w, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) 
+	{
+		if (r.nextInt(280) == 0 && w.provider.dimensionId == Main.DIM_ID)
+		{
+			int x = chunkX * 16 + r.nextInt(16);
+			int z = chunkZ * 16 + r.nextInt(16);
+			int y = 90 + r.nextInt(20);	
+		    int X = x;
+		    int Z = z;
+		    
+			this.world = w;
+			this.rand = r;
+			y = 80 + rand.nextInt(20);
+			spawn(w, x, y, z);
+			
+			EntityVillagerDim[] villager = new EntityVillagerDim[2];
+			villager[0] = new EntityVillagerDim(w);
+			villager[1] = new EntityVillagerDim(w);
+			villager[0].setPosition(x+10, y+22, z+9);
+			villager[1].setPosition(x+10, y+22, z+10);
+			w.spawnEntityInWorld(villager[0]);
+			w.spawnEntityInWorld(villager[1]);
+		}
 	}
 	
 	public void setChest(int x, int y, int z)

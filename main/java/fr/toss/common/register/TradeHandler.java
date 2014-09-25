@@ -32,6 +32,7 @@ public class TradeHandler implements IVillageTradeHandler
 					break;
 				case 3: // BLACKSMITH
 					recipeList.add(new MerchantRecipe(new ItemStack(ItemRegister.COMBUSTIUM, 6 + random.nextInt(6)), new ItemStack(Items.apple, 5 + random.nextInt(4)), new ItemStack(Items.apple, 1)));
+					recipeList.add(new MerchantRecipe(new ItemStack(ItemRegister.ETHERNIUM, 64), new ItemStack(ItemRegister.ELLAMAYNE, 1)));
 					break;
 				default:
 					break;

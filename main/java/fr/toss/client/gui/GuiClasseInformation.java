@@ -113,9 +113,10 @@ public class GuiClasseInformation extends GuiScreen {
 			} catch (Exception e) {}
     		
     		
-    		for (int i = 0; i < 500; i++)
+			Random rand = this.mc.theWorld.rand;
+
+    		for (int i = 0; i < 200; i++)
     		{
-    			Random rand = this.mc.theWorld.rand;
     			float velX = rand.nextFloat();
     	    	if (rand.nextInt(2) == 0)
     	    		velX *= -1;

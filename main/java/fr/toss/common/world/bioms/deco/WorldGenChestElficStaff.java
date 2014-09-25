@@ -21,7 +21,7 @@ public class WorldGenChestElficStaff implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
-		if (random.nextInt(20) == 0 &&
+		if (random.nextInt(200) == 0 &&
 				(world.getBiomeGenForCoords(chunkX, chunkZ).biomeName.contains("Forest") ||
 				world.getBiomeGenForCoords(chunkX, chunkZ).biomeName.contains("Plain") ||
 				world.getBiomeGenForCoords(chunkX, chunkZ).biomeName.contains("Jungle")))

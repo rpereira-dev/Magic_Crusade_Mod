@@ -76,27 +76,27 @@ public class GuiStats extends GuiScreen {
 		}
 		
 		color = this.endurance > 0 ? "" + ChatColor.GREEN : "" + ChatColor.WHITE;
-		str = "o " + ChatColor.UNDERLINE + "Health point:" + ChatColor.RESET + " " + color + this.pm.getPlayer().getHealth() + "/" + this.pm.getPlayer().getMaxHealth();
+		str = "- " + ChatColor.UNDERLINE + "Health point:" + ChatColor.RESET + " " + color + this.pm.getPlayer().getHealth() + "/" + this.pm.getPlayer().getMaxHealth();
 		lines[0] = new LineStat(str, this.endurance, "Endurance");
 		
 		color = this.mana > 0 ? "" + ChatColor.GREEN : "" + ChatColor.WHITE;
-		str = "o " + ChatColor.UNDERLINE + this.getEnergyType() + ":" + ChatColor.RESET + " " + color + this.pm.energy + "/" + this.pm.getMaxEnergy(this.mana);
+		str = "- " + ChatColor.UNDERLINE + this.getEnergyType() + ":" + ChatColor.RESET + " " + color + ((int)this.pm.energy) + "/" + this.pm.getMaxEnergy(this.mana);
 		lines[1] = new LineStat(str, this.mana, this.getEnergyType());
 		
 		color = this.strength	 > 0 ? "" + ChatColor.GREEN : "" + ChatColor.WHITE;
-		str = "o " + ChatColor.UNDERLINE + "Damage boost:" + ChatColor.RESET + " " + color + (this.strength / 20.0f);
+		str = "- " + ChatColor.UNDERLINE + "Damage boost:" + ChatColor.RESET + " " + color + (this.strength / 20.0f);
 		lines[2] = new LineStat(str, this.strength, "Strength");
 		
 		color = this.stamina > 0 ? "" + ChatColor.GREEN : "" + ChatColor.WHITE;
-		str = "o " + ChatColor.UNDERLINE + "Critic. Ratio:" + ChatColor.RESET + " " + color + (this.stamina / 2.0f);
+		str = "- " + ChatColor.UNDERLINE + "Critic. Ratio:" + ChatColor.RESET + " " + color + (this.stamina / 2.0f);
 		lines[3] = new LineStat(str, this.stamina, "Stamina");
 		
 		color = this.clarity > 0 ? "" + ChatColor.GREEN : "" + ChatColor.WHITE;
-		str = "o " + ChatColor.UNDERLINE + "Magic power:" + ChatColor.RESET + " " + color + (this.clarity / 20);
+		str = "- " + ChatColor.UNDERLINE + "Magic power:" + ChatColor.RESET + " " + color + (this.clarity / 20);
 		lines[4] = new LineStat(str, this.clarity, "Clarity");
 		
 		color = this.mana_regen > 0 ? "" + ChatColor.GREEN : "" + ChatColor.WHITE;
-		str = "o " + ChatColor.UNDERLINE + "Mana per sec.:" + ChatColor.RESET + " " + color + ((5 + this.mana_regen) * 20);
+		str = "- " + ChatColor.UNDERLINE + "Mana per sec.:" + ChatColor.RESET + " " + color + ((5 + this.mana_regen) * 20);
 		lines[5] = new LineStat(str, this.mana_regen, "Mana regen.");
 		
 		for (int i = 0; i < this.lines.length; i++)

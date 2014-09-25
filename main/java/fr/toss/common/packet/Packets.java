@@ -3,6 +3,10 @@ package fr.toss.common.packet;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
+import fr.toss.common.game.PacketBorders;
+import fr.toss.common.game.PacketGameStart;
+import fr.toss.common.game.PacketGameStop;
+import fr.toss.common.game.PacketTogglePvp;
 
 public class Packets {
 	
@@ -21,6 +25,11 @@ public class Packets {
     	network.registerMessage(PacketExpToClient.Handler.class, PacketExpToClient.class, 6, Side.CLIENT);
     	network.registerMessage(PacketTeamToClient.Handler.class, PacketTeamToClient.class, 7, Side.CLIENT);
     	network.registerMessage(PacketTeamToServer.Handler.class, PacketTeamToServer.class, 8, Side.SERVER);
+    	network.registerMessage(PacketLevel.Handler.class, PacketLevel.class, 9, Side.CLIENT);
+    	network.registerMessage(PacketGameStart.Handler.class, PacketGameStart.class, 10, Side.CLIENT);
+    	network.registerMessage(PacketGameStop.Handler.class, PacketGameStop.class, 11, Side.CLIENT);
+    	network.registerMessage(PacketTogglePvp.Handler.class, PacketTogglePvp.class, 12, Side.CLIENT);
+    	network.registerMessage(PacketBorders.Handler.class, PacketBorders.class, 13, Side.CLIENT);
 	}
 
 }

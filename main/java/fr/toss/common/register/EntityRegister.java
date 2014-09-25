@@ -3,6 +3,7 @@ package fr.toss.common.register;
 import net.minecraft.entity.Entity;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import fr.toss.common.entity.EntityArkavon;
+import fr.toss.common.entity.EntityBelier;
 import fr.toss.common.entity.EntityBossOrc;
 import fr.toss.common.entity.EntityCentaure;
 import fr.toss.common.entity.EntityChevalier;
@@ -10,6 +11,8 @@ import fr.toss.common.entity.EntityCrocotta;
 import fr.toss.common.entity.EntityFrozenCube;
 import fr.toss.common.entity.EntityGhastFrozen;
 import fr.toss.common.entity.EntityGobelin;
+import fr.toss.common.entity.EntityHaunter;
+import fr.toss.common.entity.EntityLibellule;
 import fr.toss.common.entity.EntityLutin;
 import fr.toss.common.entity.EntityMageOrc;
 import fr.toss.common.entity.EntityMonsterZombie;
@@ -43,6 +46,9 @@ public class EntityRegister {
 		registerEntity(EntityMonsterZombie.class, "MonsterZombie");
 		registerEntity(EntityCrocotta.class, "Crocotta");
 		registerEntity(EntityChevalier.class, "Chevalier");
+		registerEntity(EntityLibellule.class, "Libellule");
+		registerEntity(EntityBelier.class, "Belier");
+		registerEntity(EntityHaunter.class, "Haunter");
 	}
 	
 	public static void registerEntity(Class <? extends Entity > entityClass, String string)

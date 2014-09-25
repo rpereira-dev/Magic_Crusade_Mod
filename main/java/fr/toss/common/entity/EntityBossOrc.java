@@ -2,10 +2,10 @@ package fr.toss.common.entity;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,6 +28,35 @@ public class EntityBossOrc extends EntityMob implements IBossDisplayData {
 		this.setSize(2.0f, 4.0f);
 		this.isImmuneToFire = true;
 	}
+	
+	  /**
+     * Returns the sound this mob makes while it's alive.
+     */
+    protected String getLivingSound()
+    {
+        return this.worldObj.rand.nextInt(2) == 0 ? "magiccrusade:king_orc_live1" : "magiccrusade:king_orc_live2";
+    }
+
+    /**
+     * Returns the sound this mob makes when it is hurt.
+     */
+    protected String getHurtSound()
+    {
+        return this.worldObj.rand.nextInt(2) == 0 ? "magiccrusade:king_orc_hurt1" : "magiccrusade:king_orc_hurt2";
+    }
+
+    /**
+     * Returns the sound this mob makes on death.
+     */
+    protected String getDeathSound()
+    {
+        return "mob.magiccrusade:king_orc_die";
+    }
+
+    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
+    {
+        this.playSound("mob.zombie.step", 0.15F, 1.0F);
+    }
 	
     protected void applyEntityAttributes()
     {
@@ -59,7 +88,7 @@ public class EntityBossOrc extends EntityMob implements IBossDisplayData {
 		EntityPlayer p = null;
 		long timer;
 		
-		list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0d, 16.0d, 16.0d));
+		list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0d, 4.0d, 16.0d));
 		for (int i = 0; i < list.size(); i++)
 		{
 			if (list.get(i) instanceof EntityPlayer)
@@ -89,14 +118,6 @@ public class EntityBossOrc extends EntityMob implements IBossDisplayData {
 			p.attackEntityFrom(DamageSource.magic, 0.5f);
 			p.addChatComponentMessage(new ChatComponentText(ChatColor.UNDERLINE + "King Orc:" + ChatColor.RESET + " GO AWAY!"));
 		}
-    	else if (timer > 12000 && timer < 16000)
-    	{
-    		
-			p.swingItem();
-			p.setAngles(timer % 90, timer % 90);
-    		if (timer < 12020)
-    			p.addChatComponentMessage(new ChatComponentText(ChatColor.UNDERLINE + "King Orc:" + ChatColor.RESET + " Pain, suffering, MADNESS"));
-    	}
     }
     
     protected Item getDropItem()

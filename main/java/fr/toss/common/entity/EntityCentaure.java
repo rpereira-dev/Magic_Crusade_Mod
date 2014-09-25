@@ -22,7 +22,7 @@ public class EntityCentaure extends EntityMob
     public EntityCentaure(World p_i1743_1_)
     {
         super(p_i1743_1_);
-        this.setSize(0.8F, 1.8F);
+        this.setSize(1.0F, 3.0F);
     }
 
     protected void entityInit()
@@ -52,7 +52,10 @@ public class EntityCentaure extends EntityMob
      */
     protected String getLivingSound()
     {
-        return "mob.spider.say";
+    	int i;
+    	
+    	i = this.rand.nextInt(3);
+        return i == 0 ? "magiccrusade:centaure_live1" : i == 1 ? "magiccrusade:centaure_live2" : null;
     }
 
     /**
@@ -60,7 +63,7 @@ public class EntityCentaure extends EntityMob
      */
     protected String getHurtSound()
     {
-        return "mob.spider.say";
+        return "magiccrusade:centaure_hurt";
     }
 
     /**
@@ -68,7 +71,7 @@ public class EntityCentaure extends EntityMob
      */
     protected String getDeathSound()
     {
-        return "mob.spider.death";
+        return "magiccrusade:centaure_die";
     }
 
     protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)

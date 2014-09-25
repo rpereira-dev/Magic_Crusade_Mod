@@ -20,7 +20,6 @@ import fr.toss.common.entity.EntityLutin;
 import fr.toss.common.entity.EntityStymph;
 import fr.toss.common.register.BlockRegister;
 import fr.toss.common.world.bioms.deco.BiomeDecoratorMagic;
-import fr.toss.common.world.bioms.deco.ThreadGenerator;
 import fr.toss.common.world.bioms.deco.WorldGenBigTreesDim;
 import fr.toss.common.world.bioms.deco.WorldGenFloatingHouse;
 import fr.toss.common.world.bioms.deco.WorldGenFloatingHouse2;
@@ -36,9 +35,8 @@ public class BiomMagicForest extends BiomGenMagic
         this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityCow.class, 8, 4, 6));
         this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWolf.class, 2, 4, 6));
         this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityStymph.class, 10, 4, 6));
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityLutin.class, 14, 4, 6));
-
         
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityLutin.class, 14, 4, 6));   
         this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCentaure.class, 12, 4, 6));
         this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCaveSpider.class, 8, 2, 4));
         this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityZombie.class, 8, 2, 4));
@@ -132,37 +130,6 @@ public class BiomMagicForest extends BiomGenMagic
                 ++l;
                 break;
             }
-        }
-        
-        if (rand.nextInt(400) == 0)
-        {
-	        int k = x + rand.nextInt(16) + 8;
-	        l = z + rand.nextInt(16) + 8;
-	        ThreadGenerator thread;
-	        
-	        thread = new ThreadGenerator(new WorldGenFloatingHouse2(), w, rand, k, w.getHeightValue(k, l) + 1, l);
-	        thread.start();
-        }
-        
-        else if (rand.nextInt(200) == 0)
-        {
-	        int k = x + rand.nextInt(16) + 8;
-	        l = z + rand.nextInt(16) + 8;
-	        
-	        ThreadGenerator thread;
-	        
-	        thread = new ThreadGenerator(new WorldGenVillage(), w, rand, k, w.getHeightValue(k, l) + 1, l);
-	        thread.start();
-        }
-        
-        else if (rand.nextInt(500) == 0)
-        {
-	        int k = x + rand.nextInt(16) + 8;
-	        l = z + rand.nextInt(16) + 8;
-	        ThreadGenerator thread;
-	        
-	        thread = new ThreadGenerator(new WorldGenFloatingHouse(), w, rand, k, 80 + rand.nextInt(10), l);
-	        thread.start();
         }
     }
     

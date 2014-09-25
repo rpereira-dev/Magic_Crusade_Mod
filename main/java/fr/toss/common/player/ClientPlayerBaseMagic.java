@@ -7,7 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import api.player.client.ClientPlayerAPI;
 import api.player.client.ClientPlayerBase;
+import fr.toss.client.event.SoundEventM;
 import fr.toss.client.gui.GuiSelectClass;
+import fr.toss.common.Main;
 import fr.toss.common.command.ChatColor;
 import fr.toss.common.items.ItemArmorM;
 import fr.toss.common.items.ItemSwordM;
@@ -44,7 +46,7 @@ public class ClientPlayerBaseMagic extends ClientPlayerBase
 	public double hp;
 	
 	public long last_hit;
-	
+
 	public ClientPlayerBaseMagic(ClientPlayerAPI playerapi)
 	{
 		super(playerapi);
@@ -92,6 +94,9 @@ public class ClientPlayerBaseMagic extends ClientPlayerBase
 	{
 		super.onUpdate();
 		
+		if (this.getPlayer().dimension == Main.DIM_ID)
+			SoundEventM.update_sound(this.getPlayer().worldObj.isDaytime(), this.player.worldObj.rand);
+		
 		if (this.getPlayer().capabilities.isCreativeMode)
 			this.energy = this.max_energy;
 		if (this.classe instanceof ClasseChampion)
@@ -123,9 +128,7 @@ public class ClientPlayerBaseMagic extends ClientPlayerBase
 		}
 		this.updateArmor();
 	}
-	
-	
-	
+
 	/** Mis à jour de l'amure du joueur */
 	public void updateArmor()
 	{

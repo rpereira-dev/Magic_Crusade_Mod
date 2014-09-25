@@ -1,5 +1,6 @@
 package fr.toss.common.entity;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -28,6 +29,35 @@ public class EntityMageOrc extends EntityMob {
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.6000000238418579D);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
+    }
+    
+    /**
+     * Returns the sound this mob makes while it's alive.
+     */
+    protected String getLivingSound()
+    {
+        return "mob.zombie.say";
+    }
+
+    /**
+     * Returns the sound this mob makes when it is hurt.
+     */
+    protected String getHurtSound()
+    {
+        return "mob.zombie.hurt";
+    }
+
+    /**
+     * Returns the sound this mob makes on death.
+     */
+    protected String getDeathSound()
+    {
+        return "mob.zombie.death";
+    }
+
+    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
+    {
+        this.playSound("mob.zombie.step", 0.15F, 1.0F);
     }
     
     public boolean canDespawn()
@@ -62,7 +92,7 @@ public class EntityMageOrc extends EntityMob {
     	{
     		Entity e;
     		
-    		e = this.worldObj.getClosestPlayerToEntity(this, 16.0d);
+    		e = this.worldObj.getClosestPlayerToEntity(this, 6.0d);
 
     		if (e != null)
     		{

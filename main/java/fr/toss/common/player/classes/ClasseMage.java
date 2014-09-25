@@ -5,6 +5,7 @@ import fr.toss.common.command.ChatColor;
 import fr.toss.common.player.spells.mage.ArcanaPillow_5;
 import fr.toss.common.player.spells.mage.ConeFeu_1;
 import fr.toss.common.player.spells.mage.FieldDestruction_4;
+import fr.toss.common.player.spells.mage.Fireball_6;
 import fr.toss.common.player.spells.mage.FreezeCube_2;
 import fr.toss.common.player.spells.mage.Transfert_3;
 
@@ -37,6 +38,7 @@ public class ClasseMage extends Classe {
 		this.CLASSE_SPELL.add(new Transfert_3());
 		this.CLASSE_SPELL.add(new FieldDestruction_4());
 		this.CLASSE_SPELL.add(new ArcanaPillow_5());
+		this.CLASSE_SPELL.add(new Fireball_6());
 	}
 	
 	@Override
