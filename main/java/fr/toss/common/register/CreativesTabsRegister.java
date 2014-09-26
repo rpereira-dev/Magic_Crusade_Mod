@@ -93,6 +93,7 @@ public class CreativesTabsRegister {
 		ItemRegister.COMBUSTIUM.setCreativeTab(tabItemUtil);
 		ItemRegister.BERRY_RED.setCreativeTab(tabItemUtil);
 		ItemRegister.BERRY_YELLOW.setCreativeTab(tabItemUtil);
+		ItemRegister.SAUCISSE.setCreativeTab(tabItemUtil);
 		ItemRegister.BLUE_STICK.setCreativeTab(tabItemUtil);
 		ItemRegister.ARKAVON_GENERATOR.setCreativeTab(tabItemUtil);
 		ItemRegister.INGOT_SILVER.setCreativeTab(tabItemUtil);
@@ -124,7 +125,14 @@ public class CreativesTabsRegister {
 		ItemRegister.ASHBRINGER_POISON.setCreativeTab(tabTools);
 		ItemRegister.ELLAMAYNE.setCreativeTab(tabTools);
 		ItemRegister.LAME_RUNIQUE.setCreativeTab(tabTools);
-
+		ItemRegister.VALANYR.setCreativeTab(tabTools);
+		ItemRegister.FAUX.setCreativeTab(tabTools);
+		ItemRegister.LAME_TONERRE.setCreativeTab(tabTools);
+		ItemRegister.SHALAMAYNE.setCreativeTab(tabTools);
+		ItemRegister.SHALLATOR.setCreativeTab(tabTools);
+		ItemRegister.SHADOWMOURNE.setCreativeTab(tabTools);
+		ItemRegister.FROSTMOURNE.setCreativeTab(tabTools);
+		
 		ItemRegister.STAFF_ELFIC.setCreativeTab(tabTools);
 		ItemRegister.STAFF_LIGHTNING.setCreativeTab(tabTools);
 		ItemRegister.STAFF_BUMPING.setCreativeTab(tabTools);
@@ -201,6 +209,12 @@ public class CreativesTabsRegister {
 			ItemRegister.TANK_CHESTPLATE[i].setCreativeTab(tabArmorLoot);
 			ItemRegister.TANK_PANTS[i].setCreativeTab(tabArmorLoot);
 			ItemRegister.TANK_HELMET[i].setCreativeTab(tabArmorLoot);
+			
+			ItemRegister.CUT[i].setCreativeTab(tabArmorLoot);
+			ItemRegister.LANCE[i].setCreativeTab(tabArmorLoot);
+			ItemRegister.GLAIVE[i].setCreativeTab(tabArmorLoot);
+			ItemRegister.SWORD_UNO[i].setCreativeTab(tabArmorLoot);
+			ItemRegister.MASSE[i].setCreativeTab(tabArmorLoot);
 		}
 		
 	}

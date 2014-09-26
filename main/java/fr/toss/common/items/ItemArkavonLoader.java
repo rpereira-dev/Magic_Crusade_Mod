@@ -1,16 +1,10 @@
 package fr.toss.common.items;
 
-import java.util.Random;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import fr.toss.common.world.bioms.dungeon_arkavon.ThreadGenerator;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
+import fr.toss.common.world.bioms.dungeon_arkavon.ThreadGenerator;
 
 public class ItemArkavonLoader extends Item {
 	

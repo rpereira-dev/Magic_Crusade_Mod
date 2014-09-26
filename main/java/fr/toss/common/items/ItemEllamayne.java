@@ -30,7 +30,6 @@ public class ItemEllamayne extends ItemSwordM {
      */
     public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer p)
     {
-    	is.addEnchantment(Enchantment.smite, 4);
     	return (super.onItemRightClick(is, w, p));
     }
     
@@ -40,6 +39,8 @@ public class ItemEllamayne extends ItemSwordM {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, EntityPlayer player, List list, boolean bool)
     {
+    	if (!item.isItemEnchanted())
+    		item.addEnchantment(Enchantment.smite, 4);
     	list.add(ChatColor.LIGHT_PURPLE + "This item heal your target." + ChatColor.RESET);
     	super.addInformation(item, player, list, bool);
     }

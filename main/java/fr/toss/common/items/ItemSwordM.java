@@ -30,9 +30,9 @@ public class ItemSwordM extends ItemSword {
 	
 	@Override
     @SideOnly(Side.CLIENT)
-    public boolean hasEffect(ItemStack p_77636_1_)
+    public boolean hasEffect(ItemStack is)
     {
-        return this.hasEffect;
+        return this.hasEffect || is.isItemEnchanted();
     }
 	
 	 /**

@@ -21,13 +21,17 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import fr.toss.common.register.ItemRegister;
 
-public class EntityArkavon extends EntityMob implements IBossDisplayData {
+public class EntityArkavon extends EntityBossM {
 
 	public EntityArkavon(World w)
 	{
 		super(w);
 		this.setSize(2.0f, 4.0f);
 		this.isImmuneToFire = true;
+		
+		this.set_loot(5, ItemRegister.LAME_TONERRE, ItemRegister.baneful_SWORD, ItemRegister.SHALAMAYNE, ItemRegister.SHALLATOR, ItemRegister.FAUX,
+							ItemRegister.ELLAMAYNE, ItemRegister.TANK_CHESTPLATE[7], ItemRegister.TANK_HELMET[7], ItemRegister.TANK_PANTS[7], ItemRegister.TANK_PANTS[7],
+								ItemRegister.baneful_BOOTS, ItemRegister.baneful_CHESTPLATE, ItemRegister.baneful_PANTS, ItemRegister.baneful_HELMET);
 	}
 	
     protected void applyEntityAttributes()
@@ -73,7 +77,7 @@ public class EntityArkavon extends EntityMob implements IBossDisplayData {
 		}
 		
     	
-    	if (this.getHealth() < this.getMaxHealth() / 8 && System.currentTimeMillis() % 2000 < 30)
+    	if (this.getHealth() < this.getMaxHealth() / 4 && System.currentTimeMillis() % 2000 < 30)
     		this.aura_death(list);
     	
     	if (this.getHealth() < this.getMaxHealth() / 16)
@@ -179,58 +183,7 @@ public class EntityArkavon extends EntityMob implements IBossDisplayData {
             }
     	}
     }
-    
-    
-    protected Item getDropItem()
-    {
-        for (int k = 0; k < 4; ++k)
-        	this.dropItem(ItemRegister.getRandomArmor(), 1);
-        
-        if (this.worldObj.rand.nextInt(10) == 0)
-        	this.dropItem(ItemRegister.ASHBRINGER, 1);
-        if (this.worldObj.rand.nextInt(10) == 0)
-        	this.dropItem(ItemRegister.ASHBRINGER_POISON, 1);
-        if (this.worldObj.rand.nextInt(10) == 0)
-        	this.dropItem(ItemRegister.ELLAMAYNE, 1);
-        if (this.worldObj.rand.nextInt(10) == 0)
-        	this.dropItem(ItemRegister.LAME_RUNIQUE, 1);
-        if (this.worldObj.rand.nextInt(10) == 0)
-        	this.dropItem(ItemRegister.wrathful_SWORD, 1);
-        if (this.worldObj.rand.nextInt(10) == 0)
-        	this.dropItem(ItemRegister.baneful_SWORD, 1);
-        if (this.worldObj.rand.nextInt(10) == 0)
-        	this.dropItem(ItemRegister.lethal_SWORD, 1);
-        
-        if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.wrathful_BOOTS, 1);
-        else if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.wrathful_PANTS, 1);
-        else if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.wrathful_CHESTPLATE, 1);
-        else if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.wrathful_HELMET, 1);
-        
-        if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.lethal_BOOTS, 1);
-        else if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.lethal_PANTS, 1);
-        else if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.lethal_CHESTPLATE, 1);
-        else if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.lethal_HELMET, 1);
-        
-        if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.baneful_BOOTS, 1);
-        else if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.baneful_PANTS, 1);
-        else if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.baneful_CHESTPLATE, 1);
-        else if (this.worldObj.rand.nextInt(16) == 0)
-        	this.dropItem(ItemRegister.baneful_HELMET, 1);
-        
-        return ItemRegister.SULFURAS;
-    }
-
+	
     protected Entity findPlayerToAttack()
     {
         double d0 = 30.0D;
@@ -245,6 +198,11 @@ public class EntityArkavon extends EntityMob implements IBossDisplayData {
         return EnumCreatureAttribute.UNDEFINED;
     }
     
-    
+    @Override
+    protected Item getDropItem()
+    {
+    	super.getDropItem();
+        return this.worldObj.rand.nextInt(2) == 0 ? ItemRegister.SHADOWMOURNE : ItemRegister.FROSTMOURNE;
+    }
     
 }

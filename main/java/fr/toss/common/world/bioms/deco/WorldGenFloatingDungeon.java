@@ -43,9 +43,9 @@ public class WorldGenFloatingDungeon implements IWorldGenerator
 			int X = x;
 			int Z = z;
 			
-			for (Object obj : world.playerEntities)
-				((EntityPlayer)obj).addChatComponentMessage(new ChatComponentText(ChatColor.AQUA + "Arkavon entrance has been generated at: X:" + x + " Y:" + y + " Z:" + z + ChatColor.RESET));
-			
+//			for (Object obj : world.playerEntities)
+//				((EntityPlayer)obj).addChatComponentMessage(new ChatComponentText(ChatColor.AQUA + "Arkavon entrance has been generated at: X:" + x + " Y:" + y + " Z:" + z + ChatColor.RESET));
+//			
 			rectangle(x, y, z, 24, 24, Blocks.snow);
 			rectangleVide(x, y + 1, z, 24, 24, Blocks.snow);
 			rectangle(x + 1, y - 1, z + 1, 20, 20, Blocks.snow);

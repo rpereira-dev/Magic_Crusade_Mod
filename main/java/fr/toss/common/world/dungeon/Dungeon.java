@@ -58,17 +58,96 @@ public class Dungeon {
 		Main.DUNGEONS.add(new DungeonGraveyard());
 
 		Main.log("Initializing Dungeons...");
-//		Main.log("Downloading into: " + System.getProperty("user.dir"));
-//
-//		for (Dungeon d : Main.DUNGEONS)
-//		{
-//			Main.log("Downloading " + d.file_name + ".zip");
-//			download_dungeon(d.file_name + ".zip");
-//		}
-		
-						
 		Main.log("Dungeon loaded");
 	}
+	
+	/** Param: String save = nom de la sauvegarde */
+	public void			install_map(String save)
+	{
+		String 			save_folder;
+    	ZipInputStream 	zin;
+    	ZipEntry 		entry;
+    	
+    	save_folder = this.find_save_folder(save);
+		
+    	if (save_folder != null)
+    	{
+			Main.log("Save folder found: " + save_folder);
+			
+			for (Dungeon d : Main.DUNGEONS)
+			{
+				if (!new File(save_folder + File.separator + "DIM" + d.DIM_ID + File.separator + d.file_name + ".txt").exists())
+				{
+					Main.log("Installing a dungeon, lag expected: " + d.name);
+					ZipUtil.unzip(Dungeon.class.getResourceAsStream(d.file_name + ".zip"), new File(save_folder + File.separator + "DIM" + d.DIM_ID));	
+				}
+				else
+					Main.log("Dungeon is already installed: " + d.name);
+			}
+    	}
+    	else
+    		Main.log("Error: Cannot find save folder, no dungeon available.");
+	}
+
+	String				find_save_folder(String save)
+	{
+		File	search;
+		String	save_folder;
+		
+		search = new File(System.getProperty("user.dir"));
+		save_folder = null;
+		for (File file : search.listFiles())
+		{
+			if (file.isDirectory())
+			{
+				if (file.getName().equals("saves")) //on est sur le client
+					return (System.getProperty("user.dir") + File.separator + "saves" + File.separator + save);
+				else
+				{
+					for (File f : file.listFiles())
+					{
+						Main.log("Searching into: " + file.getName());
+						if (f.getName().equals("DIM1"))
+							return (file.getAbsolutePath());
+					}
+				}
+			}
+		}
+		
+		return null;
+	}
+
+	public void		onPlayerJoin(ServerPlayerBaseMagic pm)
+	{
+		pm.getPlayer().triggerAchievement(AchievementList.DUNGEON);
+		pm.getPlayer().addChatComponentMessage(new ChatComponentText(ChatColor.AQUA + "You have entered a dungeon: " + ChatColor.UNDERLINE + this.name + ChatColor.RESET));
+	}
+	
+	public void 	spawn_entities(World worldObj) {}
+	
+	public void 	despawn_entities(World world) {}
+	
+	public void 	reset_entities(World world, int nb_chunk_x, int nb_chunk_z)
+	{
+		for (int i = -nb_chunk_x / 2; i < nb_chunk_x / 2; i += 16)
+		{
+			for (int j =-nb_chunk_z / 2; j < nb_chunk_z / 2; j += 16)
+			{
+				for (List l : world.getChunkFromBlockCoords(this.x + i, this.z + j).entityLists)
+				{
+					for (Object obj : l)
+					{
+						if (!(obj instanceof EntityPlayer))
+						{
+							world.removeEntity((Entity)obj);
+							Main.log("Removing: " + obj);
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	
 //	static void				download_dungeon(String dj)
 //	{
@@ -118,65 +197,4 @@ public class Dungeon {
 //	      ex.printStackTrace();
 //	    }
 //	}
-	
-	
-	public void			install_map(String save)
-	{
-		String 			save_folder;
-    	ZipInputStream 	zin;
-    	ZipEntry 		entry;
-    	
-		if(new File(System.getProperty("user.dir") + File.separator + "saves").exists())
-			save_folder = System.getProperty("user.dir") + File.separator + "saves" + File.separator + save;
-		else if (new File(System.getProperty("user.dir") + File.separator + "world").exists())
-			save_folder = System.getProperty("user.dir") + File.separator + "world" + File.separator;
-		else if (new File(System.getProperty("user.dir") + File.separator + "monde").exists())
-			save_folder = System.getProperty("user.dir") + File.separator + "monde" + File.separator;
-		else
-			return ;
-		
-		Main.log("Worlds folder is: " + save_folder);
-		
-		for (Dungeon d : Main.DUNGEONS)
-		{
-			if (!new File(save_folder + File.separator + "DIM" + d.DIM_ID + File.separator + d.file_name + ".txt").exists())
-			{
-				Main.log("Installing a dungeon, lag expected: " + d.name);
-				ZipUtil.unzip(Dungeon.class.getResourceAsStream(d.file_name + ".zip"), new File(save_folder + File.separator + "DIM" + d.DIM_ID));	
-			}
-			else
-				Main.log("Dungeon is already installed: " + d.name);
-		}
-	}
-
-	public void		onPlayerJoin(ServerPlayerBaseMagic pm)
-	{
-		pm.getPlayer().triggerAchievement(AchievementList.DUNGEON);
-		pm.getPlayer().addChatComponentMessage(new ChatComponentText(ChatColor.AQUA + "You have entered a dungeon: " + ChatColor.UNDERLINE + this.name + ChatColor.RESET));
-	}
-	
-	public void 	spawn_entities(World worldObj) {}
-	
-	public void 	despawn_entities(World world) {}
-	
-	public void 	reset_entities(World world, int nb_chunk_x, int nb_chunk_z)
-	{
-		for (int i = -nb_chunk_x / 2; i < nb_chunk_x / 2; i += 16)
-		{
-			for (int j =-nb_chunk_z / 2; j < nb_chunk_z / 2; j += 16)
-			{
-				for (List l : world.getChunkFromBlockCoords(this.x + i, this.z + j).entityLists)
-				{
-					for (Object obj : l)
-					{
-						if (!(obj instanceof EntityPlayer))
-						{
-							world.removeEntity((Entity)obj);
-							Main.log("Removing: " + obj);
-						}
-					}
-				}
-			}
-		}
-	}
 }

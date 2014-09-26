@@ -2,7 +2,9 @@ package fr.toss.common.blocks;
 
 import java.util.List;
 
+import fr.toss.common.register.BlockRegister;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFire;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -50,9 +52,6 @@ public class BlockLogDim extends Block
 			textures[i] = iconRegister.registerIcon("magiccrusade:log_" + types[i] + "_side");
 			logHearts[i] = iconRegister.registerIcon("magiccrusade:log_" + types[i] + "_heart");
 		}
-
-//		textures[11] = iconRegister.registerIcon("magiccrusade:log_dim_side");
-//		logHearts[11] = iconRegister.registerIcon("magiccrusade:log_frozen_heart");
 	}
 
 	@Override
@@ -182,7 +181,7 @@ public class BlockLogDim extends Block
 	{
 		return 31;
 	}
-
+	
 	@Override
 	public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z)
 	{

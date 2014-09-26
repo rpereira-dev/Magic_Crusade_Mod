@@ -2,6 +2,13 @@
 #   lang: Francais
 #   lang: FR_FR
 
+#   Item description
+item.description.valanyr=Ce marteau brille d'une lumière pure
+item.description.faux=Voles deux PV à votre cible
+item.description.lame_tonerre=Cette lame est chargé d'électricité
+item.description.shadowmourne=Une étrange aura émane de cette hache
+item.description.frostmourne=La lame est totalement gelée
+
 
 #   LANG
 button.selection=Selectionner
@@ -201,6 +208,7 @@ tile.portal_dim.name=Portal Block
 #   ITEMS
 item.arkavon_generator.name=Arkavon Dungeon Generator
 item.berry_yellow.name=Yoloberry
+item.saucisse.name=Saucisse
 item.berry_red.name=Redberry
 item.blue_stick.name=Baton bleuté
 item.flower.name=Fleur du ciel
@@ -216,9 +224,23 @@ item.ellamayne.name=Holy Dagger
 item.baton_elfique.name=Elfic Staff
 item.baton_lightning.name=Lightning Staff
 item.baton_bumping.name=Bumping Staff
-item.lame_runique.name=Runic Blade
+item.lame_runique.name=Lame Runique
+item.valanyr.name=Val'Anyr
+item.lame_tonerre.name=Lame tonerre
+item.shadowmourne.name=Shadowmourne
+item.frostmourne.name=Frostmourne
+item.shallator.name=Shallator
+item.shalamayne.name=Shalamayne
+
+item.masse.name=Vieille Masse
+item.sword_uno.name=Epée ubotaine
+item.cut.name=Couteau aiguisé
+item.lance.name=Petite lance
+item.glaive.name=Glaive
+item.faux.name=Faux
 
 # ITEMS TOOLS
+
 item.lethal_sword.name=Lethal Hammer
 item.baneful_sword.name=Baneful Sword
 item.wrathful_sword.name=Wrathful Battleaxe

@@ -3,6 +3,13 @@
 #   lang: EN_US
 
 
+#   DESCRIPTION ITEM
+item.description.valanyr=This hammer shines a holy light
+item.description.faux=Steal 2 hp from your target
+item.description.lame_tonerre=There's electrial particles around it...
+item.description.shadowmourne=This axe has a strange aura...
+item.description.frostmourne=The blade seems deeply frozen
+
 #   LANG
 button.selection=Select
 button.back_selection=<- Back to selection
@@ -262,6 +269,7 @@ tile.portal_dim.name=Portal Block
 #   ITEMS
 item.berry_yellow.name=Yoloberry
 item.berry_red.name=Redberry
+item.saucisse.name=Sausage
 item.blue_stick.name=Blue Stick
 item.flower.name=Sky flower
 item.ingot_titanium.name=Titanium Ingot
@@ -278,6 +286,19 @@ item.baton_elfique.name=Elfic Staff
 item.baton_lightning.name=Lightning Staff
 item.baton_bumping.name=Bumping Staff
 item.lame_runique.name=Runic Blade
+item.valanyr.name=Val'Anyr
+item.faux.name=Faux
+item.lame_tonerre.name=Thunderblade
+item.shadowmourne.name=Shadowmourne
+item.frostmourne.name=Frostmourne
+item.shallator.name=Shallator
+item.shalamayne.name=Shalamayne
+
+item.sword_uno.name=Sword ubotain
+item.cut.name=Sharped cut
+item.lance.name=Small lance
+item.glaive.name=Broadsword
+item.masse.name=Magic Hammer
 
 # ITEMS TOOLS
 item.lethal_sword.name=Lethal Hammer

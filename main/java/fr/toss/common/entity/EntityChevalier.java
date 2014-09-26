@@ -22,20 +22,23 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import fr.toss.common.register.ItemRegister;
 
-public class EntityChevalier extends EntityMob implements IBossDisplayData {
+public class EntityChevalier extends EntityBossM {
 
 	public EntityChevalier(World w)
 	{
 		super(w);
 		this.setSize(2.0f, 4.0f);
+		this.set_loot(6, ItemRegister.VALANYR, ItemRegister.LAME_RUNIQUE, ItemRegister.lethal_SWORD, ItemRegister.GLAIVE[7], ItemRegister.CUT[7],
+							ItemRegister.MASSE[7], ItemRegister.HEAL_BOOTS[7], ItemRegister.HEAL_CHESTPLATE[7], ItemRegister.HEAL_HELMET[7], ItemRegister.HEAL_PANTS[7],
+								ItemRegister.lethal_BOOTS, ItemRegister.lethal_CHESTPLATE, ItemRegister.lethal_PANTS, ItemRegister.lethal_HELMET);
 	}
 	
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(200.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(360.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.64D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(18.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(24.0d);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0D);
     }
     
@@ -90,14 +93,6 @@ public class EntityChevalier extends EntityMob implements IBossDisplayData {
 			}
 		}
     }
-    
-    protected Item getDropItem()
-    {
-        for (int k = 0; k < 4; ++k)
-        	this.dropItem(ItemRegister.getRandomArmor(), 1);
-
-        return ItemRegister.LAME_RUNIQUE;
-    }
 
     protected Entity findPlayerToAttack()
     {
@@ -112,7 +107,4 @@ public class EntityChevalier extends EntityMob implements IBossDisplayData {
     {
         return EnumCreatureAttribute.UNDEFINED;
     }
-    
-    
-    
 }

@@ -21,7 +21,7 @@ import fr.toss.common.player.ClientPlayerBaseMagic;
 public class ClientProxy extends CommonProxy 
 {
 	public static Minecraft minecraft = Minecraft.getMinecraft();
-	public static final int				CURRENT_VERSION = 1;
+	public static final int				CURRENT_VERSION = 4;
 	public static int					LAST_VERSION;
 	
 	public void load()

@@ -17,18 +17,24 @@ import fr.toss.common.items.ItemAshbringerPoison;
 import fr.toss.common.items.ItemAxeM;
 import fr.toss.common.items.ItemBumpingStaff;
 import fr.toss.common.items.ItemEllamayne;
+import fr.toss.common.items.ItemFaux;
 import fr.toss.common.items.ItemForestStaff;
+import fr.toss.common.items.ItemFrostmourne;
+import fr.toss.common.items.ItemLameTonerre;
 import fr.toss.common.items.ItemLightningStaff;
 import fr.toss.common.items.ItemPickaxeM;
+import fr.toss.common.items.ItemShadowmourne;
 import fr.toss.common.items.ItemSulfuras;
 import fr.toss.common.items.ItemSwordEthernium;
 import fr.toss.common.items.ItemSwordM;
+import fr.toss.common.items.ItemValanyr;
 
 public class ItemRegister {
 	
 	public static Item 		COMBUSTIUM;
 	public static Item 		BERRY_YELLOW;
 	public static Item 		BERRY_RED;
+	public static Item 		SAUCISSE;
 	public static Item 		BLUE_STICK;
 	public static Item 		ARKAVON_GENERATOR;
 	
@@ -40,6 +46,21 @@ public class ItemRegister {
 	public static Item 		ASHBRINGER;
 	public static Item 		ASHBRINGER_POISON;
 	public static Item 		ELLAMAYNE;
+	public static Item 		VALANYR;
+	public static Item 		FAUX;
+	public static Item 		LAME_TONERRE;
+	
+	public static Item 		SHALAMAYNE;
+	public static Item 		SHALLATOR;
+	public static Item 		SHADOWMOURNE;
+	public static Item 		FROSTMOURNE;
+
+	public static Item 		CUT[];
+	public static Item 		SWORD_UNO[];
+	public static Item 		GLAIVE[];
+	public static Item		LANCE[];
+	public static Item		MASSE[];
+
 	public static Item 		LAME_RUNIQUE;
 
 	public static Item 		STAFF_ELFIC;
@@ -150,6 +171,9 @@ public class ItemRegister {
         BERRY_RED = new ItemFood(3, 0.3F, false).setUnlocalizedName("berry_red").setTextureName("magiccrusade:berry_red");
         GameRegistry.registerItem(BERRY_RED, "berry_red");
         
+        SAUCISSE = new ItemFood(3, 0.3F, false).setUnlocalizedName("saucisse").setTextureName("magiccrusade:saucisse");
+        GameRegistry.registerItem(SAUCISSE, "saucisse");
+
         BLUE_STICK = new Item().setUnlocalizedName("blue_stick").setTextureName("magiccrusade:blue_stick");
         GameRegistry.registerItem(BLUE_STICK, "blue_stick");
 	
@@ -180,14 +204,58 @@ public class ItemRegister {
         ASHBRINGER = new ItemAshbringer();
         GameRegistry.registerItem(ASHBRINGER, "ashbringer");
         
+        VALANYR = new ItemValanyr();
+        GameRegistry.registerItem(VALANYR, "valanyr");
+        
+        FAUX = new ItemFaux();
+        GameRegistry.registerItem(FAUX, "faux");
+        
+        LAME_TONERRE = new ItemLameTonerre();
+        GameRegistry.registerItem(LAME_TONERRE, "lame_tonerre");
+        
         ASHBRINGER_POISON = new ItemAshbringerPoison();
         GameRegistry.registerItem(ASHBRINGER_POISON, "ashbringer_poison");
         
         ELLAMAYNE = new ItemEllamayne();
         GameRegistry.registerItem(ELLAMAYNE, "ellamayne");
 
-        LAME_RUNIQUE = ((ItemSwordM)new ItemSwordM(EnumMaterial.TOOL_TITANIUM).setUnlocalizedName("lame_runique").setTextureName("magiccrusade:LameRunique")).setStrenght(50.0f);
+        LAME_RUNIQUE = ((ItemSwordM)new ItemSwordM(EnumMaterial.TOOL_TITANIUM).setUnlocalizedName("lame_runique").setTextureName("magiccrusade:LameRunique")).setHasEffect().setStrenght(50.0f);
         GameRegistry.registerItem(LAME_RUNIQUE, "lame_runique");
+        
+        SHALAMAYNE = ((ItemSwordM)new ItemSwordM(EnumMaterial.TOOL_ETHERNIUM).setUnlocalizedName("shalamayne").setTextureName("magiccrusade:shalamayne")).setHasEffect().setClarity(50.0f);
+        GameRegistry.registerItem(SHALAMAYNE, "shalamayne");
+        
+        SHALLATOR = ((ItemSwordM)new ItemSwordM(EnumMaterial.TOOL_ETHERNIUM).setUnlocalizedName("shallator").setTextureName("magiccrusade:shallator")).setHasEffect().setClarity(50.0f);
+        GameRegistry.registerItem(SHALLATOR, "shallator");
+    	
+        SHADOWMOURNE = new ItemShadowmourne();
+        GameRegistry.registerItem(SHADOWMOURNE, "shadowmourne");
+        
+        FROSTMOURNE = new ItemFrostmourne();
+        GameRegistry.registerItem(FROSTMOURNE, "frostmourne");
+    	
+    	LANCE = new ItemSwordM[8];
+    	CUT = new ItemSwordM[8];
+    	SWORD_UNO = new ItemSwordM[8];
+    	MASSE = new ItemSwordM[8];
+    	GLAIVE= new ItemSwordM[8];
+        for (int i = 0; i < 8; i++)
+        {
+        	LANCE[i] = ((ItemSwordM)new ItemSwordM(EnumMaterial.TOOL_SILVER).setUnlocalizedName("lance").setTextureName("magiccrusade:lance")).setStrenght(4.0f + i * 2).setAgility(8.0f + i * 2);
+	        GameRegistry.registerItem(LANCE[i], "lance_" + i);
+	        
+	        CUT[i] = ((ItemSwordM)new ItemSwordM(EnumMaterial.TOOL_SILVER).setUnlocalizedName("cut").setTextureName("magiccrusade:cut")).setStrenght(5.0f + i).setAgility(8.0f + i * 2);
+	        GameRegistry.registerItem(CUT[i], "cut_" + i);
+	        
+	        SWORD_UNO[i] = ((ItemSwordM)new ItemSwordM(EnumMaterial.TOOL_SILVER).setUnlocalizedName("sword_uno").setTextureName("magiccrusade:sword_uno")).setStrenght(10.0f + i * 3);
+	        GameRegistry.registerItem(SWORD_UNO[i], "sword_uno_" + i);
+	        
+	        GLAIVE[i] = ((ItemSwordM)new ItemSwordM(EnumMaterial.TOOL_SILVER).setUnlocalizedName("glaive").setTextureName("magiccrusade:glaive")).setStrenght(12.0f + i * 2);
+	        GameRegistry.registerItem(GLAIVE[i], "glaive_" + i);
+	        
+	        MASSE[i] = ((ItemSwordM)new ItemSwordM(EnumMaterial.TOOL_SILVER).setUnlocalizedName("masse").setTextureName("magiccrusade:masse")).setManaRegen(1).setClarity(10 + i * 2);
+	        GameRegistry.registerItem(MASSE[i], "masse_" + i);
+        }
         
     	ETHERNIUM_HOE = new ItemHoe(EnumMaterial.TOOL_ETHERNIUM).setUnlocalizedName("ethernium_hoe").setTextureName("magiccrusade:ethernium_hoe");
     	ETHERNIUM_HATCHET = new ItemAxeM(EnumMaterial.TOOL_ETHERNIUM).setUnlocalizedName("ethernium_axe").setTextureName("magiccrusade:ethernium_axe");
@@ -415,125 +483,142 @@ public class ItemRegister {
 		return (i);
 	}
 	
-	public static ItemArmorM getRandomArmor()
+	public static Item getRandomArmor()
 	{
 		Random rand;
 		
 		rand = new Random();
 		
-		switch (rand.nextInt(32))
+		switch (rand.nextInt(37))
 		{
 		
 /**--------------------------------------------------------------------------------------*/
 			case 0 :
-				return (ItemArmorM) DPS_AP_HELMET[rand.nextInt(8)];
+				return DPS_AP_HELMET[rand.nextInt(8)];
 				
 			case 1 :
-				return (ItemArmorM) DPS_AP_CHESTPLATE[rand.nextInt(8)];
+				return DPS_AP_CHESTPLATE[rand.nextInt(8)];
 				
 			case 2 :
-				return (ItemArmorM) DPS_AP_PANTS[rand.nextInt(8)];
+				return DPS_AP_PANTS[rand.nextInt(8)];
 				
 			case 3 :
-				return (ItemArmorM) DPS_AP_BOOTS[rand.nextInt(8)];
+				return DPS_AP_BOOTS[rand.nextInt(8)];
 				
 /**--------------------------------------------------------------------------------------*/
 				
 			case 4 :
-				return (ItemArmorM) DPS_AD_HELMET[rand.nextInt(8)];
+				return DPS_AD_HELMET[rand.nextInt(8)];
 				
 			case 5:
-				return (ItemArmorM) DPS_AD_CHESTPLATE[rand.nextInt(8)];
+				return DPS_AD_CHESTPLATE[rand.nextInt(8)];
 				
 			case 6 :
-				return (ItemArmorM) DPS_AD_PANTS[rand.nextInt(8)];
+				return DPS_AD_PANTS[rand.nextInt(8)];
 				
 			case 7 :
-				return (ItemArmorM) DPS_AD_BOOTS[rand.nextInt(8)];
+				return DPS_AD_BOOTS[rand.nextInt(8)];
 				
 /**--------------------------------------------------------------------------------------*/
 				
 			case 8 :
-				return (ItemArmorM) TANK_HELMET[rand.nextInt(8)];
+				return TANK_HELMET[rand.nextInt(8)];
 				
 			case 9:
-				return (ItemArmorM) TANK_CHESTPLATE[rand.nextInt(8)];
+				return TANK_CHESTPLATE[rand.nextInt(8)];
 				
 			case 10 :
-				return (ItemArmorM) TANK_PANTS[rand.nextInt(8)];
+				return TANK_PANTS[rand.nextInt(8)];
 				
 			case 11 :
-				return (ItemArmorM) TANK_BOOTS[rand.nextInt(8)];
+				return TANK_BOOTS[rand.nextInt(8)];
 				
 /**--------------------------------------------------------------------------------------*/
 				
 			case 12 :
-				return (ItemArmorM) HEAL_HELMET[rand.nextInt(8)];
+				return HEAL_HELMET[rand.nextInt(8)];
 				
 			case 13 :
-				return (ItemArmorM) HEAL_CHESTPLATE[rand.nextInt(8)];
+				return HEAL_CHESTPLATE[rand.nextInt(8)];
 				
 			case 14 :
-				return (ItemArmorM) HEAL_PANTS[rand.nextInt(8)];
+				return HEAL_PANTS[rand.nextInt(8)];
 				
 			case 15 :
-				return (ItemArmorM) HEAL_BOOTS[rand.nextInt(8)];
+				return HEAL_BOOTS[rand.nextInt(8)];
 				
 /**--------------------------------------------------------------------------------------*/
 				
 			case 16 :
-				return (ItemArmorM) ENERGY_HELMET[rand.nextInt(8)];
+				return ENERGY_HELMET[rand.nextInt(8)];
 				
 			case 17 :
-				return (ItemArmorM) ENERGY_CHESTPLATE[rand.nextInt(8)];
+				return ENERGY_CHESTPLATE[rand.nextInt(8)];
 				
 			case 18 :
-				return (ItemArmorM) ENERGY_PANTS[rand.nextInt(8)];
+				return ENERGY_PANTS[rand.nextInt(8)];
 				
 			case 19 :
-				return (ItemArmorM) ENERGY_BOOTS[rand.nextInt(8)];
+				return ENERGY_BOOTS[rand.nextInt(8)];
 				
 /**--------------------------------------------------------------------------------------*/
 				
 			case 20 :
-				return (ItemArmorM) SLY_HELMET[rand.nextInt(8)];
+				return SLY_HELMET[rand.nextInt(8)];
 				
 			case 21 :
-				return (ItemArmorM) SLY_CHESTPLATE[rand.nextInt(8)];
+				return SLY_CHESTPLATE[rand.nextInt(8)];
 				
 			case 22 :
-				return (ItemArmorM) SLY_PANTS[rand.nextInt(8)];
+				return SLY_PANTS[rand.nextInt(8)];
 				
 			case 23 :
-				return (ItemArmorM) SLY_BOOTS[rand.nextInt(8)];
+				return SLY_BOOTS[rand.nextInt(8)];
 				
 /**--------------------------------------------------------------------------------------*/
 				
 			case 24 :
-				return (ItemArmorM) ROGUE_HELMET[rand.nextInt(8)];
+				return ROGUE_HELMET[rand.nextInt(8)];
 				
 			case 25 :
-				return (ItemArmorM) ROGUE_CHESTPLATE[rand.nextInt(8)];
+				return ROGUE_CHESTPLATE[rand.nextInt(8)];
 				
 			case 26 :
-				return (ItemArmorM) ROGUE_PANTS[rand.nextInt(8)];
+				return ROGUE_PANTS[rand.nextInt(8)];
 				
 			case 27 :
-				return (ItemArmorM) ROGUE_BOOTS[rand.nextInt(8)];
+				return ROGUE_BOOTS[rand.nextInt(8)];
 				
 /**--------------------------------------------------------------------------------------*/
 				
 			case 28 :
-				return (ItemArmorM) RAGE_HELMET[rand.nextInt(8)];
+				return RAGE_HELMET[rand.nextInt(8)];
 				
 			case 29 :
-				return (ItemArmorM) RAGE_CHESTPLATE[rand.nextInt(8)];
+				return RAGE_CHESTPLATE[rand.nextInt(8)];
 				
 			case 30 :
-				return (ItemArmorM) RAGE_PANTS[rand.nextInt(8)];
+				return RAGE_PANTS[rand.nextInt(8)];
 				
 			case 31 :
-				return (ItemArmorM) RAGE_BOOTS[rand.nextInt(8)];
+				return RAGE_BOOTS[rand.nextInt(8)];
+			
+/**--------------------------------------------------------------------------------------*/
+
+			case 32 :
+				return GLAIVE[rand.nextInt(8)];
+				
+			case 33 :
+				return LANCE[rand.nextInt(8)];
+				
+			case 34 :
+				return CUT[rand.nextInt(8)];
+				
+			case 35 :
+				return SWORD_UNO[rand.nextInt(8)];
+				
+			case 36 :
+				return MASSE[rand.nextInt(8)];
 		}
 		
 		return (null);

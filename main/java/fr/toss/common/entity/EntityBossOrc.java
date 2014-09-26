@@ -1,13 +1,13 @@
 package fr.toss.common.entity;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.IBossDisplayData;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
@@ -15,18 +15,23 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import fr.toss.common.command.ChatColor;
 import fr.toss.common.register.ItemRegister;
 
-public class EntityBossOrc extends EntityMob implements IBossDisplayData {
+public class EntityBossOrc extends EntityBossM {
 
 	public EntityBossOrc(World w)
 	{
 		super(w);
 		this.setSize(2.0f, 4.0f);
 		this.isImmuneToFire = true;
+		
+		this.set_loot(6, ItemRegister.ASHBRINGER, ItemRegister.ASHBRINGER_POISON, ItemRegister.wrathful_SWORD, ItemRegister.GLAIVE[7], ItemRegister.GLAIVE[6],
+				ItemRegister.DPS_AD_CHESTPLATE[7], ItemRegister.DPS_AD_HELMET[7], ItemRegister.DPS_AD_PANTS[7], ItemRegister.DPS_AD_PANTS[7],
+					ItemRegister.wrathful_BOOTS, ItemRegister.wrathful_CHESTPLATE, ItemRegister.wrathful_PANTS, ItemRegister.wrathful_HELMET);
 	}
 	
 	  /**
@@ -50,7 +55,7 @@ public class EntityBossOrc extends EntityMob implements IBossDisplayData {
      */
     protected String getDeathSound()
     {
-        return "mob.magiccrusade:king_orc_die";
+        return "magiccrusade:king_orc_die";
     }
 
     protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
@@ -61,9 +66,9 @@ public class EntityBossOrc extends EntityMob implements IBossDisplayData {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(300.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(460.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.64D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(28.0D);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0D);
     }
     
@@ -73,6 +78,12 @@ public class EntityBossOrc extends EntityMob implements IBossDisplayData {
     	return new ChatComponentText("Orc King");
     }
 
+    @Override
+    protected Item getDropItem()
+    {
+    	super.getDropItem();
+        return ItemRegister.SULFURAS;
+    }
     
     public boolean canDespawn()
     {
@@ -103,11 +114,11 @@ public class EntityBossOrc extends EntityMob implements IBossDisplayData {
     {
     	long timer;
     	
-		timer = System.currentTimeMillis() % 18000;
+		timer = System.currentTimeMillis() % 24000;
 	
     	if (timer < 40)
-    		p.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
-    	else if (timer > 8000 && timer < 8020)
+    		p.addPotionEffect(new PotionEffect(Potion.blindness.id, 140, 0));
+    	else if (timer > 8000 && timer < 8030)
     	{
     		Vec3 vec;
     		
@@ -118,16 +129,44 @@ public class EntityBossOrc extends EntityMob implements IBossDisplayData {
 			p.attackEntityFrom(DamageSource.magic, 0.5f);
 			p.addChatComponentMessage(new ChatComponentText(ChatColor.UNDERLINE + "King Orc:" + ChatColor.RESET + " GO AWAY!"));
 		}
-    }
-    
-    protected Item getDropItem()
-    {
-        for (int k = 0; k < 4; ++k)
-        	this.dropItem(ItemRegister.getRandomArmor(), 1);
-        
-        return ItemRegister.SULFURAS;
+    	else if (timer > 18000 && timer < 18030)
+    	{
+        	List list;
+        	
+    		list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0d, 4.0d, 16.0d));
+    		this.aura_feu(list);
+    	}
     }
 
+    
+	void aura_feu(List list)
+    {
+		Random rand;
+		float a;
+		float b;
+		float c;
+		
+		rand = this.worldObj.rand;
+		for (int i = 0; i < 60; i++)
+		{
+			a = rand.nextInt(2) == 0 ? rand.nextFloat() : -rand.nextFloat();
+			b = rand.nextInt(2) == 0 ? rand.nextFloat() : -rand.nextFloat();
+			c = rand.nextInt(2) == 0 ? rand.nextFloat() : -rand.nextFloat();
+			this.worldObj.spawnParticle("flame", this.posX, this.posY, this.posZ, a, b, c);
+		}
+		
+		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 4.0f, false);
+
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i) instanceof EntityLivingBase)
+			{
+				((EntityLivingBase)list.get(i)).attackEntityFrom(DamageSource.causeMobDamage(this), 4);
+			}
+		}		
+	}
+	
+	
     protected Entity findPlayerToAttack()
     {
         double d0 = 16.0D;
