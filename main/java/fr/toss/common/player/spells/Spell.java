@@ -110,8 +110,8 @@ public abstract class Spell {
 	                	}     
 			}
 		}
-			return (null);
-	    }
+		return (null);
+	}
 
 	public String[] getDescription() 
 	{
