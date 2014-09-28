@@ -83,34 +83,33 @@ public abstract class Spell {
 			{
 				entity = (Entity)list.get(i);
 
-	                if (!entity.isDead)
-	                {
-	             	   if(entity instanceof EntityLivingBase)
-	             	   {
-	             		   Vec3 vec3d;
-	             		   Vec3 vec3d1;
-	             		   double d;
-	             		   double d1;
-	             		   double a;
-	             		   double b;
-	             		   double c;
-	             		   
-	             		   vec3d = thePlayer.getLook(1.0F).normalize();
-	             		   vec3d1 = Vec3.createVectorHelper(entity.posX - thePlayer.posX, (entity.boundingBox.minY + (double)(entity.height / 2.0F)) - (thePlayer.posY + (double)thePlayer.getEyeHeight()), entity.posZ - thePlayer.posZ);
-	             		   d = vec3d1.lengthVector();
-	             		   vec3d1 = vec3d1.normalize();
-	             		   d1 = vec3d.dotProduct(vec3d1);
-	             	       if (d1 > 1.0D - 0.025000000000000001D / d)
-	             	       {
-	             	    	   System.out.println("Looking at " + entity);
-	             	    	   return (entity);
-	             	       }
-	             	   }
+		                if (!entity.isDead)
+		                {
+		             	   if(entity instanceof EntityLivingBase)
+		             	   {
+		             		   Vec3 vec3d;
+		             		   Vec3 vec3d1;
+		             		   double d;
+		             		   double d1;
+		             		   double a;
+		             		   double b;
+		             		   double c;
+		             		   
+		             		   vec3d = thePlayer.getLook(1.0F).normalize();
+		             		   vec3d1 = Vec3.createVectorHelper(entity.posX - thePlayer.posX, (entity.boundingBox.minY + (double)(entity.height / 2.0F)) - (thePlayer.posY + (double)thePlayer.getEyeHeight()), entity.posZ - thePlayer.posZ);
+		             		   d = vec3d1.lengthVector();
+		             		   vec3d1 = vec3d1.normalize();
+		             		   d1 = vec3d.dotProduct(vec3d1);
+		             	       if (d1 > 1.0D - 0.025000000000000001D / d)
+		             	       {
+		             	    	   System.out.println("Looking at " + entity);
+		             	    	   return (entity);
+		             	       }
+		             	   }
 	             	   
-	                }     
-				}
-			
+	                	}     
 			}
+		}
 			return (null);
 	    }
 
