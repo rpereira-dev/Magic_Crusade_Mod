@@ -9,10 +9,8 @@ public class FileUtils {
 	
 	public static boolean file_exists(String path)
 	{
-		File file;
-		
-		file = new File(Minecraft.getMinecraft().mcDataDir.getAbsoluteFile() + "/mods/magic_crusade/" + path);
-		
+		File file = new File(Minecraft.getMinecraft().mcDataDir.getAbsoluteFile() + "/mods/magic_crusade/" + path);
+	
 		try 
 		{
 			return (!file.createNewFile());
