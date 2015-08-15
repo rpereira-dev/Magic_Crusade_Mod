@@ -5,8 +5,8 @@
 
 #   DESCRIPTION ITEM
 item.description.valanyr=This hammer shines a holy light
-item.description.faux=Steal 2 hp from your target
-item.description.lame_tonerre=There's electrial particles around it...
+item.description.faux=Steals 2 HP from your target
+item.description.lame_tonerre=There's electrical particles around it...
 item.description.shadowmourne=This axe has a strange aura...
 item.description.frostmourne=The blade seems deeply frozen
 
@@ -29,24 +29,24 @@ stats.critic=Critical Ratio.
 
 #   LANG SPELL
 spell.rogue.critic=(Passive) Acuteness
-spell.rogue.poison=Viper hit
+spell.rogue.poison=Viper Hit
 spell.rogue.speed=Speed
 spell.rogue.invisible=Invisibility
-spell.rogue.vision=Nocturn vision
-spell.rogue.feather_falling=Feather falling
+spell.rogue.vision=Nocturnal Vision
+spell.rogue.feather_falling=Feather Falling
 
-spell.mage.cone=Fire cone
-spell.mage.field_destruction=Field destruction
-spell.mage.freeze_cube=Frozen cube
-spell.mage.transfert=Transfert
-spell.mage.arcane_pillow=Arcane pillow
+spell.mage.cone=Fire Cone
+spell.mage.field_destruction=Field Destruction
+spell.mage.freeze_cube=Frozen Cube
+spell.mage.transfert=Transfer
+spell.mage.arcane_pillow=Arcane Pillow
 spell.mage.fireball=Fireball
 
 spell.ranger.explode_shot=Exploding Shot
-spell.ranger.magic_shot=Magical shot
+spell.ranger.magic_shot=Magical Shot
 spell.ranger.poison_shot=Viper Shot
 spell.ranger.frozen_shot=Frozen Shot
-spell.ranger.wolves=Wolf summoning
+spell.ranger.wolves=Wolf Summoning
 spell.ranger.refinement=Refinement
 
 spell.champion.arena=Arena
@@ -61,13 +61,13 @@ spell.necromancer.drain=Drain
 spell.necromancer.fireland=Fireland
 spell.necromancer.necromancy=Necromancy
 spell.necromancer.witherskull=Wither Skull
-spell.necromancer.zombie=Zombie summoning
+spell.necromancer.zombie=Zombie Summoning
 
 spell.priest.buff=Growth
-spell.priest.god_touch=God touch
+spell.priest.god_touch=God Touch
 spell.priest.heal=Heal
 spell.priest.purification=Purification
-spell.priest.healzone=Zone healing
+spell.priest.healzone=Zone Healing
 spell.priest.holyshield=Holyshield
 spell.priest.holy_explosion=Holy Explosion
 
@@ -141,49 +141,49 @@ spell.priest.holy_explosion.line2=
 
 
 #   LANG CLASSE
-classe.choose=Choose a classe to get more informations about it
+classe.choose=Choose a class to get more information about it.
 
 classe.champion=Champion
-classe.champion.slogan=The Champion, the living force
-classe.champion.line1=This class will make you resistant on melee fights
-classe.champion.line2=His main role is to protect his allies from ennemis.
-classe.champion.line3=He has to stay in front line to get mobs agressions.
-classe.champion.line4=He can charge, spawn a shockwave, increase it armor...
+classe.champion.slogan=Champion, the living rock
+classe.champion.line1=This class's main role is to protect their allies with massive amounts of health and armor.
+classe.champion.line2=The Champion can charge to it's oponents and send out a shockwave to deal damage.
+classe.champion.line3=Other skills include Ironskin which gives the player resistance to their opponents attack.
+classe.champion.line4=Role : Tank
 
 classe.rogue=Rogue
-classe.rogue.slogan=The living shadow: The Rogue
-classe.rogue.line1=You will become a darkness master: a rogue
-classe.rogue.line2=You have strong physic damages. You
-classe.rogue.line3=can become invisible and hit /poison ennemis
-classe.rogue.line4=by surprises. Your critical ratio is doubled
-classe.rogue.line5=when you are behind your target.
+classe.rogue.slogan=Rogue, the hidden shadow
+classe.rogue.line1=This class's main role is to sneak behind enemy lines and do massive back crits to their opponents.
+classe.rogue.line2=Rogue's use the invisability skill to hide from their enemeys while they sneak behind to deal double crit damage.
+classe.rogue.line3=Other skills include Nocturnal Vision, Feather Falling, Accelleration, and a poisioning Viper Hit.
+classe.rogue.line4=Role : DPS
 
 classe.necromancer=Necromancer
-classe.necromancer.slogan=Necromancer, the sombre magician
-classe.necromancer.line1=You will become a strong death wizard.
-classe.necromancer.line2=In a group, he has to deal damages to mobs
-classe.necromancer.line3=He has to stay back and hit with his spells.
-classe.necromancer.line4=He can also summons monsters to help him.
+classe.necromancer.slogan=Necromancer, the death bringer
+classe.necromancer.line1=This class's main role is to be front lines dealing tons of damage while using a healing drain spell.
+classe.necromancer.line2=Rogue's use their Drain skill to deal damage and heal themselves while summoning zombies and dealing fire, poision, and wither skull damage around them.
+classe.necromancer.line3=Other skills includes Corruption which deals damage to a specific target over time.
+classe.necromancer.line4=Role : DPS
 
-classe.priest=Priest
-classe.priest.slogan=The Priest, tranquil mind
-classe.priest.line1=A spriritual classe, which consist in healing
-classe.priest.line2=and buffing players. In group, you have to stay
-classe.priest.line3=behind and keep your allies alive and buffed.
+classe.priest=Priest(ess)
+classe.priest.slogan=Priest(ess), the radiant saint(ess)
+classe.priest.line1=This class's main role is to stay behind the group and faceroll all the heals!
+classe.priest.line2=Priest(ess)'s can use 3 differnt types of heals and numerous buffs to heal and buff their allies or even opponents!
+classe.priest.line3=Other skills include a Purifying clense and God's invunerable touch!
+classe.priest.line4=Role : Healer
             
 classe.mage=Mage
-classe.mage.slogan=The Mage
-classe.mage.line1=A classe which deal heavy magic damages.
-classe.mage.line2=It spells can also burn or slow the ennemi
-classe.mage.line3=You have to stay away from ennemis
-classe.mage.line4=to deal damages without being hitten
+classe.mage.slogan=Mage, the arcane enthusiast
+classe.mage.line1=This class's main role is to stand back and deal tons of magic damage!
+classe.mage.line2=Mage's can use their numerous skills to ignite and slow their opponents all while dealing damage.
+classe.mage.line3=Other skills include Transfer, which you swap positions with your target.
+classe.mage.line4=Role : DPS
 
 classe.ranger=Ranger
-classe.ranger.slogan=The Ranger
-classe.ranger.line1=A strong damage dealer classe.
-classe.ranger.line2=He hits ennemis with his powerful bow.
-classe.ranger.line3=He also have spells (based on arrows) and
-classe.ranger.line4=he can summons wolves
+classe.ranger.slogan=Ranger, the hawkeye
+classe.ranger.line1=This class's main role is to take out opponents at a distance.
+classe.ranger.line2=Rangers can use their numerous bow buffs to poison, crit, explode, and freeze their opponents.
+classe.ranger.line3=Other skills include a wolve summoning skill!
+classe.ranger.line4=Role : DPS
             
 
 
@@ -200,21 +200,21 @@ itemGroup.item_fight_loot=MC Loot
 
 #   ACHIEVEMENTS
 achievement.loging=Welcome to Magic Crusade
-achievement.loging.desc=Starting a new game with Magic Crusade mod
+achievement.loging.desc=Starting a new game with the Magic Crusade Mod!
 
 achievement.dungeon=Dungeon
-achievement.dungeon.desc=Entering a Dungeon
+achievement.dungeon.desc=Enter a Dungeon
 
 achievement.orc_slayer=Orc Slayer
-achievement.orc_slayer.desc=Kill an orc
+achievement.orc_slayer.desc=Kill an Orc
 
 achievement.orc_king=Orc King
 achievement.orc_king.desc=Kill the Orc King
 
-achievement.new_dimension=New Challenges...
-achievement.new_dimension.desc=Entering the Mystic Groves
+achievement.new_dimension=New Challenges
+achievement.new_dimension.desc=Enter the Mystic Groves
 
-achievement.new_items=Let's craft
+achievement.new_items=Let's Craft
 achievement.new_items.desc=I want new tools! Craft a blue stick
 
 achievement.ethernium_sword=Ethernium Sword
@@ -224,9 +224,9 @@ achievement.titanium_stuff=Strong Armor
 achievement.titanium_stuff.desc=The most resistant craftable armor
 
 achievement.silver_pickaxe=It's shining
-achievement.silver_pickaxe.desc=A pickaxe with a new material (silver)
+achievement.silver_pickaxe.desc=A pickaxe with a new material (Silver)
 
-achievement.sulfuron=Dat HAMMER
+achievement.sulfuron=DAAHHH HAMMAH
 achievement.sulfuron.desc=Find a Sulfuras Hammer
 
 achievement.magic_staff=What a weapon!
@@ -294,9 +294,9 @@ item.frostmourne.name=Frostmourne
 item.shallator.name=Shallator
 item.shalamayne.name=Shalamayne
 
-item.sword_uno.name=Sword ubotain
+item.sword_uno.name=Ubotain Sword
 item.cut.name=Sharped cut
-item.lance.name=Small lance
+item.lance.name=Small Lance
 item.glaive.name=Broadsword
 item.masse.name=Magic Hammer
 
